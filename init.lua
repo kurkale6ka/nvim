@@ -9,11 +9,17 @@
 -- ts text objects: test selections
 -- get completions from all buffers
 -- autocmd: what are groups for?
--- gh or <localleader>h for local help?
 -- use in mappings: gl, gh, coc, =oc, old option changing combis
 -- after ciw confirm with enter from completion, . won't repeat
 -- where are dictionaries?
 -- se dg still no luck
+-- Fuzzy search
+--   - diagnostics: sd
+--   - sh: helptags
+--     gh or <localleader>h for local help?
+-- yank highlight autocmd
+-- .projections add (not ignore?)
+-- add alt-. in cmdline
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
@@ -250,6 +256,7 @@ vim.api.nvim_create_user_command('Scratch',
 )
 
 -- Quote coma separated items
+-- TODO: fix a, b, c case (extra comas) + port to lua
 -- cmd = apt install vim ->
 -- cmd = ('apt', 'install', 'vim')
 vim.api.nvim_create_user_command('Quotes',
