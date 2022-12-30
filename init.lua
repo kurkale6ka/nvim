@@ -18,7 +18,6 @@
 --   - sh: helptags
 --     gh or <localleader>h for local help?
 -- yank highlight autocmd
--- .projections add (not ignore?)
 -- add alt-. in cmdline
 
 vim.g.mapleader = ' '
