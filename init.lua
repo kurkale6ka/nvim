@@ -6,7 +6,7 @@
 -- set backup
 -- nmap <expr> <leader>g ':vert Git -p ', redefine command?
 -- compare with coc completion
--- ts text objects
+-- ts text objects: test selections
 -- get completions from all buffers
 -- autocmd: what are groups for?
 -- gh or <localleader>h for local help?
