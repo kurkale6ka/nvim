@@ -9,16 +9,18 @@
 -- ts text objects: test selections
 -- get completions from all buffers
 -- autocmd: what are groups for?
--- use in mappings: gl, gh, coc, =oc, old option changing combis
 -- after ciw confirm with enter from completion, . won't repeat
 -- where are dictionaries?
 -- se dg still no luck
 -- Fuzzy search
 --   - diagnostics: sd
---   - sh: helptags
---     gh or <localleader>h for local help?
+--   - sh: history vs gh: helptags, swap?
+--     <localleader>h for local help?
+--   - sg: GFiles vs gl (git list)
+--   - use in mappings: coc, =oc, old option changing combis
 -- yank highlight autocmd
 -- add alt-. in cmdline
+-- tidy init.lua
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
@@ -119,6 +121,7 @@ vim.wo.breakindent = true -- respect indentation when wrapping
 vim.wo.showbreak = '↪ '
 vim.opt.listchars = { tab = '▷⋅', trail = '⋅', nbsp = '⋅' }
 
+-- TODO: only one?
 if vim.bo.readonly or not vim.bo.modifiable then
     vim.wo.list = false
 else

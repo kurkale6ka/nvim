@@ -1,6 +1,7 @@
 vim.keymap.set('n', '<leader>sg', ':GFiles<cr>')   -- search git files
 vim.keymap.set('n', '<leader>sf', ':Files<cr>')    -- search fzf files
 vim.keymap.set('n', '<leader>sh', ':History<cr>')  -- search history (recently edited files)
+vim.keymap.set('n', 'gh', ':Helptags<cr>')         -- search help files
 vim.keymap.set('n', '<leader>ss', ':Snippets<cr>') -- search snippets
 vim.keymap.set('n', '<leader>st', ':Tags<cr>')     -- search tags
 vim.keymap.set('n', '<leader>sc', ':Commands<cr>') -- search commands
