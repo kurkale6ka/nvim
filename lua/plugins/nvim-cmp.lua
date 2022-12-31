@@ -51,12 +51,21 @@ cmp.setup({
         { name = 'nvim_lsp', keyword_length = 3 },
         { name = 'path' },
         { name = 'ultisnips' },
+        -- { name = 'nvim_lua' },
     }),
     formatting = {
         format = function(entry, vim_item)
             -- Kind icons
             -- This concatonates the icons with the name of the item kind
             vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
+            -- Source
+            vim_item.menu = ({
+                buffer = "[Buffer]",
+                nvim_lsp = "[LSP]",
+                path = "[Path]",
+                ultisnips = "[UltiSnips]",
+                -- nvim_lua = "[Lua]",
+            })[entry.source.name]
             return vim_item
         end,
     },
