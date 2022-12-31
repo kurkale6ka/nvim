@@ -34,10 +34,10 @@ vim.keymap.set('n', '<leader>h', ':Files '..vim.env.XDG_CONFIG_HOME..'/repos/hel
 -- Rg: ripgrep
 vim.api.nvim_create_user_command('Rg',
     function(input)
-        vim.call('fzf#vim#grep',
+        vim.fn['fzf#vim#grep'](
             'rg --column --line-number --no-heading --color=always --smart-case --hidden -- ' .. vim.fn.shellescape(input.args),
             1, -- was --column passed?
-            vim.call('fzf#vim#with_preview'),
+            vim.fn['fzf#vim#with_preview'](),
             input.bang -- fullscreen?
         )
     end,

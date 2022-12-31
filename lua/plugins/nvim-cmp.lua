@@ -1,5 +1,5 @@
 -- Set up nvim-cmp.
-local cmp = require 'cmp'
+local cmp = require('cmp')
 
 local kind_icons  = {
     Text          = "",
@@ -29,6 +29,33 @@ local kind_icons  = {
     TypeParameter = "",
 }
 
+-- cmdline setup
+cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline({
+        -- TODO: fix, not working
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    }),
+    sources = cmp.config.sources({
+        { name = 'path' }
+    }, {
+        {
+            name = 'cmdline',
+            option = { ignore_cmds = { 'Man', '!' } }
+        }
+    }),
+    formatting = {
+        format = function(entry, vim_item)
+            -- Kind icons, TODO: kind - variable?
+            vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
+            -- Source
+            vim_item.menu = ({
+                cmdline  = "[Cmdline]",
+            })[entry.source.name]
+            return vim_item
+        end,
+    },
+})
+
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -47,11 +74,11 @@ cmp.setup({
         ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
     sources = cmp.config.sources({
-        { name = 'buffer', keyword_length = 3 },
-        { name = 'nvim_lsp', keyword_length = 3 },
+        -- { name = 'nvim_lua' }, TODO: replace with neodev
+        { name = 'nvim_lsp'},
+        { name = 'buffer'},
         { name = 'path' },
         { name = 'ultisnips' },
-        -- { name = 'nvim_lua' },
     }),
     formatting = {
         format = function(entry, vim_item)
@@ -60,11 +87,11 @@ cmp.setup({
             vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
             -- Source
             vim_item.menu = ({
-                buffer = "[Buffer]",
-                nvim_lsp = "[LSP]",
-                path = "[Path]",
+                -- nvim_lua  = "[Lua]", TODO: [Neodev]
+                nvim_lsp  = "[LSP]",
+                buffer    = "[Buffer]",
+                path      = "[Path]",
                 ultisnips = "[UltiSnips]",
-                -- nvim_lua = "[Lua]",
             })[entry.source.name]
             return vim_item
         end,

@@ -8,7 +8,6 @@
 -- compare with coc completion
 -- ts text objects: test selections
 -- get completions from all buffers
--- autocmd: what are groups for?
 -- after ciw confirm with enter from completion, . won't repeat
 -- where are dictionaries?
 -- se dg still no luck
@@ -24,18 +23,12 @@
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
+vim.g.python3_host_prog = '~/py-envs/utils/bin/python'
 
--- Disable these plugins
-vim.g.did_install_default_menus = true
-vim.g.loaded_2html_plugin       = true
-vim.g.loaded_vimballPlugin      = true
-vim.g.loaded_netrwPlugin        = true
-vim.g.loaded_zipPlugin          = true
-vim.g.loaded_tarPlugin          = true
-vim.g.loaded_getscriptPlugin    = true
-vim.g.loaded_rrhelper           = true
-vim.g.loaded_spellfile_plugin   = true
+vim.o.termguicolors = true
+vim.cmd 'colorscheme desertEX'
 
+require('noplugins')
 require('plugins')
 require('plugins/nvim-lspconfig')
 require('plugins/nvim-cmp')
@@ -47,11 +40,6 @@ require('plugins/firenvim')
 require('autocmds')
 require('readline')
 require('statusline')
-
-vim.g.python3_host_prog = '~/py-envs/utils/bin/python'
-
-vim.o.termguicolors = true
-vim.cmd 'colorscheme desertEX'
 
 -- Backups
 vim.o.writebackup = true
@@ -252,7 +240,7 @@ vim.opt.nrformats:remove { 'octal' }
 -- Get ex command output in a buffer
 vim.api.nvim_create_user_command('Scratch',
     function(input)
-        vim.call('scratch#buffer', input.args)
+        vim.fn['scratch#buffer'](input.args)
     end,
     { nargs = '+', desc = 'Get ex command output in a buffer' }
 )
