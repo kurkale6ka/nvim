@@ -1,25 +1,3 @@
--- TODO:
--- :Rg buffer-ring: up to go to last
--- :Rg \bpyright
--- let g:ansible_attribute_highlight = "ab"
--- let g:vim_json_syntax_conceal = 0
--- set backup
--- nmap <expr> <leader>g ':vert Git -p ', redefine command?
--- compare with coc completion
--- ts text objects: test selections
--- after ciw confirm with enter from completion, . won't repeat
--- where are dictionaries?
--- se dg still no luck
--- Fuzzy search
---   - diagnostics: sd
---   - sh: history vs gh: helptags, swap?
---     <localleader>h for local help?
---   - sg: GFiles vs gl (git list)
---   - use in mappings: coc, =oc, old option changing combis
--- yank highlight autocmd
--- add alt-. in cmdline
--- tidy init.lua
-
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 vim.g.python3_host_prog = '~/py-envs/utils/bin/python'
@@ -38,8 +16,8 @@ vim.o.undofile = true
 vim.o.history = 10000
 vim.o.shada = "'1000"
 
-vim.keymap.set('n', '<leader>e', ':e')
-vim.keymap.set('n', '<leader>w', ':w<cr>')
+vim.keymap.set('n', '<leader>e', ':e', { desc = 'avoid typing colon :-)' })
+vim.keymap.set('n', '<leader>w', ':w<cr>', { desc = 'save buffer' })
 vim.keymap.set('n', 'gr', ':later 9999<cr>', { desc = 'redo all changes' })
 vim.keymap.set('n', '<leader>-', '<c-^>', { desc = 'switch to the alternate file' })
 vim.keymap.set('n', '<leader>a', ':A<cr>', { desc = 'switch to projectionist-alternate' })
@@ -52,15 +30,13 @@ vim.o.smartcase  = true
 vim.o.infercase  = true
 
 vim.o.inccommand = 'nosplit'
-vim.opt.path:append { vim.env.XDG_CONFIG_HOME .. '/repos/**' }
+vim.opt.path:append { vim.env.XDG_CONFIG_HOME..'/repos/**' }
 vim.o.grepprg = 'rg --column --line-number --no-heading --vimgrep --smart-case --hidden'
 
--- \G for global
--- \S for substitute
-vim.keymap.set('n', '<leader>G', ':g/<c-r><c-a>/')
-vim.keymap.set('n', '<leader>S', ':%s/<c-r><c-a>//g<left><left>')
+vim.keymap.set('n', '<leader>G', ':g/<c-r><c-a>/', { desc = ':g/WORD/' })
+vim.keymap.set('n', '<leader>S', ':%s/<c-r><c-a>//g<left><left>', { desc = ':%s/WORD/|/g' })
 
--- Tilda is hard to type :eh<space> -> :e~/
+-- tilda is hard to type, :eh<space> -> :e~/
 vim.cmd([[cabbrev <expr> eh getcmdtype() == ':' ? 'e~/'.abbreviations#eat_char('\s') : 'eh']])
 vim.cmd([[cabbrev <expr> es getcmdtype() == ':' ? 'e%:p:s/'.abbreviations#eat_char('\s') : 'es']])
 
@@ -93,11 +69,11 @@ vim.wo.list = true
 vim.o.synmaxcol = 301
 
 if not vim.wo.diff then
-    vim.wo.cursorline = true -- unless nvim -d was used
+    vim.wo.cursorline = true -- unless nvim -d was used, ref: https://github.com/neovim/neovim/issues/9800
 end
 
+-- folding
 vim.wo.foldnestmax = 1 -- maximum nesting for indent and syntax
-
 vim.cmd([[cabbrev <expr> fold getcmdtype() == ':' ? "se fdm=expr fde=getline(v\\:lnum)=~'^\\\\s*##'?'>'.(len(matchstr(getline(v\\:lnum),'###*'))-1)\\:'='".abbreviations#eat_char('\s') : 'fold']])
 vim.cmd([[cabbrev foldx se fdm=expr fde=getline(v\:lnum)=~'<'?'>1'\:'='<left><left><left><left><left><left><left><left><left><left><left><c-r>=abbreviations#eat_char('\s')<cr>]])
 
@@ -116,19 +92,17 @@ vim.o.autoindent = true
 vim.o.joinspaces = false
 
 vim.keymap.set('n', 'Q', 'gqap')
-
--- Underline
-vim.api.nvim_create_user_command('Underline',
-    'call underline#current(<q-args>)',
-    { nargs = '?', desc = 'Underline with dashes by default' }
-)
-
 vim.keymap.set('n', '<leader>z', ':call squeeze#lines("")<cr>', { silent = true, desc = 'squeeze lines' })
 vim.keymap.set('n', '=<leader>', '[<leader>]<leader>', { remap = true, desc = 'surround with empty lines' })
 
 -- TODO: Ctrl + Enter to open a line below in INSERT mode
 -- imap <c-cr> <esc>o
 -- imap <s-cr> <esc>O
+
+vim.api.nvim_create_user_command('Underline',
+    'call underline#current(<q-args>)',
+    { nargs = '?', desc = 'Underline with dashes by default' }
+)
 
 -- Tabs and shifting
 vim.o.tabstop = 8
@@ -137,13 +111,12 @@ vim.o.expandtab = true
 vim.o.shiftwidth = 4
 vim.o.shiftround = true
 
-vim.keymap.set('x', '<tab>', '>', { desc = 'shift rightwards' })
+vim.keymap.set('x', '<tab>', '>', { desc = 'shift rightwards' }) -- TODO: redefined in after/plugin/ultisnips
 vim.keymap.set('x', '<s-tab>', '<', { desc = 'shift leftwards' })
-
 vim.keymap.set({ 'n', 'x' }, '<leader>0', ':left<cr>', { desc = 'align left' })
 
 -- Tags
-vim.opt.tags:append { vim.env.XDG_CONFIG_HOME .. '/repos/tags' }
+vim.opt.tags:append { vim.env.XDG_CONFIG_HOME..'/repos/tags' }
 vim.opt.complete:remove { 't' }
 vim.opt.completeopt:remove { 'preview' }
 vim.o.showfulltag = true
@@ -163,30 +136,37 @@ vim.o.modelines = 3
 
 -- Editing
 vim.o.clipboard = 'unnamed,unnamedplus'
+vim.opt.nrformats:remove { 'octal' }
+vim.o.whichwrap = 'b,s,<,>,[,]'
+vim.o.virtualedit = 'block'
+vim.o.paragraphs = nil -- no wrongly defined paragraphs for non nroff,groff filetypes
+
+vim.o.startofline = false
+vim.keymap.set('x', '}', [[mode() == '<c-v>' ? line("'}")-1.'G' : '}']], { expr = true, desc = 'let } select the current column only when in visual-block mode' })
+vim.keymap.set('x', '{', [[mode() == '<c-v>' ? line("'{")+1.'G' : '{']], { expr = true, desc = 'let { select the current column only when in visual-block mode' })
+
 vim.keymap.set('n', '[P', ':pu!<cr>', { desc = 'force paste above' })
 vim.keymap.set('n', ']P', ':pu<cr>', { desc = 'force paste below' })
-
 vim.keymap.set('x', '<cr>', "<esc>'<dd'>[pjdd`<P==", { desc = 'swap first and last line in a visual area' })
-
--- Backspace
-vim.keymap.set('n', '<bs>', '"_X', { desc = 'use backspace for deleting' })
-vim.o.backspace = 'indent,eol,start'
-
 vim.keymap.set('n', 'dl', ':call spaces#remove_eof()<cr>', { silent = true, desc = 'delete EOF empty lines' })
 
--- Remove eol spaces
-vim.api.nvim_create_user_command('RemoveEOLSpaces',
-    ':call spaces#remove()', {}
-)
+-- backspace
+vim.o.backspace = 'indent,eol,start'
+vim.keymap.set('n', '<bs>', '"_X', { desc = 'use backspace for deleting' })
 
-vim.o.virtualedit = 'block'
-vim.o.whichwrap = 'b,s,<,>,[,]'
-vim.o.paragraphs = nil -- no wrongly defined paragraphs for non nroff,groff filetypes
+-- define a file text-object
+vim.keymap.set('x', 'af', 'ggVoG')
+vim.keymap.set('o', 'af', ':normal vaf<cr>')
+
+vim.api.nvim_create_user_command('RemoveEOLSpaces',
+    ':call spaces#remove()', { desc = 'remove EOL spaces' }
+)
 
 -- Let [[, ]] work even when { is not in the first column
 vim.keymap.set('n', '[[', [[:call search('^\S\@=.*{\s*$', 'besW')<cr>]], { silent = true, desc = 'let [[ work even when { is not in the first column' })
 vim.keymap.set('n', ']]', [[:call search('^\S\@=.*{\s*$',  'esW')<cr>]], { silent = true, desc = 'let ]] work even when { is not in the first column' })
 
+-- TODO: reuse function
 vim.keymap.set('o', '[[',
     function()
         if vim.fn.search([[^\S\@=.*{\s*$]], 'besW') ~= 0 and vim.fn.setpos("''", vim.fn.getpos('.')) == 0
@@ -211,21 +191,9 @@ vim.keymap.set('o', ']]',
     { expr = true, desc = 'let ]] work even when { is not in the first column' }
 )
 
--- Text-object: file
-vim.keymap.set('x', 'af', 'ggVoG')
-vim.keymap.set('o', 'af', ':normal vaf<cr>')
-
-vim.o.startofline = false
-
-vim.keymap.set('x', '}', [[mode() == '<c-v>' ? line("'}")-1.'G' : '}']], { expr = true, desc = 'let } select the current column only when in visual-block mode' })
-
-vim.keymap.set('x', '{', [[mode() == '<c-v>' ? line("'{")+1.'G' : '{']], { expr = true, desc = 'let { select the current column only when in visual-block mode' })
-
--- Spell check
+-- Spell check suggestions
 vim.keymap.set('n', '<leader>1', '1z=')
 vim.keymap.set('n', '<leader>2', '2z=')
-
-vim.opt.nrformats:remove { 'octal' }
 
 -- Get ex command output in a buffer
 vim.api.nvim_create_user_command('Scratch',
@@ -244,10 +212,30 @@ vim.api.nvim_create_user_command('Quotes',
     { desc = 'Create python tuple("item1", "item2") from coma separated items' }
 )
 
--- sudo :write
 vim.api.nvim_create_user_command('WriteSudo',
-    'write !sudo tee % >/dev/null', {}
+    'write !sudo tee % >/dev/null', { desc = 'sudo :write' }
 )
+
+-- TODO:
+-- :Rg buffer-ring: up to go to last
+-- :Rg \bpyright
+-- let g:ansible_attribute_highlight = "ab"
+-- let g:vim_json_syntax_conceal = 0
+-- set backup
+-- nmap <expr> <leader>g ':vert Git -p ', redefine command?
+-- compare with coc completion
+-- ts text objects: test selections
+-- after ciw confirm with enter from completion, . won't repeat
+-- where are dictionaries?
+-- se dg still no luck
+-- Fuzzy search
+--   - diagnostics: sd
+--   - sh: history vs gh: helptags, swap?
+--     <localleader>h for local help?
+--   - sg: GFiles vs gl (git list)
+--   - use in mappings: coc, =oc, old option changing combis
+-- yank highlight autocmd
+-- add alt-. in cmdline
 
 require('noplugins')
 require('autocmds')
