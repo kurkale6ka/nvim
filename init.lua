@@ -7,7 +7,6 @@
 -- nmap <expr> <leader>g ':vert Git -p ', redefine command?
 -- compare with coc completion
 -- ts text objects: test selections
--- get completions from all buffers
 -- after ciw confirm with enter from completion, . won't repeat
 -- where are dictionaries?
 -- se dg still no luck

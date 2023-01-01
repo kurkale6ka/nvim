@@ -1,4 +1,7 @@
 -- Set up nvim-cmp.
+-- TODO:
+-- confirm cmdline selection with enter
+-- complete from all buffers (e.g. doesn't complete from help buffers)
 local cmp = require('cmp')
 
 local kind_icons  = {
@@ -40,6 +43,7 @@ cmp.setup.cmdline(':', {
     }, {
         {
             name = 'cmdline',
+            max_item_count = 20,
             option = { ignore_cmds = { 'Man', '!' } }
         }
     }),
@@ -75,10 +79,10 @@ cmp.setup({
     }),
     sources = cmp.config.sources({
         -- { name = 'nvim_lua' }, TODO: replace with neodev
-        { name = 'nvim_lsp'},
-        { name = 'buffer'},
-        { name = 'path' },
-        { name = 'ultisnips' },
+        { name = 'nvim_lsp', max_item_count = 10 },
+        { name = 'buffer', max_item_count = 10},
+        { name = 'path', max_item_count = 10 },
+        { name = 'ultisnips', max_item_count = 10 },
     }),
     formatting = {
         format = function(entry, vim_item)
