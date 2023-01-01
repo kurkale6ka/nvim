@@ -28,19 +28,6 @@ vim.g.python3_host_prog = '~/py-envs/utils/bin/python'
 vim.o.termguicolors = true
 vim.cmd 'colorscheme desertEX'
 
-require('noplugins')
-require('plugins')
-require('plugins/nvim-lspconfig')
-require('plugins/nvim-cmp')
-require('plugins/tree-sitter')
-require('plugins/ultisnips')
-require('plugins/fern')
-require('plugins/sleuth')
-require('plugins/firenvim')
-require('autocmds')
-require('readline')
-require('statusline')
-
 -- Backups
 vim.o.writebackup = true
 vim.o.backupext = '~'
@@ -263,5 +250,16 @@ vim.api.nvim_create_user_command('WriteSudo',
     'write !sudo tee % >/dev/null', {}
 )
 
--- Bespoke setup
-pcall(require, 'local')
+require('noplugins')
+require('autocmds')
+require('readline')
+require('statusline')
+require('plugins')
+require('plugins/nvim-lspconfig')
+require('plugins/nvim-cmp')
+require('plugins/tree-sitter')
+require('plugins/ultisnips')
+require('plugins/fern')
+require('plugins/sleuth')
+require('plugins/firenvim')
+pcall(require, 'local') -- custom setup
