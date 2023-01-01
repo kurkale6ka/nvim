@@ -194,18 +194,33 @@ vim.o.virtualedit = 'block'
 vim.o.whichwrap = 'b,s,<,>,[,]'
 vim.o.paragraphs = nil -- no wrongly defined paragraphs for non nroff,groff filetypes
 
--- Let [[, ]] work even if the { is not in the first column
-vim.keymap.set('n', '[[', ":call search('^[^[:space:]]\\@=.*{$', 'besW')<cr>", { silent = true })
-vim.keymap.set('n', ']]', ":call search('^[^[:space:]]\\@=.*{$',  'esW')<cr>", { silent = true })
+-- Let [[, ]] work even when { is not in the first column
+vim.keymap.set('n', '[[', [[:call search('^\S\@=.*{\s*$', 'besW')<cr>]], { silent = true, desc = 'let [[ work even when { is not in the first column' })
+vim.keymap.set('n', ']]', [[:call search('^\S\@=.*{\s*$',  'esW')<cr>]], { silent = true, desc = 'let ]] work even when { is not in the first column' })
 
--- vim.keymap.set('o', '[[', [[
---     (search('^[^[:space:]]\\@=.*{$', 'besW') &&
---     (setpos("''", getpos('.')) <bar><bar> 1) ? "''" : "\\<esc>")
--- ]], { expr = true})
--- vim.keymap.set('o', ']]', [[
---     (search('^[^[:space:]]\\@=.*{$',  'esW') &&
---     (setpos("''", getpos('.')) <bar><bar> 1) ? "''" : "\\<esc>")
--- ]], { expr = true})
+vim.keymap.set('o', '[[',
+    function()
+        if vim.fn.search([[^\S\@=.*{\s*$]], 'besW') ~= 0 and vim.fn.setpos("''", vim.fn.getpos('.')) == 0
+        then
+            return "''"
+        else
+            return [[\<esc>]]
+        end
+    end,
+    { expr = true, desc = 'let [[ work even when { is not in the first column' }
+)
+
+vim.keymap.set('o', ']]',
+    function()
+        if vim.fn.search([[^\S\@=.*{\s*$]], 'esW') ~= 0 and vim.fn.setpos("''", vim.fn.getpos('.')) == 0
+        then
+            return "''"
+        else
+            return [[\<esc>]]
+        end
+    end,
+    { expr = true, desc = 'let ]] work even when { is not in the first column' }
+)
 
 -- Text-object: file
 vim.keymap.set('x', 'af', 'ggVoG')
