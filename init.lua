@@ -89,28 +89,19 @@ vim.o.linebreak = true -- wrap at characters in 'breakat
 vim.wo.breakindent = true -- respect indentation when wrapping
 vim.wo.showbreak = '↪ '
 vim.opt.listchars = { tab = '▷⋅', trail = '⋅', nbsp = '⋅' }
-
--- TODO: only one + test at the wrong location => move to autocmd
-if vim.bo.readonly or not vim.bo.modifiable then
-    vim.wo.list = false
-else
-    vim.wo.list = true
-end
+vim.wo.list = true
+vim.o.synmaxcol = 301
 
 if not vim.wo.diff then
-    vim.wo.cursorline = true
+    vim.wo.cursorline = true -- unless nvim -d was used
 end
-
-vim.o.synmaxcol = 301
 
 vim.wo.foldnestmax = 1 -- maximum nesting for indent and syntax
 
 vim.cmd([[cabbrev <expr> fold getcmdtype() == ':' ? "se fdm=expr fde=getline(v\\:lnum)=~'^\\\\s*##'?'>'.(len(matchstr(getline(v\\:lnum),'###*'))-1)\\:'='".abbreviations#eat_char('\s') : 'fold']])
-
 vim.cmd([[cabbrev foldx se fdm=expr fde=getline(v\:lnum)=~'<'?'>1'\:'='<left><left><left><left><left><left><left><left><left><left><left><c-r>=abbreviations#eat_char('\s')<cr>]])
 
 vim.keymap.set('n', '<c-g>', '2<c-g>', { desc = 'print working directory' })
-
 vim.keymap.set('n', '<leader>8', ':call highlight#column()<cr>', { silent = true, desc = 'highlight text beyond the 80th column' })
 
 -- Mouse support
