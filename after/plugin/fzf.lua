@@ -1,6 +1,7 @@
 vim.keymap.set('n', '<leader>sg', ':GFiles<cr>')   -- search git files
 vim.keymap.set('n', '<leader>sf', ':Files<cr>')    -- search fzf files
 vim.keymap.set('n', '<leader>sh', ':History<cr>')  -- search history (recently edited files)
+vim.keymap.set('n', 'gh', ':Helptags<cr>')         -- search help files
 vim.keymap.set('n', '<leader>ss', ':Snippets<cr>') -- search snippets
 vim.keymap.set('n', '<leader>st', ':Tags<cr>')     -- search tags
 vim.keymap.set('n', '<leader>sc', ':Commands<cr>') -- search commands
@@ -33,10 +34,10 @@ vim.keymap.set('n', '<leader>h', ':Files '..vim.env.XDG_CONFIG_HOME..'/repos/hel
 -- Rg: ripgrep
 vim.api.nvim_create_user_command('Rg',
     function(input)
-        vim.call('fzf#vim#grep',
+        vim.fn['fzf#vim#grep'](
             'rg --column --line-number --no-heading --color=always --smart-case --hidden -- ' .. vim.fn.shellescape(input.args),
             1, -- was --column passed?
-            vim.call('fzf#vim#with_preview'),
+            vim.fn['fzf#vim#with_preview'](),
             input.bang -- fullscreen?
         )
     end,

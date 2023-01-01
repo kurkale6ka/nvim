@@ -1,0 +1,7 @@
+{
+    "init.lua": { "alternate": "lua/plugins/init.lua" },
+    "lua/plugins/init.lua": { "alternate": "init.lua" },
+    "after/*": { "type": "after" },
+    "autoload/*": { "type": "autoload" },
+    "lua/*": { "type": "lua" }
+}

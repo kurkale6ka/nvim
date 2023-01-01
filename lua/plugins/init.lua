@@ -34,9 +34,9 @@ return require('packer').startup(function(use)
     use 'liuchengxu/vista.vim'
     use { 'dstein64/vim-startuptime', opt = true, cmd = 'StartupTime' }
 
-    -- Junegunn: TODO
+    -- Junegunn
     use 'junegunn/vim-easy-align'
-    use { 'junegunn/fzf', run = function() vim.call('fzf#install') end }
+    use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end }
     use 'junegunn/fzf.vim'
 
     -- LSP
@@ -57,6 +57,7 @@ return require('packer').startup(function(use)
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-cmdline',
         },
+        -- as 'completion', -- TODO
     }
 
     -- Snippets
@@ -96,7 +97,7 @@ return require('packer').startup(function(use)
 
     -- Own
     use 'kurkale6ka/vim-pairs'
-    use 'kurkale6ka/vim-desertEX'
+    use { 'kurkale6ka/vim-desertEX', branch = 'menu_colors' } -- TODO: use master
     use { 'kurkale6ka/vim-chess', opt = true }
 
 end)
