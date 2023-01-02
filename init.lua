@@ -217,16 +217,13 @@ vim.api.nvim_create_user_command('WriteSudo',
 )
 
 -- TODO:
--- :Rg buffer-ring: up to go to last
--- :Rg \bpyright
 -- let g:ansible_attribute_highlight = "ab"
 -- let g:vim_json_syntax_conceal = 0
--- set backup
 -- nmap <expr> <leader>g ':vert Git -p ', redefine command?
 -- compare with coc completion
 -- ts text objects: test selections
--- after ciw confirm with enter from completion, . won't repeat
--- where are dictionaries?
+-- after ciw confirm with enter from completion, '.' won't repeat
+-- install dictionaries?
 -- se dg still no luck
 -- Fuzzy search
 --   - diagnostics: sd
@@ -234,7 +231,6 @@ vim.api.nvim_create_user_command('WriteSudo',
 --     <localleader>h for local help?
 --   - sg: GFiles vs gl (git list)
 --   - use in mappings: coc, =oc, old option changing combis
--- yank highlight autocmd
 -- add alt-. in cmdline
 
 require('noplugins')

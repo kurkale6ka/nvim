@@ -32,6 +32,9 @@ vim.keymap.set('n', '<leader>h', ':Files '..vim.env.XDG_CONFIG_HOME..'/repos/hel
 -- nmap <leader>l :Lang<cr>
 
 -- Rg: ripgrep
+-- TODO:
+-- fzf buffer-ring: up to go to last item
+-- \bpyright regex not working
 vim.api.nvim_create_user_command('Rg',
     function(input)
         vim.fn['fzf#vim#grep'](
