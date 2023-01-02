@@ -1,5 +1,6 @@
 local generic = vim.api.nvim_create_augroup("Generic", { clear = true })
 local terminal = vim.api.nvim_create_augroup("Terminal", { clear = true })
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 -- local windows = vim.api.nvim_create_augroup("Windows", { clear = true })
 
 -- Jump to the last spot the cursor was at in a file when reading it
@@ -31,6 +32,14 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         endif
     ]],
     group = generic
+})
+
+-- Highlight on yank
+vim.api.nvim_create_autocmd('TextYankPost', {
+    callback = function()
+        vim.highlight.on_yank({on_visual = false})
+    end,
+    group = highlight_group,
 })
 
 -- Terminal: no numbers
