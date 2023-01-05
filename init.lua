@@ -6,6 +6,7 @@ vim.o.termguicolors = true
 vim.cmd 'colorscheme desertEX'
 
 -- Backups
+vim.o.backup = true
 vim.o.writebackup = true
 vim.o.backupext = '~'
 vim.o.backupskip = nil
