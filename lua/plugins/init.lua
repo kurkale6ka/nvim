@@ -75,6 +75,13 @@ return require('packer').startup(function(use)
         after = 'nvim-treesitter',
     }
 
+    use { 'nvim-treesitter/playground',
+        after = 'nvim-treesitter',
+        run = ':TSInstall query', -- TODO: didn't work
+        opt = true,
+        cmd = 'TSPlaygroundToggle'
+    }
+
     use { 'glacambre/firenvim',
         run = function() vim.fn['firenvim#install'](0) end,
         opt = true,
