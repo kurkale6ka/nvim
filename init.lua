@@ -228,7 +228,7 @@ vim.api.nvim_create_user_command('WriteSudo',
 -- install dictionaries?
 -- se dg still no luck
 -- diagnostics: fuzzy search with sd
--- use in mappings: gl, coc, =oc, old option changing combis
+-- use in mappings: gl, gs, coc, =oc, old option changing combis
 -- add alt-. in cmdline
 
 vim.g.python3_host_prog = '~/py-envs/utils/bin/python'

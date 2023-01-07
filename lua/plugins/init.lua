@@ -32,7 +32,7 @@ return require('packer').startup(function(use)
     use 'lambdalisue/glyph-palette.vim'
 
     use 'liuchengxu/vista.vim'
-    use { 'dstein64/vim-startuptime', opt = true, cmd = 'StartupTime' }
+    use { 'dstein64/vim-startuptime', cmd = 'StartupTime' }
 
     -- Junegunn
     use 'junegunn/vim-easy-align'
@@ -57,7 +57,6 @@ return require('packer').startup(function(use)
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-cmdline',
         },
-        -- as 'completion', -- TODO
     }
 
     -- Snippets
@@ -93,7 +92,7 @@ return require('packer').startup(function(use)
     use { 'vim-scripts/nginx.vim', opt = true }
     use { 'StanAngeloff/php.vim', opt = true }
     use { 'tmux-plugins/vim-tmux', opt = true }
-    use { 'jvirtanen/vim-hcl' }
+    use { 'jvirtanen/vim-hcl', ft = {'tf', 'tfvars', 'hcl'} }
 
     -- Own
     use 'kurkale6ka/vim-pairs'
