@@ -14,7 +14,7 @@ vim.keymap.set('i', '<c-k>', '<c-o>D')
 -- ctrl + u
 vim.keymap.set('i', '<c-u>', '<c-g>u<c-u>')
 
--- ctrl + w
+-- ctrl + w (TODO: <c-w> <c-g>u<c-w>?)
 vim.keymap.set('c', '<c-w>', [[<c-\>ecmdline#ctrl_w()<cr>]])
 vim.keymap.set('i', '<c-w>', '<c-o>dB')
 
