@@ -65,6 +65,30 @@ return require('packer').startup(function(use)
     use 'quangnguyen30192/cmp-nvim-ultisnips'
     use 'honza/vim-snippets'
 
+    use "savq/melange"
+    use { "ellisonleao/gruvbox.nvim" }
+    use 'folke/lsp-colors.nvim'
+    use "EdenEast/nightfox.nvim" -- Packer
+    use 'Shatur/neovim-ayu'
+    use { 'Everblush/everblush.nvim', as = 'everblush' }
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    }
+    use {
+        'lewis6991/gitsigns.nvim',
+        -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
+    }
+    require('gitsigns').setup {
+        signs = {
+            add = { text = '+' },
+            change = { text = '~' },
+            delete = { text = '_' },
+            topdelete = { text = '‾' },
+            changedelete = { text = '~' },
+        },
+    }
+
     use { 'nvim-treesitter/nvim-treesitter',
         run = function()
             pcall(require('nvim-treesitter.install').update { with_sync = true })
