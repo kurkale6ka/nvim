@@ -1,7 +1,5 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
-vim.g.python3_host_prog = '~/py-envs/utils/bin/python'
-
 vim.o.termguicolors = true
 vim.cmd 'colorscheme desertEX'
 
@@ -12,10 +10,10 @@ vim.o.backupext = '~'
 vim.o.backupskip = nil
 vim.o.autowrite = false
 vim.o.autowriteall = false
-vim.o.autoread = false
+vim.o.autoread = true
 vim.o.undofile = true
 vim.o.history = 10000
-vim.o.shada = "'1000"
+vim.opt.shada:prepend('!')
 
 vim.keymap.set('n', '<leader>e', ':e', { desc = 'avoid typing colon :-)' })
 vim.keymap.set('n', '<leader>w', ':w<cr>', { desc = 'save buffer' })
@@ -56,16 +54,18 @@ vim.o.confirm = true
 vim.o.showcmd = true
 vim.o.report = 0
 vim.o.shortmess = 'flmnrxoOtT'
-vim.opt.display:append { 'lastline' }
+vim.opt.display:append('truncate')
 vim.o.lazyredraw = true
 vim.o.scrolloff = 2
+vim.o.sidescroll = 1
+vim.o.sidescrolloff = 1
 vim.o.timeoutlen = 2000 -- 2s before timing out a mapping
 vim.o.ttimeoutlen = 100 -- 100 ms before timing out on a keypress
 vim.o.visualbell = true -- visual bell instead of beeps, but...
 vim.o.linebreak = true -- wrap at characters in 'breakat
 vim.wo.breakindent = true -- respect indentation when wrapping
 vim.wo.showbreak = '↪ '
-vim.opt.listchars = { tab = '▷⋅', trail = '⋅', nbsp = '⋅' }
+vim.opt.listchars = { precedes = '<', tab = '▷⋅', nbsp = '⋅', trail = '⋅', extends = '>' }
 vim.wo.list = true
 vim.o.synmaxcol = 301
 
@@ -109,6 +109,7 @@ vim.api.nvim_create_user_command('Underline',
 vim.o.tabstop = 8
 vim.o.softtabstop = 4
 vim.o.expandtab = true
+vim.o.smarttab = true
 vim.o.shiftwidth = 4
 vim.o.shiftround = true
 
@@ -118,7 +119,7 @@ vim.keymap.set({ 'n', 'x' }, '<leader>0', ':left<cr>', { desc = 'align left' })
 
 -- Tags
 vim.opt.tags:append { vim.env.XDG_CONFIG_HOME..'/repos/tags' }
-vim.opt.complete:remove { 't' }
+vim.opt.complete:remove('i')
 vim.opt.completeopt:remove { 'preview' }
 vim.o.showfulltag = true
 
@@ -226,13 +227,12 @@ vim.api.nvim_create_user_command('WriteSudo',
 -- after ciw confirm with enter from completion, '.' won't repeat
 -- install dictionaries?
 -- se dg still no luck
--- Fuzzy search
---   - diagnostics: sd
---   - sh: history vs gh: helptags, swap?
---     <localleader>h for local help?
---   - sg: GFiles vs gl (git list)
---   - use in mappings: coc, =oc, old option changing combis
+-- diagnostics: fuzzy search with sd
+-- use in mappings: gl, gs, coc, =oc, old option changing combis
 -- add alt-. in cmdline
+
+vim.g.python3_host_prog = '~/py-envs/utils/bin/python'
+vim.g.is_posix = 1 -- ft=sh: correctly highlight $() ...
 
 require('noplugins')
 require('autocmds')

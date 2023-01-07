@@ -1,3 +1,5 @@
+vim.o.ruler = true
+
 -- Wild menu & status line
 vim.o.wildmenu = true
 vim.o.wildmode = 'full'
