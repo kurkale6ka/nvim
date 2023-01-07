@@ -66,6 +66,12 @@ return require('packer').startup(function(use)
     use 'honza/vim-snippets'
 
     use "savq/melange"
+    use 'navarasu/onedark.nvim'
+    require('onedark').load()
+    require('onedark').setup  {
+        -- Main options --
+        style = 'darker'
+    }
     use { "ellisonleao/gruvbox.nvim" }
     use 'folke/lsp-colors.nvim'
     use "EdenEast/nightfox.nvim" -- Packer
