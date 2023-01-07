@@ -73,6 +73,12 @@ return require('packer').startup(function(use)
     }
     use { "ellisonleao/gruvbox.nvim" }
     use 'folke/lsp-colors.nvim'
+    require("lsp-colors").setup({
+        Error = "#db4b4b",
+        Warning = "#e0af68",
+        Information = "#0db9d7",
+        Hint = "#10B981"
+    })
     use "EdenEast/nightfox.nvim" -- Packer
     use 'Shatur/neovim-ayu'
     use { 'Everblush/everblush.nvim', as = 'everblush' }
