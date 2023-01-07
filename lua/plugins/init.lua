@@ -3,7 +3,7 @@ local packer = vim.api.nvim_create_augroup('Packer', { clear = true })
 -- Automatically source and packer compile on save
 vim.api.nvim_create_autocmd('BufWritePost', {
     command = 'source <afile> | PackerCompile',
-    pattern = vim.fs.dirname(vim.fn.expand('$MYVIMRC'))..'/lua/plugins/init.lua',
+    pattern = '*/lua/plugins/init.lua',
     group = packer,
 })
 
