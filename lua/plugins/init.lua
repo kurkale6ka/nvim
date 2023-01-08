@@ -97,8 +97,14 @@ return require('packer').startup(function(use)
         },
 
         -- Custom Highlights --
-        colors = {}, -- Override default colors
-        highlights = {}, -- Override highlight groups
+        colors = {
+            -- desertString = '#fa8072',
+            -- desertComment = '#7ccd7c',
+        },
+        highlights = {
+            -- ["@string"] = {fg = '$desertString'},
+            -- ["@comment"] = {fg = '$desertComment', fmt = 'italic'},
+        },
 
         -- Plugins Config --
         diagnostics = {
@@ -108,6 +114,9 @@ return require('packer').startup(function(use)
         },
     }
     require('onedark').load()
+
+    use {'norcalli/nvim-colorizer.lua', opt = true}
+    -- require('colorizer').setup()
 
     use { "ellisonleao/gruvbox.nvim" }
 
@@ -121,15 +130,15 @@ return require('packer').startup(function(use)
     use 'lukas-reineke/indent-blankline.nvim'
     require("indent_blankline").setup()
 
-    use {
-        'nvim-lualine/lualine.nvim',
+    use { 'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
     require('lualine').setup {
+        -- ft = { not fern }
         options = {
             icons_enabled = true,
             theme = 'auto',
-            component_separators = { left = '', right = ''},
+            component_separators = { left = '❭', right = '❬'},
             section_separators = { left = '', right = ''},
             disabled_filetypes = {
                 statusline = {},
@@ -165,29 +174,67 @@ return require('packer').startup(function(use)
         winbar = {},
         inactive_winbar = {},
         extensions = {}
-}
+    }
 
-    use {
-        'lewis6991/gitsigns.nvim',
+    use { 'lewis6991/gitsigns.nvim',
         -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
     }
-    require('gitsigns').setup {
+    require('gitsigns').setup{
         signs = {
-            add = { text = '+' },
-            change = { text = '~' },
-            delete = { text = '_' },
-            topdelete = { text = '‾' },
+            add          = { text = '+' },
+            change       = { text = '~' },
+            delete       = { text = '_' },
+            topdelete    = { text = '‾' },
             changedelete = { text = '~' },
         },
+        on_attach = function(bufnr)
+            local gs = package.loaded.gitsigns
+
+            local function map(mode, l, r, opts)
+                opts = opts or {}
+                opts.buffer = bufnr
+                vim.keymap.set(mode, l, r, opts)
+            end
+
+            -- Navigation
+            map('n', ']c', function()
+                if vim.wo.diff then return ']c' end
+                vim.schedule(function() gs.next_hunk() end)
+                return '<Ignore>'
+            end, {expr=true})
+
+            map('n', '[c', function()
+                if vim.wo.diff then return '[c' end
+                vim.schedule(function() gs.prev_hunk() end)
+                return '<Ignore>'
+            end, {expr=true})
+
+            -- -- Actions
+            -- map({'n', 'v'}, '<leader>hs', ':Gitsigns stage_hunk<CR>')
+            -- map({'n', 'v'}, '<leader>hr', ':Gitsigns reset_hunk<CR>')
+            -- map('n', '<leader>hS', gs.stage_buffer)
+            -- map('n', '<leader>hu', gs.undo_stage_hunk)
+            -- map('n', '<leader>hR', gs.reset_buffer)
+            -- map('n', '<leader>hp', gs.preview_hunk)
+            -- map('n', '<leader>hb', function() gs.blame_line{full=true} end)
+            -- map('n', '<leader>tb', gs.toggle_current_line_blame)
+            -- map('n', '<leader>hd', gs.diffthis)
+            -- map('n', '<leader>hD', function() gs.diffthis('~') end)
+            -- map('n', '<leader>td', gs.toggle_deleted)
+
+            -- Text object
+            map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+        end
     }
-    use {
-        'phaazon/hop.nvim',
+
+    use { 'phaazon/hop.nvim',
         branch = 'v2', -- optional but strongly recommended
         config = function()
             -- you can configure Hop the way you like here; see :h hop-config
-            require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+            require('hop').setup { keys = 'etovxqpdygfblzhckisuran' }
         end
     }
+    vim.keymap.set('n', 'gl', ':HopWord<cr>', { desc = 'Go to a random word' })
 
     use { 'nvim-treesitter/nvim-treesitter',
         run = function()
@@ -202,7 +249,6 @@ return require('packer').startup(function(use)
     use { 'nvim-treesitter/playground',
         after = 'nvim-treesitter',
         run = ':TSInstall query', -- TODO: didn't work
-        opt = true,
         cmd = 'TSPlaygroundToggle'
     }
 
@@ -215,8 +261,6 @@ return require('packer').startup(function(use)
     -- execute "Plug '".s:vim."/plugged/unicodename', { 'on': 'UnicodeName' }"
     -- execute "Plug '".s:vim."/plugged/win_full_screen', { 'on': 'WinFullScreen' }"
     -- use 'bfredl/nvim-miniyank', {}
-    -- use 'airblade/vim-gitgutter' -- plus config
-    -- use 'norcalli/nvim-colorizer.lua'
     use { 'pearofducks/ansible-vim', opt = true }
     use { 'rodjek/vim-puppet', opt = true }
     use { 'terceiro/vim-foswiki', opt = true }
