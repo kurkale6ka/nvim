@@ -65,8 +65,8 @@ return require('packer').startup(function(use)
     use 'honza/vim-snippets'
 
     use "savq/melange"
+
     use 'navarasu/onedark.nvim'
-    require('onedark').load()
     require('onedark').setup  {
         -- Main options --
         style = 'darker', -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
@@ -76,8 +76,9 @@ return require('packer').startup(function(use)
         cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
 
         -- toggle theme style ---
-        toggle_style_key = nil, -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
-        toggle_style_list = {'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light'}, -- List of styles to toggle between
+        toggle_style_key = 'gs', -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
+        -- toggle_style_list = {'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light'}, -- List of styles to toggle between
+        toggle_style_list = {'darker', 'deep', 'warmer'}, -- List of styles to toggle between
 
         -- Change code style ---
         -- Options are italic, bold, underline, none
@@ -106,21 +107,66 @@ return require('packer').startup(function(use)
             background = true,    -- use background color for virtual text
         },
     }
+    require('onedark').load()
+
     use { "ellisonleao/gruvbox.nvim" }
-    use 'folke/lsp-colors.nvim'
-    require("lsp-colors").setup({
-        Error = "#db4b4b",
-        Warning = "#e0af68",
-        Information = "#0db9d7",
-        Hint = "#10B981"
-    })
+
+    -- use 'folke/lsp-colors.nvim'
+    -- require("lsp-colors").setup()
+
     use "EdenEast/nightfox.nvim" -- Packer
     use 'Shatur/neovim-ayu'
     use { 'Everblush/everblush.nvim', as = 'everblush' }
+
+    use 'lukas-reineke/indent-blankline.nvim'
+    require("indent_blankline").setup()
+
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
+    require('lualine').setup {
+        options = {
+            icons_enabled = true,
+            theme = 'auto',
+            component_separators = { left = '', right = ''},
+            section_separators = { left = '', right = ''},
+            disabled_filetypes = {
+                statusline = {},
+                winbar = {},
+            },
+            ignore_focus = {},
+            always_divide_middle = true,
+            globalstatus = false,
+            refresh = {
+                statusline = 1000,
+                tabline = 1000,
+                winbar = 1000,
+            }
+        },
+        sections = {
+            lualine_a = {'mode'},
+            -- lualine_b = {'branch', 'diff', 'diagnostics'},
+            lualine_b = {'branch'},
+            lualine_c = {'filename'},
+            lualine_x = {'encoding', 'fileformat', 'filetype'},
+            lualine_y = {'progress'},
+            lualine_z = {'location'}
+        },
+        inactive_sections = {
+            lualine_a = {},
+            lualine_b = {},
+            lualine_c = {'filename'},
+            lualine_x = {'location'},
+            lualine_y = {},
+            lualine_z = {}
+        },
+        tabline = {},
+        winbar = {},
+        inactive_winbar = {},
+        extensions = {}
+}
+
     use {
         'lewis6991/gitsigns.nvim',
         -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
@@ -133,6 +179,14 @@ return require('packer').startup(function(use)
             topdelete = { text = '‾' },
             changedelete = { text = '~' },
         },
+    }
+    use {
+        'phaazon/hop.nvim',
+        branch = 'v2', -- optional but strongly recommended
+        config = function()
+            -- you can configure Hop the way you like here; see :h hop-config
+            require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+        end
     }
 
     use { 'nvim-treesitter/nvim-treesitter',
