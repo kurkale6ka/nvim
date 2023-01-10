@@ -1,3 +1,4 @@
+vim.cmd([[
 iabbrev _dd Dimitar Dimitrov<c-r>=abbreviations#eat_char('\s')<cr>
 iabbrev _date <c-r>=strftime('%a, %d %b %Y')<cr><c-r>=abbreviations#eat_char('\s')<cr>
 
@@ -42,3 +43,4 @@ iabbrev convinience convenience
 iabbrev profesional professional
 " 12 words
 iabbrev colaboration collaboration
+]])
