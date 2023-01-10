@@ -183,7 +183,7 @@ return require('packer').startup(function(use)
         signs = {
             add          = { text = '+' },
             change       = { text = '~' },
-            delete       = { text = '─' }, -- deleted lines under marked line
+            delete       = { text = '_' }, -- deleted lines under marked line, the sign is where the missing line(s) should be! (same for topdelete)
             topdelete    = { text = '‾' }, -- deleted BOF lines
             changedelete = { text = '~' }, -- deleted some lines above/below then changed line
             untracked    = { text = '?' },
