@@ -65,9 +65,9 @@ end
 local servers = {
     ansiblels = {},
     jsonls = {},
+    yamlls = {},
     pyright = {},
     terraformls = {},
-
     sumneko_lua = {
         Lua = {
             workspace = { checkThirdParty = false },
