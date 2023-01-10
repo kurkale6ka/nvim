@@ -258,8 +258,8 @@ return require('packer').startup(function(use)
         opt = true,
     }
 
+    use 'tpope/vim-characterize'
     -- TODO
-    -- execute "Plug '".s:vim."/plugged/unicodename', { 'on': 'UnicodeName' }"
     -- execute "Plug '".s:vim."/plugged/win_full_screen', { 'on': 'WinFullScreen' }"
     -- use 'bfredl/nvim-miniyank', {}
     use { 'pearofducks/ansible-vim', opt = true }
