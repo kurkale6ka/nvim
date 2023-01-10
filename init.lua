@@ -235,6 +235,7 @@ vim.g.python3_host_prog = '~/py-envs/utils/bin/python'
 vim.g.is_posix = 1 -- ft=sh: correctly highlight $() ...
 
 require('noplugins')
+require('abbreviations')
 require('autocmds')
 require('readline')
 require('statusline')
