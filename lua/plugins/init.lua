@@ -183,9 +183,9 @@ return require('packer').startup(function(use)
         signs = {
             add          = { text = '+' },
             change       = { text = '~' },
-            delete       = { text = '_' },
-            topdelete    = { text = '‾' },
-            changedelete = { text = '~' },
+            delete       = { text = '─' }, -- deleted lines under marked line
+            topdelete    = { text = '‾' }, -- deleted BOF lines
+            changedelete = { text = '~' }, -- deleted some lines above/below then changed line
             untracked    = { text = '?' },
         },
         on_attach = function(bufnr)
