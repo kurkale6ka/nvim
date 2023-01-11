@@ -29,23 +29,13 @@ return require('packer').startup(function(use)
     -- Fern
     use { 'lambdalisue/fern.vim',
         requires = {
-            { 'lambdalisue/fern-hijack.vim', opt = true },
-            { 'lambdalisue/nerdfont.vim', opt = true },
-            { 'lambdalisue/fern-renderer-nerdfont.vim', opt = true },
-            { 'lambdalisue/glyph-palette.vim', opt = true },
+            { 'lambdalisue/fern-hijack.vim' },
+            { 'lambdalisue/nerdfont.vim' },
+            { 'lambdalisue/fern-renderer-nerdfont.vim' },
+            { 'lambdalisue/glyph-palette.vim' },
         },
-        cmd = { 'Vexplore', 'Fern' },
-        conf = function()
-            require('plugins/fern')
-        end
     }
-    -- override netrw's Vexplore with Fern
-    vim.api.nvim_create_user_command('Vexplore',
-        'Fern . -drawer -toggle -reveal=%',
-        { nargs = '?', complete = 'dir', desc = 'Fern explorer' }
-    )
-
-    vim.keymap.set('n', '<leader>v', ':silent! Glcd <bar> Vexplore<cr>', { silent = true })
+    require('plugins/fern')
 
     use { 'liuchengxu/vista.vim', cmd = 'Vista' }
     use { 'dstein64/vim-startuptime', cmd = 'StartupTime' }
