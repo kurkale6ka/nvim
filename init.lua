@@ -1,7 +1,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 vim.o.termguicolors = true
-vim.cmd 'colorscheme desertEX'
 
 -- Backups
 vim.o.backup = true
@@ -240,11 +239,6 @@ require('autocmds')
 require('readline')
 require('statusline')
 require('plugins')
-require('plugins/nvim-lspconfig')
-require('plugins/nvim-cmp')
-require('plugins/tree-sitter')
-require('plugins/ultisnips')
-require('plugins/fern')
-require('plugins/sleuth')
-require('plugins/firenvim')
+
+vim.opt.runtimepath:append(vim.fn.stdpath('config')..'/lua/local')
 pcall(require, 'local') -- custom setup
