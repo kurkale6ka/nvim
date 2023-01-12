@@ -11,11 +11,11 @@ nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-expand-collapse)
 
 map <buffer> * <Plug>(fern-action-mark:toggle)
 
-nmap <buffer><nowait> - <Plug>(fern-action-leave)
+nmap <buffer><nowait> - <Plug>(fern-action-leave) " TODO: u? + move
 nmap <buffer><nowait> < <Plug>(fern-action-leave)
 nmap <buffer><nowait> > <Plug>(fern-action-enter)
 
-setlocal statusline=%5*%{&ft}%*
+setlocal statusline=%5*%{&ft}%* " TODO: replace with color from 'onedark'
 setlocal nonumber
 setlocal signcolumn=no
 let &l:fillchars = 'eob: '
