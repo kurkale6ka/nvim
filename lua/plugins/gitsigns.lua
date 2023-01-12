@@ -4,7 +4,7 @@ require('gitsigns').setup {
         change       = { text = '~' },
         delete       = { text = '_' }, -- deleted lines under marked line, the sign is where the missing line(s) should be! (same for topdelete)
         topdelete    = { text = '‾' }, -- deleted BOF lines
-        changedelete = { text = '~' }, -- deleted some lines above/below then changed line
+        changedelete = { text = '⋍' }, -- deleted some lines above/below then changed line
         untracked    = { text = '?' },
     },
     on_attach = function(bufnr)
@@ -44,5 +44,8 @@ require('gitsigns').setup {
 
         -- Text object
         map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+
+        -- Highlights
+        vim.cmd('highlight link GitSignsChangedelete GitSignsDelete')
     end
 }

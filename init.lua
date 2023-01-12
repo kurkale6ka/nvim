@@ -119,7 +119,7 @@ vim.keymap.set({ 'n', 'x' }, '<leader>0', ':left<cr>', { desc = 'align left' })
 -- Tags
 vim.opt.tags:append { vim.env.XDG_CONFIG_HOME..'/repos/tags' }
 vim.opt.complete:remove('i')
-vim.opt.completeopt:remove { 'preview' }
+vim.opt.completeopt:append('menuone')
 vim.o.showfulltag = true
 
 -- Windows and buffers
@@ -154,6 +154,7 @@ vim.keymap.set('n', 'dl', ':call spaces#remove_eof()<cr>', { silent = true, desc
 -- backspace
 vim.o.backspace = 'indent,eol,start'
 vim.keymap.set('n', '<bs>', '"_X', { desc = 'use backspace for deleting' })
+vim.keymap.set('n', '<c-h>', '"_X', { desc = 'use backspace for deleting' })
 
 -- define a file text-object
 vim.keymap.set('x', 'af', 'ggVoG')
@@ -228,7 +229,7 @@ vim.api.nvim_create_user_command('WriteSudo',
 -- se dg still no luck
 -- diagnostics: fuzzy search with sd
 -- use in mappings: gl, gs, coc, =oc, old option changing combis
--- add alt-. in cmdline
+-- add alt-. in cmdline and c-y to paste
 
 vim.g.python3_host_prog = '~/py-envs/utils/bin/python'
 vim.g.is_posix = 1 -- ft=sh: correctly highlight $() ...
