@@ -1,10 +1,8 @@
--- require('hop').setup { keys = 'aoeuhtnsidpgcrlyfkxbmwvqjz' } -- TODO
-require('hop').setup { keys = 'etovxqpdygfblzhckisuran' }
+local hop = require('hop')
+hop.setup()
 
 vim.keymap.set('n', 'gl', ':HopWord<cr>', { desc = 'Go to a random word' })
 
--- place this in one of your configuration file(s)
-local hop = require('hop')
 local directions = require('hop.hint').HintDirection
 
 vim.keymap.set('n', 'f', function()
