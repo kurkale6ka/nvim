@@ -57,7 +57,8 @@ vim.keymap.set('n', 'mv', '<Plug>(fern-action-rename)', {
     desc = 'mv old new'
 })
 
-vim.keymap.del({ 'n', 'v' }, '-', { buffer = true, nowait = true })
+-- TODO: nowait?
+pcall(vim.keymap.del, { 'n', 'v' }, '-', { buffer = true, nowait = true })
 
 vim.o.statusline = "%{&ft}" -- TODO: bg color from 'onedark'
 vim.wo.number = false

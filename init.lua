@@ -228,8 +228,14 @@ vim.api.nvim_create_user_command('WriteSudo',
 -- install dictionaries?
 -- se dg still no luck
 -- diagnostics: fuzzy search with sd
--- use in mappings: gl, gs, coc, =oc, old option changing combis
+-- use in mappings: cr (abolish coerce), gl, gs, coc, =oc, old option changing combis
 -- add alt-. in cmdline and c-y to paste
+-- yaf highlight on yank
+-- no *~ in :cmd...
+-- fix fFtT ;, !!!
+-- fix fern <>, + del map -
+-- obsession, pingu icon?
+-- lualine diags + remove --NORMAL--
 
 vim.g.python3_host_prog = '~/py-envs/utils/bin/python'
 vim.g.is_posix = 1 -- ft=sh: correctly highlight $() ...
@@ -241,5 +247,6 @@ require('readline')
 require('statusline')
 require('plugins')
 
+-- TODO: move above so we can set vars for plugins?
 vim.opt.runtimepath:append(vim.fn.stdpath('config')..'/lua/local')
 pcall(require, 'local') -- custom setup
