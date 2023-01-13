@@ -21,9 +21,9 @@ function! Del_word_delims()
       return res
    endif
    " After * on a selection i^r/ will give me pattern instead of \Vpattern
-   let res = substitute(reg, '^\\V'          , ''  , '' )
-   let res = substitute(res, '\\\\'          , '\\', 'g')
-   let res = substitute(res, '\\n'           , '\n', 'g')
+   let res = substitute(reg, '^\\V' , ''  , '' )
+   let res = substitute(res, '\\\\' , '\\', 'g')
+   let res = substitute(res, '\\n'  , '\n', 'g')
    return res
 endfunction
 inoremap <silent> <c-r>/ <c-r>=Del_word_delims()<cr>
