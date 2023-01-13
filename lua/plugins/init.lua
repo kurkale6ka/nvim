@@ -2,7 +2,7 @@ local packer = vim.api.nvim_create_augroup('Packer', { clear = true })
 
 -- Automatically source and packer compile on save
 vim.api.nvim_create_autocmd('BufWritePost', {
-    command = 'source <afile> | PackerCompile',
+    command = 'source <afile> | silent! LspStop | silent! LspStart | PackerCompile',
     pattern = '*/lua/plugins/init.lua',
     group = packer,
 })
@@ -26,26 +26,16 @@ return require('packer').startup(function(use)
     use 'tpope/vim-projectionist'
     require('plugins/sleuth')
 
-    -- Fern
+    -- Fern: TODO - try to make it optional (set opt = true to all ..)
     use { 'lambdalisue/fern.vim',
         requires = {
-            { 'lambdalisue/fern-hijack.vim', opt = true },
-            { 'lambdalisue/nerdfont.vim', opt = true },
-            { 'lambdalisue/fern-renderer-nerdfont.vim', opt = true },
-            { 'lambdalisue/glyph-palette.vim', opt = true },
+            { 'lambdalisue/fern-hijack.vim' },
+            { 'lambdalisue/nerdfont.vim' },
+            { 'lambdalisue/fern-renderer-nerdfont.vim' },
+            { 'lambdalisue/glyph-palette.vim' },
         },
-        cmd = { 'Vexplore', 'Fern' },
-        conf = function()
-            require('plugins/fern')
-        end
     }
-    -- override netrw's Vexplore with Fern
-    vim.api.nvim_create_user_command('Vexplore',
-        'Fern . -drawer -toggle -reveal=%',
-        { nargs = '?', complete = 'dir', desc = 'Fern explorer' }
-    )
-
-    vim.keymap.set('n', '<leader>v', ':silent! Glcd <bar> Vexplore<cr>', { silent = true })
+    require('plugins/fern')
 
     use { 'liuchengxu/vista.vim', cmd = 'Vista' }
     use { 'dstein64/vim-startuptime', cmd = 'StartupTime' }
@@ -123,7 +113,9 @@ return require('packer').startup(function(use)
     }
 
     use 'lukas-reineke/indent-blankline.nvim'
-    require("indent_blankline").setup()
+    require("indent_blankline").setup {
+        show_trailing_blankline_indent = false,
+    }
 
     use { 'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
@@ -135,11 +127,8 @@ return require('packer').startup(function(use)
 
     use { 'phaazon/hop.nvim',
         branch = 'v2', -- optional but strongly recommended
-        cmd = 'HopWord',
-        config = function()
-            require('plugins/hop')
-        end,
     }
+    require('plugins/hop')
 
     use { 'glacambre/firenvim',
         run = function() vim.fn['firenvim#install'](0) end,
