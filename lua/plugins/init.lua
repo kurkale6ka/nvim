@@ -123,8 +123,12 @@ return require('packer').startup(function(use)
 
     use { 'phaazon/hop.nvim',
         branch = 'v2', -- optional but strongly recommended
+        cmd = 'HopWord',
+        keys = 'gs',
+        config = function()
+            require('plugins/hop')
+        end,
     }
-    require('plugins/hop')
 
     use { 'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
@@ -133,10 +137,10 @@ return require('packer').startup(function(use)
 
     use { 'glacambre/firenvim',
         run = function() vim.fn['firenvim#install'](0) end,
-        conf = function()
+        opt = true,
+        config = function()
             require('plugins/firenvim')
         end,
-        opt = true,
     }
 
     -- TODO

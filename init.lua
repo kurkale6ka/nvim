@@ -242,4 +242,4 @@ require('plugins')
 
 -- TODO: move above so we can set vars for plugins?
 vim.opt.runtimepath:append(vim.fn.stdpath('config')..'/lua/local')
-pcall(require, 'local') -- custom setup
+pcall(require, 'local') -- custom setup, TODO: use '... { rtp = }'?
