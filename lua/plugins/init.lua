@@ -11,11 +11,12 @@ return require('packer').startup(function(use)
 
     -- Self
     use 'wbthomason/packer.nvim'
+    use { 'dstein64/vim-startuptime', cmd = 'StartupTime' }
 
     -- Tpope
-    use 'tpope/vim-abolish'
-    use 'tpope/vim-characterize'
-    use 'tpope/vim-commentary'
+    use { 'tpope/vim-abolish', cmd = { 'Abolish', 'Subvert' }, keys = 'cr' }
+    use { 'tpope/vim-characterize', keys = 'ga' }
+    use { 'tpope/vim-commentary', cmd = 'Commentary', keys = 'gc' }
     use 'tpope/vim-endwise'
     use 'tpope/vim-fugitive'
     use { 'tpope/vim-markdown', ft = 'markdown' }
@@ -38,7 +39,6 @@ return require('packer').startup(function(use)
     require('plugins/fern')
 
     use { 'liuchengxu/vista.vim', cmd = 'Vista' }
-    use { 'dstein64/vim-startuptime', cmd = 'StartupTime' }
 
     -- Junegunn
     use { 'junegunn/vim-easy-align', cmd = 'EasyAlign' }
@@ -112,23 +112,24 @@ return require('packer').startup(function(use)
         end
     }
 
+    -- Misc
+    use { 'lewis6991/gitsigns.nvim' }
+    require('plugins/gitsigns')
+
     use 'lukas-reineke/indent-blankline.nvim'
     require("indent_blankline").setup {
         show_trailing_blankline_indent = false,
     }
 
-    use { 'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-    }
-    require('plugins/lualine')
-
-    use { 'lewis6991/gitsigns.nvim' }
-    require('plugins/gitsigns')
-
     use { 'phaazon/hop.nvim',
         branch = 'v2', -- optional but strongly recommended
     }
     require('plugins/hop')
+
+    use { 'nvim-lualine/lualine.nvim',
+        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    }
+    require('plugins/lualine')
 
     use { 'glacambre/firenvim',
         run = function() vim.fn['firenvim#install'](0) end,
@@ -141,7 +142,7 @@ return require('packer').startup(function(use)
     -- TODO
     -- execute "Plug '".s:vim."/plugged/win_full_screen', { 'on': 'WinFullScreen' }"
     -- use 'bfredl/nvim-miniyank', {}
-    use { 'pearofducks/ansible-vim', opt = true }
+    use { 'pearofducks/ansible-vim', opt = true } -- let g:ansible_attribute_highlight = "ab"
     use { 'rodjek/vim-puppet', opt = true }
     use { 'terceiro/vim-foswiki', opt = true }
     use { 'vim-scripts/iptables', opt = true }

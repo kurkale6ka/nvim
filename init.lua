@@ -205,13 +205,10 @@ vim.api.nvim_create_user_command('Scratch',
     { nargs = '+', desc = 'Get ex command output in a buffer' }
 )
 
--- Quote coma separated items
 -- TODO: fix a, b, c case (extra comas) + port to lua
--- cmd = apt install vim ->
--- cmd = ('apt', 'install', 'vim')
 vim.api.nvim_create_user_command('Quotes',
     ".py3do return line.split('=', 1)[0].rstrip() + ' = ' + str(line.split('=', 1)[1].lstrip().split()).translate(str.maketrans('[]','()')) if '=' in line else str(line.split()).translate(str.maketrans('[]','()'))",
-    { desc = 'Create python tuple("item1", "item2") from coma separated items' }
+    { desc = 'Quote words: turn them into a python tuple("word1", "word2")' }
 )
 
 vim.api.nvim_create_user_command('WriteSudo',
@@ -219,8 +216,6 @@ vim.api.nvim_create_user_command('WriteSudo',
 )
 
 -- TODO:
--- let g:ansible_attribute_highlight = "ab"
--- let g:vim_json_syntax_conceal = 0
 -- nmap <expr> <leader>g ':vert Git -p ', redefine command?
 -- compare with coc completion
 -- ts text objects: test selections
@@ -228,12 +223,10 @@ vim.api.nvim_create_user_command('WriteSudo',
 -- install dictionaries?
 -- se dg still no luck
 -- diagnostics: fuzzy search with sd
--- use in mappings: cr (abolish coerce), gl, gs, coc, =oc, old option changing combis
+-- use in mappings: coc, =oc, old option changing combis, db ... find all free mappings
 -- add alt-. in cmdline and c-y to paste
 -- yaf highlight on yank
 -- no *~ in :cmd...
--- fix fFtT ;, !!!
--- fix fern <>, + del map -
 -- obsession, pingu icon?
 -- lualine diags + remove --NORMAL--
 
