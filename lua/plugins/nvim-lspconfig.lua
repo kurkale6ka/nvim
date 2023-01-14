@@ -31,8 +31,8 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<leader>r', vim.lsp.buf.references, bufopts)
     vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 
-    -- Word highlight on hover
-    vim.o.updatetime = 300
+    -- Word highlight on hover, TODO: move to init.lua?
+    vim.o.updatetime = 250
 
     if client.server_capabilities.documentHighlightProvider
     then

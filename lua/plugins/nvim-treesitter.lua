@@ -52,7 +52,7 @@ require('nvim-treesitter/configs').setup {
     incremental_selection = {
         enable = true,
         keymaps = {
-            init_selection    = "gnn", -- set to `false` to disable one of the mappings
+            init_selection    = "<c-leader>", -- set to `false` to disable one of the mappings, TODO: map not working
             node_incremental  = "grn",
             scope_incremental = "grc",
             node_decremental  = "grm",
@@ -100,7 +100,7 @@ require('nvim-treesitter/configs').setup {
             set_jumps = true, -- whether to set jumps in the jumplist
             goto_next_start = {
                 [']m'] = '@function.outer',
-                -- [']c'] = '@class.outer', -- used to jump to diffs with unimpaired
+                -- [']c'] = '@class.outer', -- used to jump to diffs with unimpaired, might still work for bothe. TODO: test
             },
             goto_next_end = {
                 [']M'] = '@function.outer',
@@ -127,6 +127,7 @@ require('nvim-treesitter/configs').setup {
     },
 }
 
+-- TODO: move to init.lua?
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.wo.foldenable = false

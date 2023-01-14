@@ -57,9 +57,12 @@ vim.keymap.set('n', 'mv', '<Plug>(fern-action-rename)', {
     desc = 'mv old new'
 })
 
+-- TODO: nowait?
+pcall(vim.keymap.del, { 'n', 'v' }, '-', { buffer = true, nowait = true })
+
 vim.o.statusline = "%{&ft}" -- TODO: bg color from 'onedark'
 vim.wo.number = false
--- vim.wo.signcolumn = false
+-- vim.wo.signcolumn = 'no'
 vim.wo.fillchars = 'eob: '
 
 vim.fn['glyph_palette#apply']()
