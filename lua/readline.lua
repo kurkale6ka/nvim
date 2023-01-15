@@ -20,6 +20,14 @@ vim.keymap.set('i', '<c-w>', '<c-o>dB')
 
 ---- Moving
 
+-- Enhanced gm
+vim.keymap.set({ 'n', 'o' }, 'gm',
+    function()
+        vim.fn['move#gm']()
+    end,
+    { silent = true }
+)
+
 -- alt + b,f to go left or right
 vim.keymap.set('c', '<a-b>', '<s-left>')
 vim.keymap.set('i', '<a-b>', '<c-o>B')

@@ -148,11 +148,6 @@ vim.o.whichwrap = 'b,s,<,>,[,]'
 vim.o.virtualedit = 'block'
 vim.o.paragraphs = nil -- no wrongly defined paragraphs for non nroff,groff filetypes
 
--- TODO
--- " Enhanced gm
--- nmap <silent> gm :call move#gm()<cr>
--- omap <silent> gm :call move#gm()<cr>
-
 vim.o.startofline = false
 vim.keymap.set('x', '}', [[mode() == '<c-v>' ? line("'}")-1.'G' : '}']], { expr = true, desc = 'let } select the current column only when in visual-block mode' })
 vim.keymap.set('x', '{', [[mode() == '<c-v>' ? line("'{")+1.'G' : '{']], { expr = true, desc = 'let { select the current column only when in visual-block mode' })
