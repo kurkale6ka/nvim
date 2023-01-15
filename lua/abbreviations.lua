@@ -43,4 +43,7 @@ iabbrev convinience convenience
 iabbrev profesional professional
 " 12 words
 iabbrev colaboration collaboration
+
+" command line abbreviations
+cabbrev waq wqa
 ]])

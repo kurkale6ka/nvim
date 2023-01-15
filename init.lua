@@ -142,6 +142,11 @@ vim.o.whichwrap = 'b,s,<,>,[,]'
 vim.o.virtualedit = 'block'
 vim.o.paragraphs = nil -- no wrongly defined paragraphs for non nroff,groff filetypes
 
+-- TODO
+-- " Enhanced gm
+-- nmap <silent> gm :call move#gm()<cr>
+-- omap <silent> gm :call move#gm()<cr>
+
 vim.o.startofline = false
 vim.keymap.set('x', '}', [[mode() == '<c-v>' ? line("'}")-1.'G' : '}']], { expr = true, desc = 'let } select the current column only when in visual-block mode' })
 vim.keymap.set('x', '{', [[mode() == '<c-v>' ? line("'{")+1.'G' : '{']], { expr = true, desc = 'let { select the current column only when in visual-block mode' })
@@ -229,6 +234,8 @@ vim.api.nvim_create_user_command('WriteSudo',
 -- no *~ in :cmd...
 -- obsession, pingu icon?
 -- lualine diags + remove --NORMAL--
+-- nmap <silent>         <c-a> :<c-u>call number#change('a', 'f')<cr>
+-- command! -nargs=* Ascii call ascii#codes(<f-args>)
 
 vim.g.python3_host_prog = '~/py-envs/utils/bin/python'
 vim.g.is_posix = 1 -- ft=sh: correctly highlight $() ...
