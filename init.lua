@@ -148,7 +148,7 @@ vim.keymap.set('x', '{', [[mode() == '<c-v>' ? line("'{")+1.'G' : '{']], { expr 
 
 vim.keymap.set('n', '[P', ':pu!<cr>', { desc = 'force paste above' })
 vim.keymap.set('n', ']P', ':pu<cr>', { desc = 'force paste below' })
-vim.keymap.set('x', '<cr>', "<esc>'<dd'>[pjdd`<P==", { desc = 'swap first and last line in a visual area' })
+vim.keymap.set('x', '<leader>x', "<esc>'<dd'>[pjdd`<P==", { desc = 'swap first and last line in a visual area' })
 vim.keymap.set('n', 'dl', ':call spaces#remove_eof()<cr>', { silent = true, desc = 'delete EOF empty lines' })
 
 -- backspace
