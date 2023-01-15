@@ -72,6 +72,12 @@ if not vim.wo.diff then
     vim.wo.cursorline = true -- unless nvim -d was used, ref: https://github.com/neovim/neovim/issues/9800
 end
 
+vim.api.nvim_create_user_command('Ascii',
+    'call ascii#codes(<f-args>)', {
+    nargs = '*',
+    desc = 'Print a range of ascii characters. Ex: Ascii 30 50',
+})
+
 -- folding
 vim.wo.foldnestmax = 1 -- maximum nesting for indent and syntax
 vim.cmd([[cabbrev <expr> fold getcmdtype() == ':' ? "se fdm=expr fde=getline(v\\:lnum)=~'^\\\\s*##'?'>'.(len(matchstr(getline(v\\:lnum),'###*'))-1)\\:'='".abbreviations#eat_char('\s') : 'fold']])
@@ -100,7 +106,7 @@ vim.keymap.set('n', '=<leader>', '[<leader>]<leader>', { remap = true, desc = 's
 -- imap <s-cr> <esc>O
 
 vim.api.nvim_create_user_command('Underline',
-    'call underline#current(<q-args>)',
+    'call underline#current(<q-args>)', -- TODO: function() ... args?
     { nargs = '?', desc = 'Underline with dashes by default' }
 )
 
@@ -166,7 +172,10 @@ vim.keymap.set('x', 'af', 'ggVoG')
 vim.keymap.set('o', 'af', ':normal vaf<cr>')
 
 vim.api.nvim_create_user_command('RemoveEOLSpaces',
-    ':call spaces#remove()', { desc = 'remove EOL spaces' }
+    function()
+        vim.fn['spaces#remove']()
+    end,
+    { desc = 'remove EOL spaces' }
 )
 
 -- Let [[, ]] work even when { is not in the first column
@@ -234,8 +243,7 @@ vim.api.nvim_create_user_command('WriteSudo',
 -- no *~ in :cmd...
 -- obsession, pingu icon?
 -- lualine diags + remove --NORMAL--
--- nmap <silent>         <c-a> :<c-u>call number#change('a', 'f')<cr>
--- command! -nargs=* Ascii call ascii#codes(<f-args>)
+-- nmap <silent> <c-a> :<c-u>call number#change('a', 'f')<cr>
 
 vim.g.python3_host_prog = '~/py-envs/utils/bin/python'
 vim.g.is_posix = 1 -- ft=sh: correctly highlight $() ...
