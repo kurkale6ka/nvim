@@ -135,6 +135,10 @@ vim.o.equalalways = false
 vim.o.splitright = true
 vim.o.switchbuf = 'useopen,usetab'
 
+-- TODO: enable?
+-- vim.keymap.set('n', 'Zi', '<c-w>|<c-w>_', { desc = 'Zoom In' })
+-- vim.keymap.set('n', 'Zo', '<c-w>=', { desc = 'Zoom Out' })
+
 -- Security
 vim.o.exrc = true
 vim.o.secure = true -- :autocmd, shell and write commands not allowed in CWD .exrc
