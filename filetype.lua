@@ -4,6 +4,7 @@ vim.filetype.add({
         pgn = 'pgn', -- chess
     },
     filename = {
+        ['.gitlab-ci.yml'] = 'yaml', -- needed because the yaml.ansible pattern could match
         ['iptables'] = 'iptables',
         ['known_hosts'] = 'known_hosts',
         ['relayd.conf'] = 'pf',
@@ -12,8 +13,7 @@ vim.filetype.add({
         ['authorized_keys.*'] = 'authorized_keys',
         ['.*/postfix/aliases'] = 'mailaliases',
         ['r?syslog.*%.conf'] = 'syslog',
-        ['.*/.*[aA]nsible.*/.+%.yml'] = 'yaml.ansible',
-        ['.*/.*[aA]nsible.*/templates/.+%.json'] = 'json.jinja2',
+        ['.*/.*ansible.*/.+%.yml'] = 'yaml.ansible',
         ['.*/zsh/autoload/.+'] = 'zsh',
         ['.*/zsh/after/.+'] = 'zsh'
     },
