@@ -135,6 +135,7 @@ vim.o.equalalways = false
 vim.o.splitright = true
 vim.o.switchbuf = 'useopen,usetab'
 
+-- TODO: enable?
 -- vim.keymap.set('n', 'Zi', '<c-w>|<c-w>_', { desc = 'Zoom In' })
 -- vim.keymap.set('n', 'Zo', '<c-w>=', { desc = 'Zoom Out' })
 
