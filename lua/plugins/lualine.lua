@@ -19,9 +19,15 @@ require('lualine').setup {
     },
     sections = {
         lualine_a = { 'mode' },
-        lualine_b = { 'branch', 'diff', 'diagnostics' },
-        lualine_c = { 'filename' },
-        lualine_x = { 'encoding', 'fileformat', 'filetype' },
+        lualine_b = {
+            { 'filename', separator = '' },
+            { 'branch', icon = '', color = { fg = '#18a558' } },
+        },
+        lualine_c = {
+            'diff',
+            'diagnostics'
+        },
+        lualine_x = { 'encoding', 'fileformat', { 'filetype', color = { fg = '#ffab60' } } },
         lualine_y = { 'progress' },
         lualine_z = { 'location' }
     },
