@@ -18,12 +18,19 @@ require('lualine').setup {
         }
     },
     sections = {
-        lualine_a = { 'mode' },
-        lualine_b = { 'branch', 'diff', 'diagnostics' },
-        lualine_c = { 'filename' },
-        lualine_x = { 'encoding', 'fileformat', 'filetype' },
+        lualine_a = { 'fileformat' },
+        lualine_b = {
+            { 'filename', color = { fg = '#86bcff' } },
+            { 'branch', icon = '', color = { fg = '#18a558' } },
+        },
+        lualine_c = {
+            'diff',
+            'diagnostics',
+            '%v' -- current column, TODO: add 'col: ' (with fmt?)
+        },
+        lualine_x = { 'encoding', { 'filetype', color = { fg = '#ffab60' } } }, -- TODO: utf-8 -> utf8
         lualine_y = { 'progress' },
-        lualine_z = { 'location' }
+        lualine_z = {}
     },
     inactive_sections = {
         lualine_a = {},
