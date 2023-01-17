@@ -26,9 +26,12 @@ require('lualine').setup {
         lualine_c = {
             'diff',
             'diagnostics',
-            '%v' -- current column, TODO: add 'col: ' (with fmt?)
+            { '%v', fmt = function(str) return 'col:' .. str end } -- current column
         },
-        lualine_x = { 'encoding', { 'filetype', color = { fg = '#ffab60' } } }, -- TODO: utf-8 -> utf8
+        lualine_x = {
+            { 'encoding', fmt = function(str) return str:gsub('-', '') end },
+            { 'filetype', color = { fg = '#ffab60' } }
+        },
         lualine_y = { 'progress' },
         lualine_z = {}
     },
