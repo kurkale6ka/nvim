@@ -18,9 +18,29 @@ require('lualine').setup {
         }
     },
     sections = {
-        lualine_a = { 'fileformat' },
+        lualine_a = {
+            { 'fileformat',
+                fmt = function(str)
+                    return vim.o.paste and str .. ' --paste--' or str
+                end
+            }
+        },
         lualine_b = {
-            { 'filename', color = { fg = '#86bcff' } },
+            { 'filename',
+                fmt = function(str)
+                    if vim.b.keymap_name then
+                        return str .. ' (' .. vim.b.keymap_name .. ')'
+                    else
+                        return str
+                    end
+                end,
+                color = function()
+                    return { fg = vim.bo.modified and '#ff7575' or '#86bcff' } -- TODO: apply color on [+] only, also for [RO] and keymap
+                end,
+                symbols = {
+                    readonly = '[RO]',
+                }
+            },
             { 'branch', icon = '', color = { fg = '#18a558' } },
         },
         lualine_c = {
