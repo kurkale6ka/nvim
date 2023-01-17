@@ -20,6 +20,7 @@ return require('packer').startup(function(use)
     use 'tpope/vim-endwise'
     use 'tpope/vim-fugitive'
     use { 'tpope/vim-markdown', ft = 'markdown' }
+    use { 'tpope/vim-obsession', cmd = 'Obsession' }
     use 'tpope/vim-repeat'
     use 'tpope/vim-sleuth'
     use 'tpope/vim-surround'
@@ -131,7 +132,7 @@ return require('packer').startup(function(use)
     }
 
     use { 'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+        requires = { 'kyazdani42/nvim-web-devicons' }
     }
     require('plugins/lualine')
 
@@ -143,9 +144,7 @@ return require('packer').startup(function(use)
         end,
     }
 
-    -- TODO
-    -- execute "Plug '".s:vim."/plugged/win_full_screen', { 'on': 'WinFullScreen' }"
-    -- use 'bfredl/nvim-miniyank', {}
+    -- TODO: use 'bfredl/nvim-miniyank', {}
     use { 'pearofducks/ansible-vim', opt = true } -- let g:ansible_attribute_highlight = "ab"
     use { 'rodjek/vim-puppet', opt = true }
     use { 'terceiro/vim-foswiki', opt = true }

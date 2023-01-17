@@ -135,9 +135,10 @@ vim.o.equalalways = false
 vim.o.splitright = true
 vim.o.switchbuf = 'useopen,usetab'
 
--- TODO: enable?
--- vim.keymap.set('n', 'Zi', '<c-w>|<c-w>_', { desc = 'Zoom In' })
--- vim.keymap.set('n', 'Zo', '<c-w>=', { desc = 'Zoom Out' })
+-- TODO: correctly restore window sizes.
+-- execute "Plug '".s:vim."/plugged/win_full_screen', { 'on': 'WinFullScreen' }"
+vim.keymap.set('n', 'Zi', '<c-w>|<c-w>_', { desc = 'Zoom In' })
+vim.keymap.set('n', 'Zo', '<c-w>=', { desc = 'Zoom Out' })
 
 -- Security
 vim.o.exrc = true
@@ -181,7 +182,6 @@ vim.api.nvim_create_user_command('RemoveEOLSpaces',
 vim.keymap.set('n', '[[', [[:call search('^\S\@=.*{\s*$', 'besW')<cr>]], { silent = true, desc = 'let [[ work even when { is not in the first column' })
 vim.keymap.set('n', ']]', [[:call search('^\S\@=.*{\s*$',  'esW')<cr>]], { silent = true, desc = 'let ]] work even when { is not in the first column' })
 
--- TODO: reuse function
 vim.keymap.set('o', '[[',
     function()
         if vim.fn.search([[^\S\@=.*{\s*$]], 'besW') ~= 0 and vim.fn.setpos("''", vim.fn.getpos('.')) == 0
@@ -235,13 +235,11 @@ vim.api.nvim_create_user_command('WriteSudo',
 -- after ciw confirm with enter from completion, '.' won't repeat
 -- install dictionaries?
 -- se dg still no luck
--- diagnostics: fuzzy search with sd
+-- diagnostics: fuzzy search with sd, fzf-lua?
 -- use in mappings: coc, =oc, old option changing combis, db ... find all free mappings
 -- add alt-. in cmdline and c-y to paste
 -- yaf highlight on yank
 -- no *~ in :cmd...
--- obsession, pingu icon?
--- lualine diags + remove --NORMAL--
 -- nmap <silent> <c-a> :<c-u>call number#change('a', 'f')<cr>
 
 vim.g.python3_host_prog = '~/py-envs/utils/bin/python'
