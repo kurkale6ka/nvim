@@ -152,7 +152,6 @@ return require('packer').startup(function(use)
     use { 'vim-scripts/nginx.vim', opt = true }
     use { 'StanAngeloff/php.vim', opt = true }
     use { 'tmux-plugins/vim-tmux', opt = true }
-    use { 'jvirtanen/vim-hcl', ft = 'hcl' }
 
     -- Own
     use 'kurkale6ka/vim-pairs'
