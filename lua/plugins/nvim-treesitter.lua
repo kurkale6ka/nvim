@@ -1,10 +1,15 @@
-require('nvim-treesitter/configs').setup {
+require('nvim-treesitter.configs').setup {
 
     -- A list of parser names, or "all"
     ensure_installed = {
         "bash",
+        "dot",
+        "dockerfile",
+        "json",
         "jsonc",
+        "hcl", -- no need for terraform
         "lua",
+        "markdown",
         "perl",
         "python",
         "vim",
