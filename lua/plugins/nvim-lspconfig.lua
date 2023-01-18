@@ -65,9 +65,10 @@ end
 local servers = {
     ansiblels = {},
     jsonls = {},
+    marksman = {},
     yamlls = {},
     pyright = {},
-    terraformls = {},
+    terraformls = {}, -- TODO: hclls? (doesn't exist for now)
     sumneko_lua = {
         Lua = {
             workspace = { checkThirdParty = false },

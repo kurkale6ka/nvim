@@ -63,7 +63,7 @@ vim.o.ttimeoutlen = 100 -- 100 ms before timing out on a keypress
 vim.o.visualbell = true -- visual bell instead of beeps, but...
 vim.o.linebreak = true -- wrap at characters in 'breakat
 vim.wo.breakindent = true -- respect indentation when wrapping
-vim.wo.showbreak = '↪ '
+vim.o.showbreak = '↪ '
 vim.opt.listchars = { precedes = '<', tab = '▷⋅', nbsp = '⋅', trail = '⋅', extends = '>' }
 vim.wo.list = true
 vim.o.synmaxcol = 301
@@ -139,6 +139,7 @@ vim.o.switchbuf = 'useopen,usetab'
 -- execute "Plug '".s:vim."/plugged/win_full_screen', { 'on': 'WinFullScreen' }"
 vim.keymap.set('n', 'Zi', '<c-w>|<c-w>_', { desc = 'Zoom In' })
 vim.keymap.set('n', 'Zo', '<c-w>=', { desc = 'Zoom Out' })
+vim.keymap.set('n', '<c-w><c-t>', ':vs term://zsh<cr>i', { desc = "Open terminal in current file's working directory" })
 
 -- Security
 vim.o.exrc = true
