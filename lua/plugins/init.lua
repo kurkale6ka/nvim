@@ -21,6 +21,7 @@ return require('packer').startup(function(use)
     use 'tpope/vim-fugitive'
     use { 'tpope/vim-markdown', ft = 'markdown' }
     use { 'tpope/vim-obsession', cmd = 'Obsession' }
+    require('plugins/session')
     use 'tpope/vim-repeat'
     use 'tpope/vim-sleuth'
     use 'tpope/vim-surround'
