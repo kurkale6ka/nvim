@@ -23,11 +23,11 @@ return require('packer').startup(function(use)
     use { 'tpope/vim-obsession', cmd = 'Obsession' }
     require('plugins/session')
     use 'tpope/vim-repeat'
-    use 'tpope/vim-sleuth'
+    use { 'tpope/vim-sleuth', cmd = 'Sleuth' }
+    require('plugins/sleuth')
     use 'tpope/vim-surround'
     use 'tpope/vim-unimpaired'
     use 'tpope/vim-projectionist'
-    require('plugins/sleuth')
 
     -- Fern: TODO - try to make it optional (set opt = true to all ..)
     use { 'lambdalisue/fern.vim',
