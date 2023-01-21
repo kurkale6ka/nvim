@@ -1,5 +1,5 @@
 vim.keymap.set('n', '<leader>l', ':GFiles<cr>')    -- ls git files
-vim.keymap.set('n', '<leader>sf', ':Files<cr>')    -- search fzf files, TODO: Glcd for non commited files?
+vim.keymap.set('n', '<leader>sf', ':silent! Glcd <bar> Files<cr>') -- search fzf files
 vim.keymap.set('n', '<leader>h', ':History<cr>')   -- search history (recently edited files)
 vim.keymap.set('n', '<leader>sh', ':Helptags<cr>') -- search help files
 vim.keymap.set('n', 'gh', ':Files '..vim.env.XDG_CONFIG_HOME..'/repos/help<cr>') -- own help files
@@ -26,5 +26,5 @@ vim.api.nvim_create_user_command('Rg',
             input.bang -- fullscreen?
         )
     end,
-    {bang = true, nargs = '*', desc = 'ripgrep'}
+    { bang = true, nargs = '*', desc = 'ripgrep' }
 )
