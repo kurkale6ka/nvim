@@ -44,12 +44,14 @@ require('lualine').setup {
             { 'branch', icon = '', color = { fg = '#18a558' } },
         },
         lualine_c = {
+            -- 'require("lsp-status").status()',
             'diff',
             'diagnostics',
             { '%v', fmt = function(str) return 'col:' .. str end } -- current column
         },
         lualine_x = {
             { 'encoding', fmt = function(str) return str:gsub('-', '') end },
+            { 'require("nvim-treesitter.parsers").has_parser() and "" or ""', color = { fg = 'green' } },
             { 'filetype', color = { fg = '#ffab60' } }
         },
         lualine_y = { 'progress' },

@@ -47,6 +47,7 @@ return require('packer').startup(function(use)
     use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end }
     use 'junegunn/fzf.vim'
     use 'ibhagwan/fzf-lua'
+    -- use 'nvim-lua/lsp-status.nvim'
 
     -- LSP
     use { 'neovim/nvim-lspconfig',
