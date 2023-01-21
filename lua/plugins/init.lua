@@ -46,6 +46,7 @@ return require('packer').startup(function(use)
     use { 'junegunn/vim-easy-align', cmd = 'EasyAlign' }
     use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end }
     use 'junegunn/fzf.vim'
+    use 'ibhagwan/fzf-lua'
 
     -- LSP
     use { 'neovim/nvim-lspconfig',

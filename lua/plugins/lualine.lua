@@ -58,12 +58,19 @@ require('lualine').setup {
     inactive_sections = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = { 'filename' },
-        lualine_x = { 'location' },
+        lualine_c = { { 'filename', path = 3 } },
+        lualine_x = {},
         lualine_y = {},
         lualine_z = {}
     },
-    tabline = {},
+    tabline = {
+        lualine_a = {},
+        lualine_b = { { 'filename', path = 3 } },
+        lualine_c = { require('nvim-treesitter').statusline },
+        lualine_x = {},
+        lualine_y = { 'buffers' },
+        lualine_z = {}
+    },
     winbar = {},
     inactive_winbar = {},
     extensions = {}
