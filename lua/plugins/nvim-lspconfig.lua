@@ -60,6 +60,9 @@ local on_attach = function(client, bufnr)
             group = cursor
         })
     end
+
+    local navic = require("nvim-navic")
+    navic.attach(client, bufnr)
 end
 
 local servers = {

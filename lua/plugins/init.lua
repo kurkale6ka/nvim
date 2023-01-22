@@ -47,6 +47,20 @@ return require('packer').startup(function(use)
     use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end }
     use 'junegunn/fzf.vim'
     use 'ibhagwan/fzf-lua'
+    use {
+        "SmiteshP/nvim-navic",
+        requires = "neovim/nvim-lspconfig"
+    }
+    use {'akinsho/bufferline.nvim', tag = "v3.*"}
+    require("bufferline").setup{
+        options = {
+        separator_style = 'slant'
+        }
+    }
+    -- use 'romgrk/barbar.nvim'
+    -- require'bufferline'.setup {
+    --     auto_hide = true
+    -- }
     -- use 'nvim-lua/lsp-status.nvim'
 
     -- LSP
