@@ -47,21 +47,6 @@ return require('packer').startup(function(use)
     use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end }
     use 'junegunn/fzf.vim'
     use 'ibhagwan/fzf-lua'
-    use {
-        "SmiteshP/nvim-navic",
-        requires = "neovim/nvim-lspconfig"
-    }
-    use {'akinsho/bufferline.nvim', tag = "v3.*"}
-    require("bufferline").setup{
-        options = {
-        separator_style = 'slant'
-        }
-    }
-    -- use 'romgrk/barbar.nvim'
-    -- require'bufferline'.setup {
-    --     auto_hide = true
-    -- }
-    -- use 'nvim-lua/lsp-status.nvim'
 
     -- LSP
     use { 'neovim/nvim-lspconfig',
@@ -148,11 +133,6 @@ return require('packer').startup(function(use)
         end,
     }
 
-    use { 'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons' }
-    }
-    require('plugins/lualine')
-
     use { 'glacambre/firenvim',
         run = function() vim.fn['firenvim#install'](0) end,
         opt = true,
@@ -169,6 +149,15 @@ return require('packer').startup(function(use)
     use { 'vim-scripts/nginx.vim', opt = true }
     use { 'StanAngeloff/php.vim', opt = true }
     use { 'tmux-plugins/vim-tmux', opt = true }
+
+    -- bufferline & statusline
+    use { 'akinsho/bufferline.nvim', tag = "v3.*" }
+    require('plugins/bufferline')
+
+    use { 'nvim-lualine/lualine.nvim',
+        requires = { 'kyazdani42/nvim-web-devicons' }
+    }
+    require('plugins/lualine')
 
     -- Own
     use 'kurkale6ka/vim-pairs'

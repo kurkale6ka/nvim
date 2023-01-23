@@ -1,4 +1,3 @@
-local navic = require("nvim-navic")
 require('lualine').setup {
     options = {
         icons_enabled = true,
@@ -51,7 +50,6 @@ require('lualine').setup {
             { '%v', fmt = function(str) return 'col:' .. str end } -- current column
         },
         lualine_x = {
-            { navic.get_location, cond = navic.is_available },
             { 'encoding', fmt = function(str) return str:gsub('-', '') end },
             -- { 'require("nvim-treesitter.parsers").has_parser() and "" or ""', color = { fg = 'green' } },
             { 'filetype', color = { fg = '#ffab60' } }
@@ -67,14 +65,6 @@ require('lualine').setup {
         lualine_y = {},
         lualine_z = {}
     },
-    -- tabline = {
-    --     lualine_a = {},
-    --     lualine_b = {},
-    --     lualine_c = {},
-    --     lualine_x = {},
-    --     lualine_y = { require('nvim-navic').get_location },
-    --     lualine_z = {}
-    -- },
     -- tabline = {
     --     lualine_a = {},
     --     lualine_b = { { 'filename', path = 3 } },
