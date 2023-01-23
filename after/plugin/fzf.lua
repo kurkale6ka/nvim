@@ -1,9 +1,11 @@
 local fzf = require('fzf-lua')
 
+-- git files
 vim.keymap.set('n', '<leader>l', function ()
     fzf.git_files()
 end, { desc = 'ls git files' })
 
+-- all files
 vim.keymap.set('n', '<leader>sf', function ()
     vim.cmd('Glcd')
     fzf.files {
@@ -12,11 +14,17 @@ vim.keymap.set('n', '<leader>sf', function ()
     }
 end, { desc = 'search all files' })
 
+-- recently edited files
 vim.keymap.set('n', '<leader>h', function ()
     fzf.oldfiles()
-end, { desc = 'search history (recently edited files)' })
+end, { desc = 'history search (recently edited files)' })
 
-vim.keymap.set('n', '<leader>sh', ':Helptags<cr>') -- search help files
+-- Neovim/plugins help files, TODO: fzf  vim finds 2 extra results ?!
+--                                  also, the preview is empty
+vim.keymap.set('n', '<leader>sh', function ()
+    fzf.help_tags()
+end, { desc = 'search help files' })
+
 vim.keymap.set('n', 'gh', ':Files '..vim.env.XDG_CONFIG_HOME..'/repos/help<cr>') -- own help files
 vim.keymap.set('n', '<leader>sd', function ()
     fzf.diagnostics_document()
