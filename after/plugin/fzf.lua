@@ -3,8 +3,19 @@ local fzf = require('fzf-lua')
 vim.keymap.set('n', '<leader>l', function ()
     fzf.git_files()
 end, { desc = 'ls git files' })
-vim.keymap.set('n', '<leader>sf', ':silent! Glcd <bar> Files<cr>') -- search fzf files
-vim.keymap.set('n', '<leader>h', ':History<cr>')   -- search history (recently edited files)
+
+vim.keymap.set('n', '<leader>sf', function ()
+    vim.cmd('Glcd')
+    fzf.files {
+        fd_opts = '--strip-cwd-prefix -tf -up -E.git -E"*~"',
+        rg_opts = "--files -uu -g'!.git' -g'!*~'"
+    }
+end, { desc = 'search all files' })
+
+vim.keymap.set('n', '<leader>h', function ()
+    fzf.oldfiles()
+end, { desc = 'search history (recently edited files)' })
+
 vim.keymap.set('n', '<leader>sh', ':Helptags<cr>') -- search help files
 vim.keymap.set('n', 'gh', ':Files '..vim.env.XDG_CONFIG_HOME..'/repos/help<cr>') -- own help files
 vim.keymap.set('n', '<leader>sd', function ()
