@@ -25,10 +25,20 @@ vim.keymap.set('n', '<leader>sh', function ()
     fzf.help_tags()
 end, { desc = 'search help files' })
 
-vim.keymap.set('n', 'gh', ':Files '..vim.env.XDG_CONFIG_HOME..'/repos/help<cr>') -- own help files
+-- my help files
+vim.keymap.set('n', 'gh', function ()
+    fzf.files {
+        cwd = vim.env.XDG_CONFIG_HOME..'/repos/help',
+        fd_opts = '--strip-cwd-prefix -tf -up -E.git -E"*~"',
+        rg_opts = "--files -uu -g'!.git' -g'!*~'"
+    }
+end, { desc = 'go to my own help files' })
+
+-- LSP diagnostics
 vim.keymap.set('n', '<leader>sd', function ()
     fzf.diagnostics_document()
-end, { desc = 'search snippets' })
+end, { desc = 'LSP: search diagnostics in this buffer' })
+
 vim.keymap.set('n', '<leader>ss', ':Snippets<cr>') -- search snippets
 vim.keymap.set('n', '<leader>st', ':Tags<cr>')     -- search tags
 vim.keymap.set('n', '<leader>sc', ':Commands<cr>') -- search commands
