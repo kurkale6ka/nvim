@@ -84,11 +84,11 @@ require('lazy').setup({
             { 'nvim-treesitter/playground',
                 build = ':TSInstall query',
                 cmd = 'TSPlaygroundToggle'
-            },
-            config = function()
-                require('plugins/nvim-treesitter')
-            end
-        }
+            }
+        },
+        config = function()
+            require('plugins/nvim-treesitter')
+        end
     },
 
     -- Autocompletion

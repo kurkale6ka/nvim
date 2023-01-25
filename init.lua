@@ -243,7 +243,7 @@ vim.api.nvim_create_user_command('WriteSudo',
 -- no *~ in :cmd...
 -- nmap <silent> <c-a> :<c-u>call number#change('a', 'f')<cr>
 
-vim.g.python3_host_prog = '~/py-envs/utils/bin/python'
+vim.g.python3_host_prog = '~/py-envs/neovim/bin/python'
 vim.g.is_posix = 1 -- ft=sh: correctly highlight $() ...
 
 require('noplugins')
