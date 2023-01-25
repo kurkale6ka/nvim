@@ -1,162 +1,193 @@
-local packer = vim.api.nvim_create_augroup('Packer', { clear = true })
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable",
+        lazypath,
+    })
+end
+vim.opt.rtp:prepend(lazypath)
 
--- Automatically source and packer compile on save
-vim.api.nvim_create_autocmd('BufWritePost', {
-    command = 'source <afile> | silent! LspStop | silent! LspStart | PackerCompile',
-    pattern = '*/lua/plugins/init.lua',
-    group = packer,
-})
+require('lazy').setup({
 
-return require('packer').startup(function(use)
-
-    -- Self
-    use 'wbthomason/packer.nvim'
-    use { 'dstein64/vim-startuptime', cmd = 'StartupTime' }
+    { 'dstein64/vim-startuptime', cmd = 'StartupTime' },
 
     -- Tpope
-    use { 'tpope/vim-abolish', cmd = { 'Abolish', 'Subvert' }, keys = 'cr' }
-    use { 'tpope/vim-characterize', keys = 'ga' }
-    use { 'tpope/vim-commentary', cmd = 'Commentary', keys = 'gc' }
-    use 'tpope/vim-endwise'
-    use 'tpope/vim-fugitive'
-    use { 'tpope/vim-markdown', ft = 'markdown' }
-    use { 'tpope/vim-obsession', cmd = 'Obsession' }
-    require('plugins/session')
-    use 'tpope/vim-repeat'
-    use { 'tpope/vim-sleuth', cmd = 'Sleuth' }
-    require('plugins/sleuth')
-    use 'tpope/vim-surround'
-    use 'tpope/vim-unimpaired'
-    use 'tpope/vim-projectionist'
+    { 'tpope/vim-abolish', cmd = { 'Abolish', 'Subvert' }, keys = 'cr' },
+    { 'tpope/vim-characterize', keys = 'ga' },
+    { 'tpope/vim-commentary', cmd = 'Commentary', keys = { { 'gc', mode = { 'o', 'n', 'x' } } } },
+    'tpope/vim-endwise',
+    'tpope/vim-fugitive',
+    { 'tpope/vim-markdown', ft = 'markdown' },
+    { 'tpope/vim-obsession',
+        cmd = 'Obsession',
+        config = function()
+            require('plugins/session')
+        end
+    },
+    'tpope/vim-repeat',
+    { 'tpope/vim-sleuth', cmd = 'Sleuth',
+        config = function()
+            require('plugins/sleuth')
+        end
+    },
+    'tpope/vim-surround',
+    'tpope/vim-unimpaired',
+    'tpope/vim-projectionist',
 
-    -- Fern: TODO - try to make it optional (set opt = true to all ..)
-    use { 'lambdalisue/fern.vim',
-        requires = {
+    -- Fern
+    { 'lambdalisue/fern.vim',
+        lazy = true,
+        cmd = 'Fern',
+        keys = '<leader>v',
+        dependencies = {
             { 'lambdalisue/fern-hijack.vim' },
             { 'lambdalisue/nerdfont.vim' },
             { 'lambdalisue/fern-renderer-nerdfont.vim' },
             { 'lambdalisue/glyph-palette.vim' },
         },
-    }
-    require('plugins/fern')
+        config = function()
+            require('plugins/fern')
+        end
+    },
 
-    use { 'liuchengxu/vista.vim', cmd = 'Vista' }
+    { 'liuchengxu/vista.vim', cmd = 'Vista' },
 
     -- Junegunn
-    use { 'junegunn/vim-easy-align', cmd = 'EasyAlign' }
-    use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end }
-    use 'junegunn/fzf.vim'
+    { 'junegunn/vim-easy-align', cmd = 'EasyAlign' },
+    { 'junegunn/fzf', build = function() vim.fn['fzf#install']() end },
+    'junegunn/fzf.vim',
 
     -- LSP
-    use { 'neovim/nvim-lspconfig',
-        requires = {
+    { 'neovim/nvim-lspconfig',
+        dependencies = {
             'williamboman/mason.nvim', -- automatically install LSPs to stdpath for neovim
             'williamboman/mason-lspconfig.nvim',
             'j-hui/fidget.nvim', -- useful status updates for LSP
             'folke/neodev.nvim', -- additional lua configuration, makes nvim stuff amazing
         },
-    }
-    require('plugins/nvim-lspconfig')
+        config = function()
+            require('plugins/nvim-lspconfig')
+        end
+    },
 
     -- Tree-sitter
-    use { 'nvim-treesitter/nvim-treesitter',
-        run = function()
+    { 'nvim-treesitter/nvim-treesitter',
+        build = function()
             pcall(require('nvim-treesitter.install').update { with_sync = true })
         end,
-    }
-    require('plugins/nvim-treesitter')
-
-    use { 'nvim-treesitter/nvim-treesitter-textobjects',
-        after = 'nvim-treesitter',
-    }
-
-    use { 'nvim-treesitter/playground',
-        after = 'nvim-treesitter',
-        run = ':TSInstall query',
-        cmd = 'TSPlaygroundToggle'
-    }
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter-textobjects',
+            { 'nvim-treesitter/playground',
+                build = ':TSInstall query',
+                cmd = 'TSPlaygroundToggle'
+            },
+            config = function()
+                require('plugins/nvim-treesitter')
+            end
+        }
+    },
 
     -- Autocompletion
-    use { 'hrsh7th/nvim-cmp',
-        requires = {
+    { 'hrsh7th/nvim-cmp',
+        dependencies = {
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-cmdline',
         },
-    }
-    require('plugins/nvim-cmp')
+        config = function()
+            require('plugins/nvim-cmp')
+        end
+    },
 
     -- Snippets
-    use { 'SirVer/ultisnips',
-        requires = {
+    { 'SirVer/ultisnips',
+        dependencies = {
             'quangnguyen30192/cmp-nvim-ultisnips',
             'honza/vim-snippets',
         },
-    }
-    require('plugins/ultisnips')
+        config = function()
+            require('plugins/ultisnips')
+        end
+    },
 
     -- Colorschemes
-    use 'navarasu/onedark.nvim'
-    require('plugins/onedark')
+    { 'navarasu/onedark.nvim',
+        lazy = false, -- make sure we load this during startup if it is your main colorscheme
+        priority = 1000, -- make sure to load this before all the other start plugins
+        config = function()
+            require('plugins/onedark')
+        end,
+    },
 
-    use { 'Everblush/everblush.nvim', as = 'everblush', opt = true }
-    use { 'ellisonleao/gruvbox.nvim', opt = true }
-    use { 'savq/melange', opt = true }
-    use { 'Shatur/neovim-ayu', opt = true }
-    use { 'EdenEast/nightfox.nvim', opt = true }
+    { 'Everblush/everblush.nvim', name = 'everblush', lazy = true },
+    { 'ellisonleao/gruvbox.nvim', lazy = true },
+    { 'savq/melange', lazy = true },
+    { 'Shatur/neovim-ayu', lazy = true },
+    { 'EdenEast/nightfox.nvim', lazy = true },
 
     -- colors
-    use { 'norcalli/nvim-colorizer.lua',
-        opt = true,
-        conf = function()
+    { 'norcalli/nvim-colorizer.lua',
+        lazy = true,
+        config = function()
             require('colorizer').setup()
         end
-    }
+    },
 
     -- Misc
-    use { 'lewis6991/gitsigns.nvim' }
-    require('plugins/gitsigns')
+    { 'lewis6991/gitsigns.nvim',
+        config = function()
+            require('plugins/gitsigns')
+        end
+    },
 
-    use 'lukas-reineke/indent-blankline.nvim'
-    require("indent_blankline").setup {
-        show_trailing_blankline_indent = false,
-    }
+    { 'lukas-reineke/indent-blankline.nvim',
+        config = function()
+            require("indent_blankline").setup {
+                show_trailing_blankline_indent = false,
+            }
+        end,
+    },
 
-    use { 'phaazon/hop.nvim',
+    { 'phaazon/hop.nvim',
         branch = 'v2', -- optional but strongly recommended
         cmd = 'HopWord',
         keys = 'gs',
         config = function()
             require('plugins/hop')
         end,
-    }
+    },
 
-    use { 'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons' }
-    }
-    require('plugins/lualine')
+    { 'nvim-lualine/lualine.nvim',
+        config = function()
+            require('plugins/lualine')
+        end
+    },
 
-    use { 'glacambre/firenvim',
-        run = function() vim.fn['firenvim#install'](0) end,
-        opt = true,
+    { 'glacambre/firenvim',
+        build = function() vim.fn['firenvim#install'](0) end,
+        lazy = true,
         config = function()
             require('plugins/firenvim')
         end,
-    }
+    },
 
-    -- TODO: use 'bfredl/nvim-miniyank', {}
-    use { 'pearofducks/ansible-vim', opt = true } -- let g:ansible_attribute_highlight = "ab"
-    use { 'rodjek/vim-puppet', opt = true }
-    use { 'terceiro/vim-foswiki', opt = true }
-    use { 'vim-scripts/iptables', opt = true }
-    use { 'vim-scripts/nginx.vim', opt = true }
-    use { 'StanAngeloff/php.vim', opt = true }
-    use { 'tmux-plugins/vim-tmux', opt = true }
+    -- TODO: 'bfredl/nvim-miniyank', {}
+    { 'pearofducks/ansible-vim', lazy = true }, -- let g:ansible_attribute_highlight = "ab"
+    { 'rodjek/vim-puppet', lazy = true },
+    { 'terceiro/vim-foswiki', lazy = true },
+    { 'vim-scripts/iptables', lazy = true },
+    { 'vim-scripts/nginx.vim', lazy = true },
+    { 'StanAngeloff/php.vim', lazy = true },
+    { 'tmux-plugins/vim-tmux', lazy = true },
 
     -- Own
-    use 'kurkale6ka/vim-pairs'
-    use { 'kurkale6ka/vim-desertEX', branch = 'menu_colors', opt = true } -- TODO: use master
-    use { 'kurkale6ka/vim-chess', opt = true }
+    'kurkale6ka/vim-pairs',
+    { 'kurkale6ka/vim-desertEX', branch = 'menu_colors', lazy = true }, -- TODO: use master
+    { 'kurkale6ka/vim-chess', lazy = true },
 
-end)
+})
