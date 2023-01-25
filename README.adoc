@@ -1,5 +1,5 @@
 == Plugin manager
-https://github.com/wbthomason/packer.nvim[packer.nvim: plugin manager for Neovim]
+https://github.com/folke/lazy.nvim[lazy.nvim: 󰒲 A modern plugin manager for Neovim]
 
 == Sensible defaults
 * https://github.com/tpope/vim-sensible[sensible.vim: defaults everyone can agree on]
