@@ -1,5 +1,17 @@
--- Mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
+local signs = {
+    Error = "",
+    Warn  = "",
+    Hint  = "",
+    Info  = "",
+}
+
+-- Diagnostic icons
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
+
+-- Diagnostic maps
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
@@ -12,8 +24,6 @@ local on_attach = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-    -- Mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
@@ -62,60 +72,48 @@ local on_attach = function(client, bufnr)
     end
 end
 
+-- Mason lspconfig
+
+local mason_lspconfig = require('mason-lspconfig')
+
 local servers = {
     ansiblels = {},
     jsonls = {},
     marksman = {},
     yamlls = {},
     pyright = {},
-    terraformls = {}, -- TODO: hclls? (doesn't exist for now)
+    terraformls = {
+        -- filetypes = { "terraform", "terraform-vars", "hcl" }
+    },
+    tflint = {},
     sumneko_lua = {
-        Lua = {
-            workspace = { checkThirdParty = false },
-            telemetry = { enable = false },
-        },
+        settings = {
+            Lua = {
+                workspace = { checkThirdParty = false },
+                telemetry = { enable = false },
+            },
+        }
     },
 }
 
--- Icons
-local signs = {
-    Error = "",
-    Warn  = "",
-    Hint  = "",
-    Info  = "",
+-- ensure the above servers are installed
+mason_lspconfig.setup {
+    ensure_installed = vim.tbl_keys(servers),
 }
-
-for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
-
--- Setup neovim lua configuration
-require('neodev').setup()
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
--- Setup mason so it can manage external tooling
-require('mason').setup()
-
--- Ensure the servers above are installed
-local mason_lspconfig = require 'mason-lspconfig'
-
-mason_lspconfig.setup {
-    ensure_installed = vim.tbl_keys(servers),
-}
-
 mason_lspconfig.setup_handlers {
     function(server_name)
-        require('lspconfig')[server_name].setup {
-            capabilities = capabilities,
-            on_attach = on_attach,
-            settings = servers[server_name],
-        }
-    end,
+        require('lspconfig')[server_name].setup (
+            vim.tbl_extend("error",
+                {
+                    capabilities = capabilities,
+                    on_attach = on_attach
+                },
+                servers[server_name]
+            ))
+    end
 }
-
--- Turn on lsp status information
-require('fidget').setup()
