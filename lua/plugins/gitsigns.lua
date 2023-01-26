@@ -7,6 +7,7 @@ require('gitsigns').setup {
         changedelete = { text = '⋍' }, -- deleted some lines above/below then changed line
         untracked    = { text = '?' },
     },
+    trouble = false, -- TODO: as it doesn't work
     on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
 
@@ -21,13 +22,13 @@ require('gitsigns').setup {
             if vim.wo.diff then return ']c' end
             vim.schedule(function() gs.next_hunk() end)
             return '<Ignore>'
-        end, {expr=true})
+        end, { expr = true })
 
         map('n', '[c', function()
             if vim.wo.diff then return '[c' end
             vim.schedule(function() gs.prev_hunk() end)
             return '<Ignore>'
-        end, {expr=true})
+        end, { expr = true })
 
         -- Actions
         -- map({'n', 'v'}, '<leader>hs', ':Gitsigns stage_hunk<CR>')
@@ -43,7 +44,7 @@ require('gitsigns').setup {
         -- map('n', '<leader>td', gs.toggle_deleted)
 
         -- Text object
-        map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
 
         -- Highlights
         vim.cmd('highlight link GitSignsChangedelete GitSignsDelete')
