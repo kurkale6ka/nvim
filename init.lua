@@ -236,7 +236,6 @@ vim.api.nvim_create_user_command('WriteSudo',
 -- after ciw confirm with enter from completion, '.' won't repeat
 -- install dictionaries?
 -- se dg still no luck
--- diagnostics: fuzzy search with sd, fzf-lua?
 -- use in mappings: coc, =oc, old option changing combis, db ... find all free mappings
 -- add alt-. in cmdline and c-y to paste
 -- yaf highlight on yank
@@ -251,7 +250,7 @@ require('abbreviations')
 require('autocmds')
 require('readline')
 require('statusline')
-require('plugins')
+require('plugins') -- last so if a plugin errors, my config will still mostly work
 
 -- TODO: move above so we can set vars for plugins?
 vim.opt.runtimepath:append(vim.fn.stdpath('config')..'/lua/local')

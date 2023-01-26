@@ -44,10 +44,10 @@ require('lazy').setup({
         cmd = 'Fern',
         keys = '<leader>v',
         dependencies = {
-            { 'lambdalisue/fern-hijack.vim' },
-            { 'lambdalisue/nerdfont.vim' },
-            { 'lambdalisue/fern-renderer-nerdfont.vim' },
-            { 'lambdalisue/glyph-palette.vim' },
+            'lambdalisue/fern-hijack.vim',
+            'lambdalisue/nerdfont.vim',
+            'lambdalisue/fern-renderer-nerdfont.vim',
+            'lambdalisue/glyph-palette.vim',
         },
         config = function()
             require('plugins/fern')
@@ -83,6 +83,27 @@ require('lazy').setup({
         },
         config = function()
             require('plugins/nvim-lspconfig')
+        end
+    },
+
+    { 'jose-elias-alvarez/null-ls.nvim',
+        dependencies = {
+            'nvim-lua/plenary.nvim'
+        },
+        lazy = true,
+        config = function()
+            require('plugins/null-ls')
+        end
+    },
+
+    { 'folke/trouble.nvim',
+        dependencies = {
+            'kyazdani42/nvim-web-devicons' -- TODO: plugin shouldn't complain as I've manually installed Nerd Fonts, issue?
+        },
+        cmd = { 'Trouble', 'TroubleClose', 'TroubleToggle', 'TroubleRefresh' },
+        keys = '<leader>q',
+        config = function()
+            require('plugins/trouble')
         end
     },
 
