@@ -7,11 +7,12 @@ require('nvim-treesitter.configs').setup {
         "dockerfile",
         "json",
         "jsonc",
-        "hcl", -- no need for terraform
+        "hcl",
         "lua",
         "markdown",
         "perl",
         "python",
+        "terraform",
         "vim",
         "yaml",
     },
@@ -94,6 +95,7 @@ require('nvim-treesitter.configs').setup {
                 ['am'] = '@function.outer',
                 ['il'] = '@loop.inner',
                 ['al'] = '@loop.outer',
+                ['in'] = '@number.inner',
                 ['ia'] = '@parameter.inner', -- argument
                 ['aa'] = '@parameter.outer',
                 -- ['is'] = '@scope.inner',
