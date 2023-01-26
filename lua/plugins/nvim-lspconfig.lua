@@ -81,12 +81,17 @@ local servers = {
     marksman = {},
     yamlls = {},
     pyright = {},
-    terraformls = {}, -- TODO: hclls? (doesn't exist for now)
+    terraformls = {
+        -- filetypes = { "terraform", "terraform-vars", "hcl" }
+    },
+    tflint = {},
     sumneko_lua = {
-        Lua = {
-            workspace = { checkThirdParty = false },
-            telemetry = { enable = false },
-        },
+        settings = {
+            Lua = {
+                workspace = { checkThirdParty = false },
+                telemetry = { enable = false },
+            },
+        }
     },
 }
 
@@ -101,10 +106,14 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 mason_lspconfig.setup_handlers {
     function(server_name)
-        require('lspconfig')[server_name].setup {
-            capabilities = capabilities,
-            on_attach = on_attach,
-            settings = servers[server_name],
-        }
-    end,
+        require('lspconfig')[server_name].setup(
+            vim.tbl_extend("error",
+                {
+                    capabilities = capabilities,
+                    on_attach = on_attach
+                },
+                servers[server_name]
+            )
+        )
+    end
 }
