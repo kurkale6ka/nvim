@@ -21,7 +21,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-    -- Enable completion triggered by <c-x><c-o>
+
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -73,7 +73,6 @@ local on_attach = function(client, bufnr)
 end
 
 -- Mason lspconfig
-
 local mason_lspconfig = require('mason-lspconfig')
 
 local servers = {
@@ -107,13 +106,14 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 mason_lspconfig.setup_handlers {
     function(server_name)
-        require('lspconfig')[server_name].setup (
+        require('lspconfig')[server_name].setup(
             vim.tbl_extend("error",
                 {
                     capabilities = capabilities,
                     on_attach = on_attach
                 },
                 servers[server_name]
-            ))
+            )
+        )
     end
 }
