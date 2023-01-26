@@ -64,10 +64,22 @@ require('lazy').setup({
     -- LSP
     { 'neovim/nvim-lspconfig',
         dependencies = {
-            'williamboman/mason.nvim', -- automatically install LSPs to stdpath for neovim
+            { 'williamboman/mason.nvim', -- automatically install LSPs to stdpath for neovim
+                config = function()
+                    require('mason').setup()
+                end
+            },
             'williamboman/mason-lspconfig.nvim',
-            'j-hui/fidget.nvim', -- useful status updates for LSP
-            'folke/neodev.nvim', -- additional lua configuration, makes nvim stuff amazing
+            { 'j-hui/fidget.nvim', -- useful LSP status updates
+                config = function()
+                    require('fidget').setup()
+                end
+            },
+            { 'folke/neodev.nvim', -- additional lua configuration, makes nvim stuff amazing
+                config = function()
+                    require('neodev').setup()
+                end
+            },
         },
         config = function()
             require('plugins/nvim-lspconfig')
@@ -117,7 +129,7 @@ require('lazy').setup({
 
     -- Colorschemes
     { 'navarasu/onedark.nvim',
-        lazy = false,    -- necessary for the main colorscheme
+        lazy = false, -- necessary for the main colorscheme
         priority = 1000, -- necessary for the main colorscheme
         config = function()
             require('plugins/onedark')
