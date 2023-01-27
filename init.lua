@@ -249,7 +249,6 @@ vim.api.nvim_create_user_command('WriteSudo',
 -- Session.vim went into wrong folder
 
 vim.g.python3_host_prog = '~/py-envs/neovim/bin/python'
-vim.g.is_posix = 1 -- ft=sh: correctly highlight $() ...
 
 require('noplugins')
 require('abbreviations')
