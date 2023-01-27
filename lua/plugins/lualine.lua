@@ -49,6 +49,7 @@ require('lualine').setup {
             { '%v', fmt = function(str) return 'col:' .. str end } -- current column
         },
         lualine_x = {
+            'searchcount',
             { 'encoding', fmt = function(str) return str:gsub('-', '') end },
             { 'filetype', color = { fg = '#ffab60' } }
         },

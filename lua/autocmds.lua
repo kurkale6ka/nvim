@@ -16,28 +16,30 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 -- When reading a file, :cd to its parent directory.
 -- this replaces 'autochdir which doesn't work properly.
 vim.api.nvim_create_autocmd("BufEnter", {
-    command = [[
-        if &filetype != 'help'
-            silent! cd %:p:h
-        endif
-    ]],
+    callback = function(args)
+        if vim.bo.filetype ~= 'help' and vim.bo.filetype ~= 'man' then
+            pcall(vim.fn.chdir, vim.fs.dirname(args.file))
+        else
+            vim.cmd('wincmd H | vert resize ' .. vim.env.MANWIDTH) -- TODO: fix error with gO then :q
+        end
+    end,
     group = generic
 })
 
 -- Delete EOL white spaces
 vim.api.nvim_create_autocmd("BufWritePre", {
-    command = [[
-        if &filetype != 'markdown'
-            call spaces#remove()
-        endif
-    ]],
+    callback = function()
+        if vim.bo.filetype ~= 'markdown' then
+            vim.fn['spaces#remove']()
+        end
+    end,
     group = generic
 })
 
 -- Highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
     callback = function()
-        vim.highlight.on_yank({on_visual = false})
+        vim.highlight.on_yank({ on_visual = false })
     end,
     group = highlight_group,
 })
