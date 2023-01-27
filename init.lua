@@ -132,7 +132,7 @@ vim.o.showfulltag = true
 vim.o.hidden = true
 vim.opt.diffopt:append { 'vertical,iblank,iwhiteall' }
 vim.o.equalalways = false
-vim.o.splitright = true
+vim.o.splitright = false
 vim.o.switchbuf = 'useopen,usetab'
 
 -- TODO: correctly restore window sizes.
@@ -231,6 +231,7 @@ vim.api.nvim_create_user_command('WriteSudo',
 
 -- TODO:
 -- nmap <expr> <leader>g ':lefta vert Git -p ', redefine command?
+-- :h to the left 'spr
 -- compare with coc completion
 -- ts text objects: test selections
 -- after ciw confirm with enter from completion, '.' won't repeat

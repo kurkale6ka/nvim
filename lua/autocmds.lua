@@ -16,11 +16,14 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 -- When reading a file, :cd to its parent directory.
 -- this replaces 'autochdir which doesn't work properly.
 vim.api.nvim_create_autocmd("BufEnter", {
-    command = [[
-        if &filetype != 'help'
-            silent! cd %:p:h
-        endif
-    ]],
+    callback = function ()
+        if vim.bo.filetype ~= 'help' and vim.bo.filetype ~= 'man' then
+            vim.cmd([[silent! cd %:p:h]])
+            -- vim.fn.chdir(vim.fs.dirname(args.file)) -- TODO: use this instead when I know how to do 'silent'
+        else
+            vim.cmd('wincmd H | vert resize '..vim.env.MANWIDTH) -- TODO: fix error with gO then :q
+        end
+    end,
     group = generic
 })
 
