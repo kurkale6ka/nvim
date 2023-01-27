@@ -101,7 +101,6 @@ require('lazy').setup({
             'kyazdani42/nvim-web-devicons' -- TODO: plugin shouldn't complain as I've manually installed Nerd Fonts, issue?
         },
         cmd = { 'Trouble', 'TroubleClose', 'TroubleToggle', 'TroubleRefresh' },
-        keys = '<leader>q',
         config = function()
             require('plugins/trouble')
         end
