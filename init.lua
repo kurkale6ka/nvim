@@ -230,7 +230,7 @@ vim.api.nvim_create_user_command('WriteSudo',
 )
 
 -- TODO:
--- nmap <expr> <leader>g ':vert Git -p ', redefine command?
+-- nmap <expr> <leader>g ':lefta vert Git -p ', redefine command?
 -- compare with coc completion
 -- ts text objects: test selections
 -- after ciw confirm with enter from completion, '.' won't repeat
@@ -240,7 +240,6 @@ vim.api.nvim_create_user_command('WriteSudo',
 -- add alt-. in cmdline and c-y to paste
 -- yaf highlight on yank
 -- no *~ in :cmd...
--- nmap <silent> <c-a> :<c-u>call number#change('a', 'f')<cr>
 
 vim.g.python3_host_prog = '~/py-envs/neovim/bin/python'
 vim.g.is_posix = 1 -- ft=sh: correctly highlight $() ...

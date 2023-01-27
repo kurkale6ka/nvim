@@ -20,7 +20,7 @@ vim.keymap.set('i', '<c-w>', '<c-o>dB')
 
 ---- Moving
 
--- Enhanced gm
+-- enhanced gm
 vim.keymap.set({ 'n', 'o' }, 'gm',
     function()
         vim.fn['move#gm']()
