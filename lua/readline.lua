@@ -21,7 +21,7 @@ vim.keymap.set('i', '<c-w>', '<c-o>dB')
 ---- Moving
 
 -- enhanced gm
-vim.keymap.set({ 'n', 'o' }, 'gm',
+vim.keymap.set({ 'n', 'o', 'x' }, 'gm',
     function()
         vim.fn['move#gm']()
     end,

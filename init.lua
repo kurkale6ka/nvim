@@ -230,17 +230,23 @@ vim.api.nvim_create_user_command('WriteSudo',
 )
 
 -- TODO:
--- nmap <expr> <leader>g ':lefta vert Git -p ', redefine command?
--- :h to the left 'spr
 -- compare with coc completion
 -- ts text objects: test selections
--- after ciw confirm with enter from completion, '.' won't repeat
--- install dictionaries?
--- se dg still no luck
 -- use in mappings: coc, =oc, old option changing combis, db ... find all free mappings
 -- add alt-. in cmdline and c-y to paste
+-- install dictionaries?
+-- ls! unlisted help buffers, include in <leader>b?
+-- jinja2 syntax? TS inject in ansible buffers?
+-- redefine command G with :vert Git -p
 -- yaf highlight on yank
--- no *~ in :cmd...
+-- ts/lsp info
+-- gK for help, test it still works with 'wrap
+-- fern show links, set onedark colors
+-- no *~ in :cmd... + duplicate symbols e.g. :h''spr + improve cmp completion
+-- after ciw confirm with enter from completion, '.' won't repeat
+-- se dg still no luck
+-- fzf install issues (lazy.nvim)
+-- Session.vim went into wrong folder
 
 vim.g.python3_host_prog = '~/py-envs/neovim/bin/python'
 vim.g.is_posix = 1 -- ft=sh: correctly highlight $() ...
