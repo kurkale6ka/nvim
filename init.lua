@@ -230,7 +230,6 @@ vim.api.nvim_create_user_command('WriteSudo',
 )
 
 -- TODO:
--- compare with coc completion
 -- ts text objects: test selections
 -- use in mappings: coc, =oc, old option changing combis, db ... find all free mappings
 -- add alt-. in cmdline and c-y to paste
@@ -242,7 +241,9 @@ vim.api.nvim_create_user_command('WriteSudo',
 -- ts/lsp info
 -- gK for help, test it still works with 'wrap
 -- fern show links, set onedark colors
--- no *~ in :cmd... + duplicate symbols e.g. :h''spr + improve cmp completion
+-- improve cmp completion. compare with coc completion
+-- duplicate symbols in cmdline, e.g. :h''spr
+-- path completion in buffer adds /. Remove!
 -- after ciw confirm with enter from completion, '.' won't repeat
 -- se dg still no luck
 -- fzf install issues (lazy.nvim)

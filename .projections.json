@@ -3,5 +3,5 @@
     "lua/plugins/init.lua": { "alternate": "init.lua" },
     "after/*": { "type": "after" },
     "autoload/*": { "type": "autoload" },
-    "lua/*": { "type": "lua" }
+    "lua/plugins/*": { "type": "plugin" }
 }

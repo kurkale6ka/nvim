@@ -41,8 +41,10 @@ cmp.setup.cmdline(':', {
     sources = cmp.config.sources({
         { name = 'path' }
     }, {
-        {
-            name = 'cmdline',
+        { name = 'cmdline',
+            entry_filter = function(entry) -- TODO: remove repetition, group sections?
+                return not entry:get_word():match('~$')
+            end,
             max_item_count = 20,
             option = { ignore_cmds = { 'Man', '!' } }
         }
@@ -80,8 +82,7 @@ cmp.setup({
     sources = cmp.config.sources({
         -- { name = 'nvim_lua' }, TODO: replace with neodev
         { name = 'nvim_lsp', max_item_count = 10 },
-        {
-            name = 'buffer',
+        { name = 'buffer',
             option = {
                 get_bufnrs = function()
                     return vim.api.nvim_list_bufs()
@@ -89,7 +90,11 @@ cmp.setup({
             },
             max_item_count = 10
         },
-        { name = 'path', max_item_count = 10 },
+        { name = 'path', max_item_count = 10,
+            entry_filter = function(entry)
+                return not entry:get_word():match('~$')
+            end,
+        },
         { name = 'ultisnips', max_item_count = 10 },
     }),
     formatting = {
