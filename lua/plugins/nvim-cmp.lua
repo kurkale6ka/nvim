@@ -1,7 +1,3 @@
--- Set up nvim-cmp.
--- TODO:
--- confirm cmdline selection with enter
--- complete from all buffers (e.g. doesn't complete from help buffers)
 local cmp = require('cmp')
 
 local kind_icons = {
@@ -35,7 +31,7 @@ local kind_icons = {
 -- cmdline setup
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline({
-        -- TODO: fix, not working
+        -- TODO: confirm cmdline selection with enter. Fix, not working
         ['<cr>'] = cmp.mapping.confirm({ select = true }),
     }),
     sources = cmp.config.sources({
