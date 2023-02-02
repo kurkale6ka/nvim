@@ -242,12 +242,12 @@ vim.api.nvim_create_user_command('WriteSudo',
 -- gK for help, test it still works with 'wrap
 -- fern show links, set onedark colors
 -- improve cmp completion. compare with coc completion
--- duplicate symbols in cmdline, e.g. :h''spr
--- path completion in buffer adds /. Remove!
+-- path completion in buffer adds /. Remove!?
 -- after ciw confirm with enter from completion, '.' won't repeat
 -- se dg still no luck
--- fzf install issues (lazy.nvim)
 -- Session.vim went into wrong folder
+-- duplicate symbols in cmdline, e.g. :h''spr => raise issue
+-- fzf install issues (lazy.nvim) !!!
 
 vim.g.python3_host_prog = '~/py-envs/neovim/bin/python'
 

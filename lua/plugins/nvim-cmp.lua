@@ -35,10 +35,15 @@ cmp.setup.cmdline(':', {
         ['<cr>'] = cmp.mapping.confirm({ select = true }),
     }),
     sources = cmp.config.sources({
-        { name = 'path' }
+        { name = 'path',
+            entry_filter = function(entry) -- TODO: remove repetition, group sections?
+                return not entry:get_word():match('~$')
+            end,
+            max_item_count = 20,
+        }
     }, {
         { name = 'cmdline',
-            entry_filter = function(entry) -- TODO: remove repetition, group sections?
+            entry_filter = function(entry)
                 return not entry:get_word():match('~$')
             end,
             max_item_count = 20,
