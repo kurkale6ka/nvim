@@ -2,6 +2,8 @@ vim.filetype.add({
     extension = {
         ftl = 'xml',
         pgn = 'pgn', -- chess
+        tfvars = 'terraform',
+        tfbackend = 'terraform'
     },
     filename = {
         ['.gitlab-ci.yml'] = 'yaml', -- needed because the yaml.ansible pattern could match
