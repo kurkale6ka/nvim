@@ -32,7 +32,9 @@ local kind_icons = {
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline({
         -- TODO: confirm cmdline selection with enter. Fix, not working
-        ['<cr>'] = cmp.mapping.confirm({ select = true }),
+        ['<cr>']  = cmp.mapping.confirm({ select = true }),
+        ['<c-e>'] = cmp.config.disable,
+        ['<c-y>'] = cmp.config.disable,
     }),
     sources = cmp.config.sources({
         { name = 'path',
@@ -79,6 +81,8 @@ cmp.setup({
         ['<c-space>'] = cmp.mapping.complete(),
         ['<c-a>']     = cmp.mapping.abort(),
         ['<cr>']      = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ['<c-e>']     = cmp.config.disable,
+        ['<c-y>']     = cmp.config.disable,
     }),
     sources = cmp.config.sources({
         -- { name = 'nvim_lua' }, TODO: replace with neodev
