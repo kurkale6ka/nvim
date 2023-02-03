@@ -20,6 +20,7 @@ require('lazy').setup({
     { 'tpope/vim-characterize', keys = 'ga' },
     { 'tpope/vim-commentary', cmd = 'Commentary', keys = { { 'gc', mode = { 'o', 'n', 'x' } } } },
     'tpope/vim-endwise',
+    'tpope/vim-eunuch',
     'tpope/vim-fugitive',
     { 'tpope/vim-markdown', ft = 'markdown' },
     { 'tpope/vim-obsession',
