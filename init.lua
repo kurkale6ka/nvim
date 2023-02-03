@@ -225,10 +225,6 @@ vim.api.nvim_create_user_command('Quotes',
     { desc = 'Quote words: turn them into a python tuple("word1", "word2")' }
 )
 
-vim.api.nvim_create_user_command('WriteSudo',
-    'write !sudo tee % >/dev/null', { desc = 'sudo :write' }
-)
-
 -- TODO:
 -- ts text objects: test selections
 -- use in mappings: coc, =oc, old option changing combis, db ... find all free mappings
