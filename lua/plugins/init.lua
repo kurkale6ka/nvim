@@ -20,7 +20,9 @@ require('lazy').setup({
     { 'tpope/vim-characterize', keys = 'ga' },
     { 'tpope/vim-commentary', cmd = 'Commentary', keys = { { 'gc', mode = { 'o', 'n', 'x' } } } },
     'tpope/vim-endwise',
-    'tpope/vim-eunuch',
+    { 'tpope/vim-eunuch',
+        cmd = { 'Remove', 'Unlink', 'Delete', 'Copy', 'Duplicate', 'Move', 'Rename', 'Chmod', 'Mkdir', 'Cfind', 'Lfind', 'Clocate', 'Llocate', 'SudoEdit', 'SudoWrite', 'Wall' }
+    },
     'tpope/vim-fugitive',
     { 'tpope/vim-markdown', ft = 'markdown' },
     { 'tpope/vim-obsession',
