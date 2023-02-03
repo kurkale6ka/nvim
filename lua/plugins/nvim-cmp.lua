@@ -1,7 +1,3 @@
--- Set up nvim-cmp.
--- TODO:
--- confirm cmdline selection with enter
--- complete from all buffers (e.g. doesn't complete from help buffers)
 local cmp = require('cmp')
 
 local kind_icons = {
@@ -35,14 +31,23 @@ local kind_icons = {
 -- cmdline setup
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline({
-        -- TODO: fix, not working
-        ['<cr>'] = cmp.mapping.confirm({ select = true }),
+        -- TODO: confirm cmdline selection with enter. Fix, not working
+        ['<cr>']  = cmp.mapping.confirm({ select = true }),
+        ['<c-e>'] = cmp.config.disable,
+        ['<c-y>'] = cmp.config.disable,
     }),
     sources = cmp.config.sources({
-        { name = 'path' }
+        { name = 'path',
+            entry_filter = function(entry) -- TODO: remove repetition, group sections?
+                return not entry:get_word():match('~$')
+            end,
+            max_item_count = 20,
+        }
     }, {
-        {
-            name = 'cmdline',
+        { name = 'cmdline',
+            entry_filter = function(entry)
+                return not entry:get_word():match('~$')
+            end,
             max_item_count = 20,
             option = { ignore_cmds = { 'Man', '!' } }
         }
@@ -74,14 +79,15 @@ cmp.setup({
         ['<c-b>']     = cmp.mapping.scroll_docs(-4),
         ['<c-f>']     = cmp.mapping.scroll_docs(4),
         ['<c-space>'] = cmp.mapping.complete(),
-        ['<c-e>']     = cmp.mapping.abort(),
+        ['<c-a>']     = cmp.mapping.abort(),
         ['<cr>']      = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ['<c-e>']     = cmp.config.disable,
+        ['<c-y>']     = cmp.config.disable,
     }),
     sources = cmp.config.sources({
         -- { name = 'nvim_lua' }, TODO: replace with neodev
         { name = 'nvim_lsp', max_item_count = 10 },
-        {
-            name = 'buffer',
+        { name = 'buffer',
             option = {
                 get_bufnrs = function()
                     return vim.api.nvim_list_bufs()
@@ -89,7 +95,11 @@ cmp.setup({
             },
             max_item_count = 10
         },
-        { name = 'path', max_item_count = 10 },
+        { name = 'path', max_item_count = 10,
+            entry_filter = function(entry)
+                return not entry:get_word():match('~$')
+            end,
+        },
         { name = 'ultisnips', max_item_count = 10 },
     }),
     formatting = {

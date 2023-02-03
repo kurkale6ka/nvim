@@ -77,6 +77,8 @@ local mason_lspconfig = require('mason-lspconfig')
 
 local servers = {
     ansiblels = {},
+    bashls = {},
+    dockerls = {},
     jsonls = {},
     marksman = {},
     yamlls = {},
@@ -84,7 +86,7 @@ local servers = {
     terraformls = {
         -- filetypes = { "terraform", "terraform-vars", "hcl" }
     },
-    tflint = {},
+    tflint = {}, -- TODO: this is a 'LS', does it conflict with terraformls? Where to automate linter install?
     sumneko_lua = {
         settings = {
             Lua = {
