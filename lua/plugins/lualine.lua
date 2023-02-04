@@ -1,3 +1,9 @@
+Lsp_clt = function ()
+    for i,line in vim.lsp.get_active_clients() do
+        return '--'..line.name
+    end
+end
+
 require('lualine').setup {
     options = {
         icons_enabled = true,
@@ -54,7 +60,9 @@ require('lualine').setup {
             { 'filetype', color = { fg = '#ffab60' } }
         },
         lualine_y = { 'progress' },
-        lualine_z = {}
+        lualine_z = {
+            Lsp_clt
+        }
     },
     inactive_sections = {
         lualine_a = {},
