@@ -81,12 +81,7 @@ local servers = {
     dockerls = {},
     jsonls = {},
     marksman = {},
-    yamlls = {},
     pyright = {},
-    terraformls = {
-        -- filetypes = { "terraform", "terraform-vars", "hcl" }
-    },
-    tflint = {}, -- TODO: this is a 'LS', does it conflict with terraformls? Where to automate linter install?
     sumneko_lua = {
         settings = {
             Lua = {
@@ -95,6 +90,12 @@ local servers = {
             },
         }
     },
+    terraformls = {
+        -- filetypes = { "terraform", "terraform-vars", "hcl" }
+    },
+    tflint = {}, -- TODO: this is a 'LS', does it conflict with terraformls? Where to automate linter install?
+    vimls = {},
+    yamlls = {},
 }
 
 -- ensure the above servers are installed
