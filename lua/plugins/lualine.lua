@@ -79,7 +79,8 @@ require('lualine').setup {
                     local ff, _ = vim.bo.fileformat:gsub("^unix$", "")
                     return ff
                 end,
-                color = { fg = red }
+                color = { fg = red },
+                icon = '␤'
             },
             'diff',
         },
