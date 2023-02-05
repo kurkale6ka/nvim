@@ -1,3 +1,5 @@
+local red = '#ff7575'
+
 require('lualine').setup {
     options = {
         icons_enabled = true,
@@ -18,12 +20,10 @@ require('lualine').setup {
         }
     },
     sections = {
-        lualine_a = {
-            { 'fileformat',
-                fmt = function(str)
-                    return vim.o.paste and str .. ' --paste--' or str
-                end
-            }
+        lualine_a = { -- paste mode
+            function()
+                return vim.o.paste and '-- paste --' or ''
+            end
         },
         lualine_b = {
             { 'filename',
@@ -35,7 +35,7 @@ require('lualine').setup {
                     end
                 end,
                 color = function()
-                    return { fg = vim.bo.modified and '#ff7575' or '#86bcff' } -- TODO: apply color on [+] only, also for [RO] and keymap
+                    return { fg = vim.bo.modified and red or '#86bcff' } -- TODO: apply color on [+] only, also for [RO] and keymap
                 end,
                 symbols = {
                     readonly = '[RO]',
@@ -44,12 +44,11 @@ require('lualine').setup {
             { 'branch', icon = '', color = { fg = '#18a558' } },
         },
         lualine_c = {
-            'diff',
             'diagnostics',
+            'searchcount',
             { '%v', fmt = function(str) return 'col:' .. str end } -- current column
         },
         lualine_x = {
-            'searchcount',
             { -- LSP server name
                 function()
                     local msg = 'no LSP'
@@ -66,13 +65,30 @@ require('lualine').setup {
                     end
                     return msg
                 end,
-                icon = '',
-                color = { fg = 'cyan' }
+                icon = ''
             },
-            { 'encoding', fmt = function(str) return str:gsub('-', '') end },
-            { 'filetype', color = { fg = '#ffab60' } }
+            { -- encoding
+                function()
+                    local enc, _ = (vim.bo.fenc or vim.go.enc):gsub("^utf%-8$", "")
+                    return enc
+                end,
+                color = { fg = red }
+            },
+            { -- fileformat
+                function()
+                    local ff, _ = vim.bo.fileformat:gsub("^unix$", "")
+                    return ff
+                end,
+                color = { fg = red }
+            },
+            'diff',
         },
-        lualine_y = { 'progress' },
+        lualine_y = {
+            {
+                'filetype', color = { fg = '#ffab60' }
+            },
+            'progress'
+        },
         lualine_z = {}
     },
     inactive_sections = {
