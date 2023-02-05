@@ -1,4 +1,5 @@
 local red = '#ff7575'
+local comment = '#535965'
 
 require('lualine').setup {
     options = {
@@ -101,7 +102,25 @@ require('lualine').setup {
         lualine_z = {}
     },
     tabline = {},
-    winbar = {},
-    inactive_winbar = {},
+    winbar = {
+        lualine_b = {
+            { -- code context
+                function()
+                    return '-- ' .. require('nvim-treesitter').statusline()
+                end,
+                color = { fg = comment },
+            }
+        },
+    },
+    inactive_winbar = {
+        lualine_b = {
+            {
+                function()
+                    return '-- ' .. require('nvim-treesitter').statusline()
+                end,
+                color = { fg = comment },
+            }
+        },
+    },
     extensions = {}
 }
