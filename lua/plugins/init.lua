@@ -196,12 +196,6 @@ require('lazy').setup({
         end,
     },
 
-    { 'nvim-lualine/lualine.nvim',
-        config = function()
-            require('plugins/lualine')
-        end
-    },
-
     { 'glacambre/firenvim',
         build = function() vim.fn['firenvim#install'](0) end,
         lazy = true,
@@ -218,6 +212,20 @@ require('lazy').setup({
     { 'vim-scripts/nginx.vim', lazy = true },
     { 'StanAngeloff/php.vim', lazy = true },
     { 'tmux-plugins/vim-tmux', lazy = true },
+
+    -- bufferline & statusline
+    { 'akinsho/bufferline.nvim',
+        tag = "v3.1.0",
+        config = function()
+            require('plugins/bufferline')
+        end
+    },
+
+    { 'nvim-lualine/lualine.nvim',
+        config = function()
+            require('plugins/lualine')
+        end
+    },
 
     -- Own
     'kurkale6ka/vim-pairs',
