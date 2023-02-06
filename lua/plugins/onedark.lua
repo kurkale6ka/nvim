@@ -6,11 +6,6 @@ require('onedark').setup {
     ending_tildes = true, -- Show the end-of-buffer tildes. By default they are hidden
     cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
 
-    -- toggle theme style ---
-    toggle_style_key = 'gl', -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
-    -- toggle_style_list = {'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light'}, -- List of styles to toggle between
-    toggle_style_list = {'darker', 'deep', 'warmer'}, -- List of styles to toggle between
-
     -- Change code style ---
     -- Options are italic, bold, underline, none
     -- You can configure multiple style with comma seperated, For e.g., keywords = 'italic,bold'
@@ -29,12 +24,10 @@ require('onedark').setup {
 
     -- Custom Highlights --
     colors = {
-        -- desertString = '#fa8072',
-        -- desertComment = '#7ccd7c',
+        -- myComment = '#517A66',
     },
     highlights = {
-        -- ["@string"] = {fg = '$desertString'},
-        -- ["@comment"] = {fg = '$desertComment', fmt = 'italic'},
+        -- ["@comment"] = {fg = '$myComment'},
     },
 
     -- Plugins Config --
