@@ -4,4 +4,4 @@ setlocal errorformat=%m\ at\ %f\ line\ %l.
 
 iabbrev len length
 
-let b:surround_99 = "RED.\r.RESET"
+let b:surround_{char2nr('c')} = "RED.\r.RESET"
