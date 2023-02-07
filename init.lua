@@ -250,6 +250,7 @@ vim.g.python3_host_prog = '~/py-envs/neovim/bin/python'
 require('noplugins')
 require('abbreviations')
 require('autocmds')
+require('commentstrings')
 require('readline')
 require('statusline')
 require('plugins') -- last so if a plugin errors, my config will still mostly work
