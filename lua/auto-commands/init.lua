@@ -1,4 +1,5 @@
 local generic = vim.api.nvim_create_augroup("Generic", { clear = true })
+local commit = vim.api.nvim_create_augroup("Commit", { clear = true })
 local terminal = vim.api.nvim_create_augroup("Terminal", { clear = true })
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 -- local windows = vim.api.nvim_create_augroup("Windows", { clear = true })
@@ -34,6 +35,17 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         end
     end,
     group = generic
+})
+
+-- VCS (git/svn/...) commit messages
+vim.api.nvim_create_autocmd('Filetype', {
+    pattern = { 'gitcommit', 'svn' },
+    command = [[
+        goto
+        setlocal spell foldmethod&
+        startinsert
+    ]],
+    group = commit,
 })
 
 -- Highlight on yank
