@@ -1,5 +1,1 @@
-" \p for puts
-imap <silent> <buffer> <localleader>p puts ''<left>
-
-" [99 c]
-let b:surround_99 = "=begin \r =end"
+let b:surround_{char2nr('c')} = "=begin \r =end"
