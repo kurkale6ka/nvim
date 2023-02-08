@@ -28,3 +28,21 @@ vim.api.nvim_create_user_command('Rg',
     end,
     { bang = true, nargs = '*', desc = 'ripgrep' }
 )
+
+-- TODO: translate to lua
+vim.cmd([[
+" Keymaps
+command! -nargs=? Lang call fzf#run(fzf#wrap({
+   \ 'source': map(split(globpath(&rtp, 'keymap/*.vim')),
+   \              'fnamemodify(v:val, ":t:r")'),
+   \ 'sink': {keymap -> execute('setlocal keymap='.keymap)},
+   \ 'options': '-1 +m -q "'.<q-args>.'" --prompt "Keymap> "'
+   \ }))
+
+" Scriptnames
+command! -nargs=? Scriptnames call fzf#run(fzf#wrap({
+   \ 'source': split(execute('scriptnames'), '\n'),
+   \ 'sink': {script -> execute('edit'.substitute(script, '^\s*\d\+:\s\+', '', ''))},
+   \ 'options': '-1 +m -q "'.<q-args>.'" --prompt "Scriptnames> "'
+   \ }))
+]])
