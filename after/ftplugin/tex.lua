@@ -1,3 +1,4 @@
+vim.cmd([[
 let b:surround_{char2nr('1')} = "\\section{\r}"
 let b:surround_{char2nr('2')} = "\\subsection{\r}"
 let b:surround_{char2nr('3')} = "\\subsubsection{\r}"
@@ -11,3 +12,4 @@ let b:surround_{char2nr('d')} = "\\begin{displaymath} \r \\end{displaymath}"
 let b:surround_{char2nr('p')} = "\\left( \r \\right)"
 
 iabbrev latex \latex{}
+]])

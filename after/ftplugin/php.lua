@@ -1,3 +1,4 @@
+vim.cmd([[
 let php_folding    = 3
 let php_large_file = 0
 
@@ -9,3 +10,4 @@ let b:surround_{char2nr('t')} = "try { \r } catch (Exception $e) {$e->getMessage
 
 set makeprg=php\ -l\ %\ $*
 set errorformat=%E%m\ in\ %f\ on\ line\ %l,%Z%m
+]])
