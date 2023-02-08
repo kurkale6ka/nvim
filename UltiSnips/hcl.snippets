@@ -2,33 +2,33 @@
 
 snippet #
 terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 3.27"
-    }
-  }
+	required_providers {
+		aws = {
+			source  = "hashicorp/aws"
+			version = "~> 3.27"
+		}
+	}
 
-  required_version = ">= 0.14.9"
+	required_version = ">= 0.14.9"
 }
 
 provider "aws" {
-  profile = "default"
-  region  = "eu-west-2"
+	profile = "default"
+	region  = "eu-west-2"
 }
 endsnippet
 
 snippet ec2
 resource "aws_instance" "${1:name}" {
-  ami           = "$2"
-  instance_type = "$3"
+	ami           = "$2"
+	instance_type = "$3"
 }
 endsnippet
 
 snippet out
 output "${1:resource_id}" {
-  description = "$2"
-  value       = ${3:obj.property}
+	description = "$2"
+	value       = ${3:obj.property}
 }
 endsnippet
 
@@ -42,10 +42,10 @@ endsnippet
 
 snippet for "Dynamic block"
 dynamic "${1:name}" {
-  for_each = $2
-  content {
-    $3 = $1.value$4
-  }
+	for_each = $2
+	content {
+		$3 = $1.value$4
+	}
 }
 endsnippet
 

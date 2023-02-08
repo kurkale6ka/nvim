@@ -244,6 +244,7 @@ vim.api.nvim_create_user_command('Quotes',
 -- Session.vim went into wrong folder
 -- duplicate symbols in cmdline, e.g. :h''spr => raise issue
 -- fzf install issues (lazy.nvim) !!!
+-- group snippets. e.g. yaml and ansible.yaml ones
 
 vim.g.python3_host_prog = '~/py-envs/neovim/bin/python'
 

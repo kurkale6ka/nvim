@@ -4,12 +4,12 @@ snippet #
   $2
 endsnippet
 
-snippet play
+snippet '##|play' "Playbook" r
 ---
 - name: ${1:Role description}
   hosts: $2
   roles:
-    - $3
+  `!p snip.shift(); snip.rv = snip.mkline()`- $3
 endsnippet
 
 snippet task
@@ -45,13 +45,13 @@ endsnippet
 
 snippet dir
 - file:
-    path: $1
-    state: directory
+  `!p snip.shift(); snip.rv = snip.mkline()`path: $1
+  `!p snip.shift(); snip.rv = snip.mkline()`state: directory
 endsnippet
 
 snippet ln
 - file:
-    src: $1
-    dest: $2
-    state: link
+  `!p snip.shift(); snip.rv = snip.mkline()`src: $1
+  `!p snip.shift(); snip.rv = snip.mkline()`dest: $2
+  `!p snip.shift(); snip.rv = snip.mkline()`state: link
 endsnippet
