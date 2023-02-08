@@ -1,6 +1,16 @@
-# Hash bang using the env command
 snippet #
 #! /usr/bin/env ${1:zsh}
+endsnippet
+
+snippet ##
+#! /usr/bin/env zsh
+
+# ${1:Short Description}
+#
+# Author: `g:snips_author` <mitkofr@yahoo.fr>
+# -------------------------------------------
+
+${2:setopt extended_glob}
 endsnippet
 
 snippet read
@@ -53,18 +63,6 @@ endsnippet
 
 snippet join
 ${(j.${1::}.)${2:array}}
-endsnippet
-
-## Skeleton
-snippet skel
-#! /usr/bin/env zsh
-
-# ${1:Short Description}
-#
-# Author: `g:snips_author` <mitkofr@yahoo.fr>
-# -------------------------------------------
-
-${2:setopt extended_glob}
 endsnippet
 
 ## Loops

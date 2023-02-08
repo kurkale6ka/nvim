@@ -9,10 +9,10 @@ endsnippet
 snippet 'debug|msg|print' "Debug in task" r
 - name: Test $1
   debug:
-    msg: "$2"
+  `!p snip.shift(); snip.rv = snip.mkline()`msg: "$2"
 endsnippet
 
 snippet 'debug|msg|print' "Debug alone" r
 - debug:
-    var: $1
+  `!p snip.shift(); snip.rv = snip.mkline()`var: $1
 endsnippet
