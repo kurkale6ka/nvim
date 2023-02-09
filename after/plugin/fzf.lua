@@ -38,11 +38,21 @@ command! -nargs=? Lang call fzf#run(fzf#wrap({
    \ 'sink': {keymap -> execute('setlocal keymap='.keymap)},
    \ 'options': '-1 +m -q "'.<q-args>.'" --prompt "Keymap> "'
    \ }))
-
-" Scriptnames
-command! -nargs=? Scriptnames call fzf#run(fzf#wrap({
-   \ 'source': split(execute('scriptnames'), '\n'),
-   \ 'sink': {script -> execute('edit'.substitute(script, '^\s*\d\+:\s\+', '', ''))},
-   \ 'options': '-1 +m -q "'.<q-args>.'" --prompt "Scriptnames> "'
-   \ }))
 ]])
+
+-- Scriptnames
+vim.api.nvim_create_user_command('Scriptnames',
+    function(input)
+        vim.fn['fzf#run'](
+            vim.fn['fzf#wrap'] {
+                -- the script arg below will represent a line from source
+                source = vim.fn.split(vim.fn.execute('scriptnames'), '\n'),
+                sink = function(script)
+                    vim.fn.execute('edit' .. vim.fn.substitute(script, [[^\s*\d\+:\s\+]], '', ''))
+                end,
+                options = '-1 +m -q "' .. input.args .. '" --prompt "Scriptnames> "'
+            }
+        )
+    end,
+    { nargs = '?', desc = 'fuzzy :scriptnames' }
+)
