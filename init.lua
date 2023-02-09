@@ -245,6 +245,8 @@ vim.api.nvim_create_user_command('Quotes',
 -- duplicate symbols in cmdline, e.g. :h''spr => raise issue
 -- fzf install issues (lazy.nvim) !!!
 -- group snippets. e.g. yaml and ansible.yaml ones
+-- zsh snippets not working. is it because there is no LSP?
+-- snippets ft wrong because of the skel (#)
 
 vim.g.python3_host_prog = '~/py-envs/neovim/bin/python'
 
