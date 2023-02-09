@@ -4,7 +4,7 @@ vim.keymap.set('n', '<leader>h', ':History<cr>')   -- search history (recently e
 vim.keymap.set('n', '<leader>sh', ':Helptags<cr>') -- search help files
 vim.keymap.set('n', 'gh', ':Files '..vim.env.XDG_CONFIG_HOME..'/repos/help<cr>') -- own help files
 
--- vim.keymap.set('n', '<leader>sd', ':Diagnostics<cr>') -- search diagnostics
+vim.keymap.set('n', '<leader>sd', ':Diagnostics<cr>') -- search diagnostics
 vim.keymap.set('n', '<leader>ss', ':Snippets<cr>')    -- search snippets
 vim.keymap.set('n', '<leader>st', ':Tags<cr>')        -- search tags
 vim.keymap.set('n', '<leader>sc', ':Commands<cr>')    -- search commands
@@ -32,21 +32,28 @@ vim.api.nvim_create_user_command('Rg',
     { bang = true, nargs = '*', desc = 'ripgrep' }
 )
 
--- -- Diagnostics
--- vim.api.nvim_create_user_command('Diagnostics',
---     function(input)
---         vim.fn['fzf#run'](
---             vim.fn['fzf#wrap'] {
---                 source = vim.diagnostic.get(0),
---                 sink = function(error)
---                     print(error)
---                 end,
---                 options = '--cycle -1 +m -q "' .. input.args .. '" --prompt "Diagnostics> "'
---             }
---         )
---     end,
---     { nargs = '?', desc = 'fuzzy diagnostics' }
--- )
+-- Diagnostics
+vim.api.nvim_create_user_command('Diagnostics',
+    function(input)
+        vim.fn['fzf#run'](
+            vim.fn['fzf#wrap'] {
+                source = vim.tbl_map(
+                    -- TODO: improve - serialize/deserialize table?
+                    function(error)
+                        return error.lnum + 1 .. ':' .. error.col + 1 .. ':' .. error.message
+                    end,
+                    vim.diagnostic.get(0)
+                ),
+                sink = function(error)
+                    local position = vim.list_slice(vim.fn.split(error, ':'), 1, 2)
+                    vim.fn.cursor(position)
+                end,
+                options = '--cycle -1 +m -q "' .. input.args .. '" --prompt "Diagnostics> "'
+            }
+        )
+    end,
+    { nargs = '?', desc = 'fuzzy diagnostics' }
+)
 
 -- Keymaps
 vim.api.nvim_create_user_command('Lang',
