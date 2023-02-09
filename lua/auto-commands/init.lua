@@ -58,7 +58,10 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- Terminal: no numbers
 vim.api.nvim_create_autocmd("TermOpen", {
-    command = ':setlocal nonumber norelativenumber',
+    callback = function()
+        vim.wo.number = false
+        vim.wo.relativenumber = false
+    end,
     group = terminal
 })
 

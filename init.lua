@@ -28,7 +28,7 @@ vim.o.smartcase  = true
 vim.o.infercase  = true
 
 vim.o.inccommand = 'nosplit'
-vim.opt.path:append { vim.env.XDG_CONFIG_HOME..'/repos/**' }
+vim.opt.path:append(vim.env.XDG_CONFIG_HOME .. '/repos/**')
 vim.o.grepprg = 'rg --column --line-number --no-heading --vimgrep --smart-case --hidden'
 
 vim.keymap.set('n', '<leader>G', ':g/<c-r><c-a>/', { desc = ':g/WORD/' })
@@ -39,16 +39,16 @@ vim.cmd([[cabbrev <expr> eh getcmdtype() == ':' ? 'e~/'.abbreviations#eat_char('
 vim.cmd([[cabbrev <expr> es getcmdtype() == ':' ? 'e%:p:s/'.abbreviations#eat_char('\s') : 'es']])
 
 -- Encoding and file formats
-vim.o.fileencodings = 'ucs-bom,utf-8,default,cp1251,latin1'
-vim.o.fileformats = 'unix,mac,dos'
-vim.opt.isfname:remove { '=' }
+vim.opt.fileencodings:append('cp1251')
+vim.opt.fileformats = { 'unix', 'mac', 'dos' }
+vim.opt.isfname:remove('=')
 
 -- Alerts and visual feedback
 vim.wo.number = true
 vim.wo.numberwidth = 1
 vim.o.showmatch = true
 vim.o.matchtime = 2
-vim.opt.matchpairs:append { '<:>' }
+vim.opt.matchpairs:append('<:>')
 vim.o.confirm = true
 vim.o.showcmd = true
 vim.o.report = 0
@@ -123,14 +123,14 @@ vim.keymap.set('x', '<s-tab>', '<', { desc = 'shift leftwards' })
 vim.keymap.set({ 'n', 'x' }, '<leader>0', ':left<cr>', { desc = 'align left' })
 
 -- Tags
-vim.opt.tags:append { vim.env.XDG_CONFIG_HOME..'/repos/tags' }
+vim.opt.tags:append(vim.env.XDG_CONFIG_HOME .. '/repos/tags')
 vim.opt.complete:remove('i')
 vim.opt.completeopt:append('menuone')
 vim.o.showfulltag = true
 
 -- Windows and buffers
 vim.o.hidden = true
-vim.opt.diffopt:append { 'vertical,iblank,iwhiteall' }
+vim.opt.diffopt:append { 'vertical', 'iblank', 'iwhiteall' }
 vim.o.equalalways = false
 vim.o.splitright = false
 vim.o.switchbuf = 'useopen,usetab'
@@ -149,7 +149,7 @@ vim.o.modelines = 3
 
 -- Editing
 vim.o.clipboard = 'unnamed,unnamedplus'
-vim.opt.nrformats:remove { 'octal' }
+vim.opt.nrformats:remove('octal')
 vim.o.whichwrap = 'b,s,<,>,[,]'
 vim.o.virtualedit = 'block'
 vim.o.paragraphs = nil -- no wrongly defined paragraphs for non nroff,groff filetypes
@@ -258,5 +258,5 @@ require('statusline')
 require('plugins') -- last so if a plugin errors, my config will still mostly work
 
 -- TODO: move above so we can set vars for plugins?
-vim.opt.runtimepath:append(vim.fn.stdpath('config')..'/lua/local')
+vim.opt.runtimepath:append(vim.fn.stdpath('config') .. '/lua/local')
 pcall(require, 'local') -- custom setup, TODO: use '... { rtp = }'?
