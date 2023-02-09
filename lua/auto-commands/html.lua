@@ -45,3 +45,15 @@ vim.api.nvim_create_autocmd('Filetype', {
     ]],
     group = html,
 })
+
+-- -- TODO: replace Tidy above
+-- vim.api.nvim_create_user_command('Tidy',
+--     function(args)
+--         -- args.line1,args.line2! xmllint --format --recover - 2>/dev/null
+--     end, {
+--     -- [[ <line1>,<line2>! xmllint --format --recover - 2>/dev/null ]], {
+--     buffer = true,
+--     range = '%',
+--     nargs = '*',
+--     desc = 'Format "html" documents'
+-- })
