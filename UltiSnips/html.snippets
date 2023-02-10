@@ -1,50 +1,50 @@
 snippet #
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 
 <head>
 
-   <title>${1:}</title>
+	<title>${1:}</title>
 
-   <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
-   <meta name="Description" content="desc" />
-   <meta name="Keywords" content="keywords" />
-   <meta name="`g:snips_author`" content="author" />
+	<meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
+	<meta name="Description" content="desc" />
+	<meta name="Keywords" content="keywords" />
+	<meta name="`g:snips_author`" content="author" />
 
-   <!-- <link rel="Shortcut Icon" href="/favicon.ico" type="image/x-icon" /> -->
+	<!-- <link rel="Shortcut Icon" href="/favicon.ico" type="image/x-icon" /> -->
 
-   <!-- <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" /> -->
-   <!-- <link rel="stylesheet" href="/css/print.css" type="text/css" media="print" /> -->
+	<!-- <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" /> -->
+	<!-- <link rel="stylesheet" href="/css/print.css" type="text/css" media="print" /> -->
 
-   <!-- if IE, !IE, IE 6, gt IE 5, gte IE 7, lt IE 9 ... -->
-   <!--[if lte IE 8]>
-      <link rel="stylesheet" type="text/css" href="ie8-and-down.css" />
-   <![endif]-->
+	<!-- if IE, !IE, IE 6, gt IE 5, gte IE 7, lt IE 9 ... -->
+	<!--[if lte IE 8]>
+		<link rel="stylesheet" type="text/css" href="ie8-and-down.css" />
+	<![endif]-->
 
-   <style type="text/css">
-   /*
-   p \{
-      margin-left : 20px;
-   }
-   */
-   </style>
+	<style type="text/css">
+	/*
+	p \{
+		margin-left : 20px;
+	}
+	*/
+	</style>
 
-   <!-- <link href="load_your_javascript.js" type="text/javascript" /> -->
+	<!-- <link href="load_your_javascript.js" type="text/javascript" /> -->
 
-   <script type="text/javascript">
-   <!--
-   // -->
-   </script>
+	<script type="text/javascript">
+	<!--
+	// -->
+	</script>
 
 </head>
 
 <body>
 
-   <h1>$1</h1>
+	<h1>$1</h1>
 
-   $2
+	$2
 
 </body>
 
@@ -147,17 +147,6 @@ $1
 </noscript>
 endsnippet
 
-# Comments
-snippet \\
-<!-- $1 -->
-endsnippet
-
-snippet \cs
-<!--
-   - $1
-   -->
-endsnippet
-
 # Lists
 snippet \li
 <li>$1</li>
@@ -165,84 +154,84 @@ endsnippet
 
 snippet \ll "Unordered list"
 <ul>
-   <li>$1</li>
-   <li>$2</li>
-   <li>$3</li>
+	<li>$1</li>
+	<li>$2</li>
+	<li>$3</li>
 </ul>
 endsnippet
 
 snippet \ll "Ordered list"
 <ul>
-   <li>$1</li>
-   <li>$2</li>
-   <li>$3</li>
+	<li>$1</li>
+	<li>$2</li>
+	<li>$3</li>
 </ul>
 endsnippet
 
 snippet \ll "Definition list"
 <dl>
-   <dt>$1</dt>
-   <dd>
-   $2
-   </dd>
-   <dt>$3</dt>
-   <dd>
-   $4
-   </dd>
-   <dt>$5</dt>
-   <dd>
-   $6
-   </dd>
+	<dt>$1</dt>
+	<dd>
+	$2
+	</dd>
+	<dt>$3</dt>
+	<dd>
+	$4
+	</dd>
+	<dt>$5</dt>
+	<dd>
+	$6
+	</dd>
 </dl>
 endsnippet
 
 snippet \f
 <form action="${1:parser.php}" method="${2:post}">
-   <fieldset>
-      <legend>$3</legend>
-      <dl>
-         <dt><label for="$5">$4</label></dt>
-         <dd>
-            <input id="${5:}" name="$5" type="${6:text}" value="${7:}" />
+	<fieldset>
+		<legend>$3</legend>
+		<dl>
+			<dt><label for="$5">$4</label></dt>
+			<dd>
+				<input id="${5:}" name="$5" type="${6:text}" value="${7:}" />
 
-            <ul class="errors">
+				<ul class="errors">
 
-               <li>${8:$7 error}</li>
-            </ul>
+					<li>${8:$7 error}</li>
+				</ul>
 
-            <p class="description">
+				<p class="description">
 
-               ${9:Element description}
-            </p>
-         </dd>
-      </dl>
-   </fieldset>
+					${9:Element description}
+				</p>
+			</dd>
+		</dl>
+	</fieldset>
 </form>
 endsnippet
 
 snippet \t
 <table>
-   <caption>$1</caption>
-   <thead>
-      <tr>
-         <th>$2</th><th>$3</th><th>$4</th>
-      </tr>
-   </thead>
-   <tfoot>
-      <tr>
-         <td>$5</td><td>$6</td><td>$7</td>
-      </tr>
-   </tfoot>
-   <tbody>
-      <tr>
-         <td>$8</td><td>$9</td><td>$10</td>
-      </tr>
-      <tr>
-         <td>$11</td><td>$12</td><td>$13</td>
-      </tr>
-      <tr>
-         <td>$14</td><td>$15</td><td>$16</td>
-      </tr>
-   </tbody>
+	<caption>$1</caption>
+	<thead>
+		<tr>
+			<th>$2</th><th>$3</th><th>$4</th>
+		</tr>
+	</thead>
+	<tfoot>
+		<tr>
+			<td>$5</td><td>$6</td><td>$7</td>
+		</tr>
+	</tfoot>
+	<tbody>
+		<tr>
+			<td>$8</td><td>$9</td><td>$10</td>
+		</tr>
+		<tr>
+			<td>$11</td><td>$12</td><td>$13</td>
+		</tr>
+		<tr>
+			<td>$14</td><td>$15</td><td>$16</td>
+		</tr>
+	</tbody>
 </table>
 endsnippet

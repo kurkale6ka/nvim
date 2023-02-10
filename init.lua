@@ -238,13 +238,14 @@ vim.api.nvim_create_user_command('Quotes',
 -- gK for help, test it still works with 'wrap
 -- fern show links, set onedark colors
 -- improve cmp completion. compare with coc completion
+-- cmp: <c-a> to abort ...
 -- path completion in buffer adds /. Remove!?
 -- after ciw confirm with enter from completion, '.' won't repeat
 -- se dg still no luck
 -- Session.vim went into wrong folder
 -- duplicate symbols in cmdline, e.g. :h''spr => raise issue
 -- fzf install issues (lazy.nvim) !!!
--- group snippets. e.g. yaml and ansible.yaml ones
+-- zsh snippets ft wrong because # defines a zsh shebang
 
 vim.g.python3_host_prog = '~/py-envs/neovim/bin/python'
 

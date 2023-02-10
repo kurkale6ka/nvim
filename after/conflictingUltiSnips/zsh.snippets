@@ -7,7 +7,7 @@ snippet ##
 
 # ${1:Short Description}
 #
-# Author: `g:snips_author` <mitkofr@yahoo.fr>
+# Author: `g:snips_author` <kurkale6ka@gmail.com>
 # -------------------------------------------
 
 ${2:setopt extended_glob}
@@ -28,15 +28,15 @@ $1
 endsnippet
 
 snippet doc-
-   cat <<- '${1:EOM}'
+	cat <<- '${1:EOM}'
 `!v nr2char(9)`${2:Usage:}
-`!v nr2char(9)`  $3
+`!v nr2char(9)``!p snip.shift(); snip.rv = snip.mkline()`$3
 `!v nr2char(9)`$1
 endsnippet
 
 snippet fun
 ${1:name}() {
-   ${2:commands}
+	${2:commands}
 }
 endsnippet
 
@@ -69,45 +69,45 @@ endsnippet
 snippet for "for variable in words" !
 for ${1:i} in ${2:"\$@"}
 do
-   ${3:echo} \$$1
+	${3:echo} \$$1
 done
 endsnippet
 
 snippet for "for variable in range"
 for ${1:i} in \{${2:start}..${3:end}}
 do
-   ${4:echo} \$$1
+	${4:echo} \$$1
 done
 endsnippet
 
 snippet for "C-like for"
 for ((${1:i} = ${2:0}; $1 < ${3:10}; $1++))
 do
-   ${4:commands}
+	${4:commands}
 done
 endsnippet
 
 snippet while
 while ${1:command}
 do
-   ${2:commands}
+	${2:commands}
 done
 endsnippet
 
 snippet until
 until ${1:command}
 do
-   ${2:commands}
+	${2:commands}
 done
 endsnippet
 
 ## Switch / select
 snippet case "Case" !
 case \$${1:variable} in
-   (${2:glob1}) ${3:command};;
-   (${4:glob2}) ${5:command};;
-   (${6:glob3}) ${7:command};;
-   (*) ${8:default_command};;
+	(${2:glob1}) ${3:command};;
+	(${4:glob2}) ${5:command};;
+	(${6:glob3}) ${7:command};;
+	(*) ${8:default_command};;
 esac
 endsnippet
 
@@ -118,12 +118,12 @@ opts[3]='$3'
 
 select choice in $opts
 do
-   case $choice in
-      (${opts[1]}) $4; break;;
-      (${opts[2]}) $5; break;;
-      (${opts[3]}) $6; break;;
-   esac
-   echo '*** Wrong choice ***'
+	case $choice in
+		(${opts[1]}) $4; break;;
+		(${opts[2]}) $5; break;;
+		(${opts[3]}) $6; break;;
+	esac
+	echo '*** Wrong choice ***'
 done
 endsnippet
 
@@ -133,11 +133,11 @@ OPTIND=1
 local opt
 while getopts :$1 opt
 do
-   case $opt in
-       $2) $3 ;;
-      \?) echo "Invalid option: -$OPTARG" 1>&2
-          return 1 ;;
-   esac
+	case $opt in
+		 $2) $3 ;;
+		\?) echo "Invalid option: -$OPTARG" 1>&2
+			 return 1 ;;
+	esac
 done
 
 shift $((OPTIND-1))
@@ -147,21 +147,21 @@ endsnippet
 snippet if "Commands" !
 if ${1:commands}
 then
-   ${2:commands}
+	${2:commands}
 fi
 endsnippet
 
 snippet if "String comparison"
 if [[ ${1:'test'} ${2:==} ${3:\$right_operand} ]]
 then
-   ${4:commands}
+	${4:commands}
 fi
 endsnippet
 
 snippet if "Digit comparison"
 if (( ${1:0} ${2:<} ${3:j} ))
 then
-   ${4:commands}
+	${4:commands}
 fi
 endsnippet
 
@@ -173,11 +173,11 @@ endsnippet
 ## Help
 snippet h
 _help() {
-   local info='Usage: $1'
-   if ((\$1 == 0))
-   then echo $info
-   else echo $info >&2
-   fi
+	local info='Usage: $1'
+	if ((\$1 == 0))
+	then echo $info
+	else echo $info >&2
+	fi
 }
 
 [[ \$1 == (-h|--help) ]] && _help 0
@@ -189,7 +189,7 @@ _help() {
 local info
 read -r -d $'\0' info << 'HELP'
 Usage:
-   $1
+	$1
 HELP
 if ((\$1 == 0))
 then echo $info
@@ -203,8 +203,8 @@ fi
 # Arguments
 if (($# != 2))
 then
-   print -P '%F{red}Wrong number of arguments%f!' 1>&2
-   _help 1
+	print -P '%F{red}Wrong number of arguments%f!' 1>&2
+	_help 1
 fi
 endsnippet
 
@@ -212,22 +212,22 @@ endsnippet
 snippet <> "Read command's output"
 while IFS= read -r
 do
-   ${1:\$REPLY}
+	${1:\$REPLY}
 done < <($2)
 endsnippet
 
 snippet <> "Read find's output"
 while IFS= read -r -d \$'\0'
 do
-   ${1:\$REPLY}
+	${1:\$REPLY}
 done < <(find ${2:/} -xdev $3 -print0)
 endsnippet
 
 snippet <> "Read a heredoc"
 while IFS= read -r ${1:line}
 do
-   [[ $$1 = \#* ]] && continue
-   echo $$1
+	[[ $$1 = \#* ]] && continue
+	echo $$1
 done << EOF
 $2
 EOF

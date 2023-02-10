@@ -1,7 +1,10 @@
 snippet #
 ---
-- name: $1
-  $2
+- name: ${1:Playbook}
+  hosts: ${2:localhost}
+  tasks:
+
+  - name: $3
 endsnippet
 
 snippet '##|play' "Playbook" r
@@ -12,33 +15,40 @@ snippet '##|play' "Playbook" r
   `!p snip.shift(); snip.rv = snip.mkline()`- $3
 endsnippet
 
-snippet task
+snippet 'debug|msg|print' "Debug" r
 - name: $1
-  $2
+  debug:
+  `!p snip.shift(); snip.rv = snip.mkline()`msg: "$2"
 endsnippet
 
-snippet ~
-notify: '$1'
+snippet task
+- name: $1
+  ansible.builtin.${2:module}:
+  `!p snip.shift(); snip.rv = snip.mkline()`name: $3
 endsnippet
 
 snippet service
 service: name=$1 state=${2:started} enabled=${3:yes}
 endsnippet
 
-snippet su
+snippet 'su(?:do)?' "su or sudo" r
 become: true
-become_method: su
+become_method: `!p snip.p`
 endsnippet
 
-snippet sudo
-become: true
-become_method: sudo
+## packages
+snippet 'update|upgrade|latest' "Update all packages" r
+- name: Upgrade all packages
+  ansible.builtin.package: # noqa package-latest
+  `!p snip.shift(); snip.rv = snip.mkline()`name: '*'
+  `!p snip.shift(); snip.rv = snip.mkline()`state: latest
 endsnippet
 
 snippet yum
 yum: name=$1 state=$2
 endsnippet
 
+## files
 snippet template
 template: src=$1.j2 dest=$2
 endsnippet
