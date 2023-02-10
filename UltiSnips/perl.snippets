@@ -1,9 +1,3 @@
-snippet 'perl|!' "perl" r
-#! /usr/bin/env perl
-
-endsnippet
-
-# Skel
 snippet #
 #! /usr/bin/env perl
 
@@ -14,7 +8,7 @@ use re '/aa';
 
 endsnippet
 
-snippet ## "Skel full"
+snippet ##
 #! /usr/bin/env perl
 
 use v5.22;
@@ -39,6 +33,11 @@ GetOptions (
 	'h|help' => sub { print $help; exit }
 ) or die RED.'Error in command line arguments'.RESET, "\n";
 
+
+endsnippet
+
+snippet 'perl|!' "perl" r
+#! /usr/bin/env perl
 
 endsnippet
 
