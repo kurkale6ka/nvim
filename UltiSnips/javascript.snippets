@@ -1,19 +1,19 @@
 snippet # "Glow"
 gloader.load(['glow', '1', 'glow.dom'], \{
-   async: true,
-   onLoad: function(glow) \{
-      glow.ready(function() \{
+	async: true,
+	onLoad: function(glow) \{
+		glow.ready(function() \{
 
-         $1
-      });
-   }
+			$1
+		});
+	}
 });
 endsnippet
 
 snippet # "jQuery"
 \$(document).ready(function() \{
 
-   $1
+	$1
 });
 endsnippet
 
@@ -37,26 +37,15 @@ snippet hover "jQuery"
 
 \$('${1:.}').hover(
 
-   function () \{
+	function () \{
 
-      $2
-   },
-   function () \{
+		$2
+	},
+	function () \{
 
-      $3
-   }
+		$3
+	}
 );
-endsnippet
-
-# Comments
-snippet \\
-/* $1 */
-endsnippet
-
-snippet \cs
-/*
- * $1
- */
 endsnippet
 
 snippet \d
