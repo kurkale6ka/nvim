@@ -1,5 +1,18 @@
+vim.keymap.set('n', '<leader>b', ':Buffers<cr>') -- show all buffers
 vim.keymap.set('n', '<leader>l', ':GFiles<cr>') -- ls git files
 vim.keymap.set('n', '<leader>sf', ':silent! Glcd <bar> Files<cr>') -- search fzf files
+
+-- buffers
+vim.api.nvim_create_user_command('Buffers',
+    function(input)
+        vim.fn['fzf#vim#buffers'](
+            input.args, -- buffer
+            { options = { '--cycle' } },
+            input.bang
+        )
+    end,
+    { bang = true, bar = true, complete = 'buffer', nargs = '?', desc = 'show all buffers' }
+)
 
 -- git ls-files
 vim.api.nvim_create_user_command('GFiles',
@@ -36,7 +49,6 @@ vim.keymap.set('n', '<leader>sc', ':Commands<cr>')    -- search commands
 vim.keymap.set('n', '<leader>sm', ':Maps<cr>')        -- search maps
 
 vim.keymap.set('n', '<leader>t', ':Filetypes<cr>') -- set 'ft
-vim.keymap.set('n', '<leader>b', ':Buffers<cr>')
 vim.keymap.set('n', '<leader>/', ':BLines<cr>') -- fuzzy /
 vim.keymap.set('n', '<leader>G', ':BLines <c-r><c-a>') -- fuzzy :g/
 vim.keymap.set('n', '<leader>g', ':silent! Glcd <bar> exe "Rg ".input("ripgrep> ")<cr>') -- ripgrep
