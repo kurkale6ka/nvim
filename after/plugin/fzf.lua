@@ -20,7 +20,7 @@ vim.keymap.set('n', '<leader>sm', ':Maps<cr>')
 vim.keymap.set('n', '<leader>ss', ':Snippets<cr>')
 vim.keymap.set('n', '<leader>st', ':Tags<cr>') -- search project tags
 
--- buffers
+-- Buffers
 vim.api.nvim_create_user_command('Buffers',
     function(input)
         vim.fn['fzf#vim#buffers'](
@@ -57,7 +57,6 @@ vim.api.nvim_create_user_command('Files',
 )
 
 -- Rg: ripgrep
--- TODO: \bpyright regex not working
 vim.api.nvim_create_user_command('Rg',
     function(input)
         vim.fn['fzf#vim#grep'](
