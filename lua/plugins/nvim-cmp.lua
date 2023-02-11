@@ -31,6 +31,7 @@ local kind_icons = {
 -- cmdline setup
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline({
+        -- TODO: ['<c-a>'] = cmp.mapping.abort(),
         -- TODO: confirm cmdline selection with enter. Fix, not working
         ['<cr>']  = cmp.mapping.confirm({ select = true }),
         ['<c-e>'] = cmp.config.disable,
