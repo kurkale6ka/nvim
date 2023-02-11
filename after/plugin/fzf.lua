@@ -1,3 +1,6 @@
+vim.keymap.set('n', '<leader>l', ':GFiles<cr>') -- ls git files
+vim.keymap.set('n', '<leader>sf', ':silent! Glcd <bar> Files<cr>') -- search fzf files
+
 -- git ls-files
 vim.api.nvim_create_user_command('GFiles',
     function(input)
@@ -10,9 +13,18 @@ vim.api.nvim_create_user_command('GFiles',
     { bang = true, nargs = '?', desc = 'git -h ls-files' }
 )
 
-vim.keymap.set('n', '<leader>l', ':GFiles<cr>')
+-- fzf files
+vim.api.nvim_create_user_command('Files',
+    function(input)
+        vim.fn['fzf#vim#files'](
+            input.args, -- directory
+            { options = { '--cycle' } },
+            input.bang
+        )
+    end,
+    { bang = true, nargs = '?', complete = 'dir', desc = 'fzf files' }
+)
 
-vim.keymap.set('n', '<leader>sf', ':silent! Glcd <bar> Files<cr>') -- search fzf files
 vim.keymap.set('n', '<leader>h', ':History<cr>')   -- search history (recently edited files)
 vim.keymap.set('n', '<leader>sh', ':Helptags<cr>') -- search help files
 vim.keymap.set('n', 'gh', ':Files '..vim.env.XDG_CONFIG_HOME..'/repos/help<cr>') -- own help files
