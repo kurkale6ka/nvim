@@ -13,11 +13,11 @@ highlight link knownHostsDNS PreProc
 
 " Key type
 syntax keyword knownHostsType
-   \ ssh-dss
-   \ ssh-rsa
-   \ ecdsa-sha2-nistp256
-   \ ecdsa-sha2-nistp384
-   \ ecdsa-sha2-nistp521
+    \ ssh-dss
+    \ ssh-rsa
+    \ ecdsa-sha2-nistp256
+    \ ecdsa-sha2-nistp384
+    \ ecdsa-sha2-nistp521
 highlight link knownHostsType Type
 
 " Comments
