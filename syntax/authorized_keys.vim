@@ -8,11 +8,11 @@ highlight link authorizedKeysOptions PreProc
 " Key type
 setlocal iskeyword+=-
 syntax keyword authorizedKeysType
-   \ ssh-dss
-   \ ssh-rsa
-   \ ecdsa-sha2-nistp256
-   \ ecdsa-sha2-nistp384
-   \ ecdsa-sha2-nistp521
+    \ ssh-dss
+    \ ssh-rsa
+    \ ecdsa-sha2-nistp256
+    \ ecdsa-sha2-nistp384
+    \ ecdsa-sha2-nistp521
 highlight link authorizedKeysType Type
 
 " Comments (usually emails)
