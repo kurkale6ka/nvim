@@ -44,7 +44,7 @@ require('lazy').setup({
     -- Nvim tree
     { 'nvim-tree/nvim-tree.lua',
         config = function()
-            require('plugins/nvim-tree')
+            require('plugins/NvimTree')
         end
     },
 
