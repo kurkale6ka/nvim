@@ -236,7 +236,7 @@ vim.api.nvim_create_user_command('Quotes',
 -- yaf highlight on yank
 -- ts/lsp info
 -- gK for help, test it still works with 'wrap
--- fern show links, set onedark colors
+-- fern show links, set onedark colors, gf lazy problem if directory => Fern won't start or :e dir. Switch to nvim tree?
 -- improve cmp completion. compare with coc completion
 -- cmp: <c-a> to abort ...
 -- path completion in buffer adds /. Remove!?
