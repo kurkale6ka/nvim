@@ -41,19 +41,10 @@ require('lazy').setup({
     'tpope/vim-unimpaired',
     'tpope/vim-projectionist',
 
-    -- Fern
-    { 'lambdalisue/fern.vim',
-        lazy = true,
-        cmd = 'Fern',
-        keys = '<leader>v',
-        dependencies = {
-            'lambdalisue/fern-hijack.vim',
-            'lambdalisue/nerdfont.vim',
-            'lambdalisue/fern-renderer-nerdfont.vim',
-            'lambdalisue/glyph-palette.vim',
-        },
+    -- Nvim tree
+    { 'nvim-tree/nvim-tree.lua',
         config = function()
-            require('plugins/fern')
+            require('plugins/nvim-tree')
         end
     },
 
