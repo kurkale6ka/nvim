@@ -1,7 +1,7 @@
 require('onedark').setup {
     -- Main options --
     style = 'darker', -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
-    transparent = false,  -- Show/hide background
+    transparent = false, -- Show/hide background
     term_colors = true, -- Change terminal color as per the selected theme style
     ending_tildes = true, -- Show the end-of-buffer tildes. By default they are hidden
     cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
@@ -27,7 +27,7 @@ require('onedark').setup {
         -- myComment = '#517A66',
     },
     highlights = {
-        -- ["@comment"] = {fg = '$myComment'},
+        -- ["@comment"] = { fg = '$myComment' },
     },
 
     -- Plugins Config --
