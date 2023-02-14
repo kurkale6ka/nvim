@@ -45,7 +45,7 @@ require('lualine').setup {
         },
         lualine_c = {
             'diagnostics',
-            'searchcount',
+            { 'searchcount', color = { fg = '#e8c88c' } }, -- :hi Search
             { '%v', fmt = function(str) return 'col:' .. str end } -- current column
         },
         lualine_x = {
@@ -85,9 +85,7 @@ require('lualine').setup {
             'diff',
         },
         lualine_y = {
-            {
-                'filetype', color = { fg = '#ffab60' }
-            },
+            { 'filetype', color = { fg = '#ffab60' } },
             'progress'
         },
         lualine_z = {}
