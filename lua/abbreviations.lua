@@ -1,9 +1,9 @@
 vim.cmd([[
-" TODO: use - vs _
 iabbrev _dn Dimitar Dimitrov<c-r>=abbreviations#eat_char('\s')<cr>
 iabbrev _de kurkale6ka@gmail.com<c-r>=abbreviations#eat_char('\s')<cr>
 iabbrev _dd Dimitar Dimitrov<cr>kurkale6ka@gmail.com<c-r>=abbreviations#eat_char('\s')<cr>
 iabbrev _date <c-r>=strftime('%a, %d %b %Y')<cr><c-r>=abbreviations#eat_char('\s')<cr>
+iabbrev todo TODO
 
 " 3 words
 iabbrev adn and

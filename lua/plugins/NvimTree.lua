@@ -9,6 +9,7 @@ require("nvim-tree").setup {
         },
     },
     renderer = {
+        root_folder_label = ':~',
         icons = {
             git_placement = "signcolumn",
             glyphs = {
@@ -34,9 +35,16 @@ vim.keymap.set('n', '<leader>v', ':silent! Glcd <bar> NvimTreeFindFileToggle<cr>
     { silent = true }
 )
 
-vim.o.statusline = "%{&ft}" -- TODO: bg color from 'onedark'
-vim.opt_local.fillchars = { eob = " " }
+-- Custom statusline + remove final tildes
+local api = require("nvim-tree.api")
+local Event = api.events.Event
 
+api.events.subscribe(Event.TreeOpen, function()
+    vim.wo.statusline = "%{&filetype}" -- TODO: bg color from 'onedark'
+    vim.opt_local.fillchars = { eob = " " }
+end)
+
+-- Highlights
 vim.cmd([[
 highlight NvimTreeNormal guibg=#1f2329 " onedark/palette/darker/bg0
 " highlight link NvimTreeEndOfBuffer NvimTreeNormal " TODO: not working
