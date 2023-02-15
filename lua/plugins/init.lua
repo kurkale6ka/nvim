@@ -43,6 +43,7 @@ require('lazy').setup({
 
     -- Nvim tree
     { 'nvim-tree/nvim-tree.lua',
+        event = "VeryLazy",
         config = function()
             require('plugins/NvimTree')
         end
