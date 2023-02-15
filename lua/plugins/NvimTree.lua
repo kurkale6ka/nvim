@@ -25,8 +25,7 @@ require("nvim-tree").setup {
         },
     },
     filters = {
-        -- custom = "\\%(^\\.git\\|.\\+\\~\\)$", -- TODO: not working + why is it needed, .git/ is normally excluded
-        dotfiles = true,
+        custom = '\\%(^\\.git\\|.\\+\\~\\)$', -- TODO: not working + why is it needed, .git/ is normally excluded
     },
 }
 
