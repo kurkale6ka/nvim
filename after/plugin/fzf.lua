@@ -64,7 +64,7 @@ vim.api.nvim_create_user_command('Filetypes',
             input.bang
         )
     end,
-    { bang = true, bar = true, desc = 'fuzzy filetypes' }
+    { bang = true, bar = true, desc = 'Fuzzy filetypes' }
 )
 
 -- BLines
@@ -87,7 +87,7 @@ vim.api.nvim_create_user_command('Commands',
             input.bang
         )
     end,
-    { bang = true, bar = true, desc = 'fuzzy commands' }
+    { bang = true, bar = true, desc = 'Fuzzy commands' }
 )
 
 -- Rg: ripgrep
@@ -125,7 +125,19 @@ vim.api.nvim_create_user_command('Diagnostics',
             }
         )
     end,
-    { nargs = '?', desc = 'fuzzy diagnostics' }
+    { nargs = '?', desc = 'Fuzzy diagnostics' }
+)
+
+-- Maps
+vim.api.nvim_create_user_command('Maps',
+    function(input)
+        vim.fn['fzf#vim#maps'](
+            input.args ~= '' and input.args or 'n', -- mode
+            { options = { '--cycle' } },
+            input.bang
+        )
+    end,
+    { bang = true, bar = true, nargs = '?', desc = 'Fuzzy mappings. :Maps mode ("n" default)' }
 )
 
 -- Keymaps
@@ -141,7 +153,7 @@ vim.api.nvim_create_user_command('Lang',
             }
         )
     end,
-    { nargs = '?', desc = 'fuzzy keymap layouts' }
+    { nargs = '?', desc = 'Fuzzy keymap layouts' }
 )
 
 -- Scriptnames
@@ -158,5 +170,5 @@ vim.api.nvim_create_user_command('Scriptnames',
             }
         )
     end,
-    { nargs = '?', desc = 'fuzzy :scriptnames' }
+    { nargs = '?', desc = 'Fuzzy :scriptnames' }
 )
