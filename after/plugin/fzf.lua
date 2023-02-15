@@ -56,6 +56,40 @@ vim.api.nvim_create_user_command('Files',
     { bang = true, nargs = '?', complete = 'dir', desc = 'fzf files' }
 )
 
+-- Filetypes
+vim.api.nvim_create_user_command('Filetypes',
+    function(input)
+        vim.fn['fzf#vim#filetypes'](
+            { options = { '--cycle' } },
+            input.bang
+        )
+    end,
+    { bang = true, bar = true, desc = 'fuzzy filetypes' }
+)
+
+-- BLines
+vim.api.nvim_create_user_command('BLines',
+    function(input)
+        vim.fn['fzf#vim#buffer_lines'](
+            input.args, -- fzf query
+            { options = { '--cycle' } },
+            input.bang
+        )
+    end,
+    { bang = true, nargs = '*', desc = '/fuzzy search' }
+)
+
+-- Commands
+vim.api.nvim_create_user_command('Commands',
+    function(input)
+        vim.fn['fzf#vim#commands'](
+            { options = { '--cycle' } },
+            input.bang
+        )
+    end,
+    { bang = true, bar = true, desc = 'fuzzy commands' }
+)
+
 -- Rg: ripgrep
 vim.api.nvim_create_user_command('Rg',
     function(input)
