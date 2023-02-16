@@ -29,10 +29,21 @@ vim.api.nvim_create_user_command('Buffers',
             input.bang
         )
     end,
-    { bang = true, bar = true, complete = 'buffer', nargs = '?', desc = 'show all buffers' }
+    { bang = true, bar = true, complete = 'buffer', nargs = '?', desc = 'Show all buffers' }
 )
 
--- git ls-files
+-- History: recently edited files
+vim.api.nvim_create_user_command('History',
+    function(input)
+        vim.fn['fzf#vim#history'](
+            { options = { '--cycle' } },
+            input.bang
+        )
+    end,
+    { bang = true, nargs = '*', desc = 'Fuzzy history (recently edited files)' }
+)
+
+-- GFiles: git ls-files
 vim.api.nvim_create_user_command('GFiles',
     function(input)
         vim.fn['fzf#vim#gitfiles'](
@@ -44,7 +55,7 @@ vim.api.nvim_create_user_command('GFiles',
     { bang = true, nargs = '?', desc = 'git -h ls-files' }
 )
 
--- fzf files
+-- Files: fzf files
 vim.api.nvim_create_user_command('Files',
     function(input)
         vim.fn['fzf#vim#files'](
@@ -67,7 +78,18 @@ vim.api.nvim_create_user_command('Filetypes',
     { bang = true, bar = true, desc = 'Fuzzy filetypes' }
 )
 
--- BLines
+-- Helptags
+vim.api.nvim_create_user_command('Helptags',
+    function(input)
+        vim.fn['fzf#vim#helptags'](
+            { options = { '--cycle' } },
+            input.bang
+        )
+    end,
+    { bang = true, bar = true, desc = 'Fuzzy help files search' }
+)
+
+-- BLines: /fuzzy search
 vim.api.nvim_create_user_command('BLines',
     function(input)
         vim.fn['fzf#vim#buffer_lines'](
@@ -138,6 +160,29 @@ vim.api.nvim_create_user_command('Maps',
         )
     end,
     { bang = true, bar = true, nargs = '?', desc = 'Fuzzy mappings. :Maps mode ("n" default)' }
+)
+
+-- Snippets
+vim.api.nvim_create_user_command('Snippets',
+    function(input)
+        vim.fn['fzf#vim#snippets'](
+            { options = { '--cycle' } },
+            input.bang
+        )
+    end,
+    { bang = true, bar = true, desc = 'Fuzzy snippets' }
+)
+
+-- Tags
+vim.api.nvim_create_user_command('Tags',
+    function(input)
+        vim.fn['fzf#vim#tags'](
+            input.args, -- tag
+            { options = { '--cycle' } },
+            input.bang
+        )
+    end,
+    { bang = true, nargs = '*', desc = 'Fuzzy project (ctags -R) tags' }
 )
 
 -- Keymaps
