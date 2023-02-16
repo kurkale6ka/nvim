@@ -237,7 +237,6 @@ vim.api.nvim_create_user_command('Quotes',
 -- ts/lsp info
 -- gK for help, test it still works with 'wrap
 -- improve cmp completion. compare with coc completion
--- path completion in buffer adds /. Remove!?
 -- after ciw confirm with enter from completion, '.' won't repeat
 -- se dg still no luck
 -- Session.vim went into wrong folder

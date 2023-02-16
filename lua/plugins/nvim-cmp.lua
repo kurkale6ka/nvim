@@ -36,9 +36,8 @@ end
 -- cmdline setup
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline {
-        -- TODO: ['<c-a>'] = cmp.mapping.abort(),
-        -- TODO: confirm cmdline selection with enter. Fix, not working
-        -- ['<cr>'] = cmp.mapping.confirm({ select = true }),
+        -- ['<c-a>'] = cmp.mapping.abort(), -- TODO: c-a is already taken
+        -- ['<cr>'] = cmp.mapping.confirm({ select = true }), TODO: confirm cmdline selection with enter. Fix, not working
         ['<c-e>'] = cmp.config.disable,
         ['<c-y>'] = cmp.config.disable,
     },
@@ -72,7 +71,10 @@ cmp.setup {
         ['<c-y>']     = cmp.config.disable,
     },
     sources = cmp.config.sources {
-        -- { name = 'nvim_lua' }, TODO: replace with neodev
+        -- { name = 'nvim_lua' }, -- TODO: replace with neodev
+        { name = 'nvim_lsp_signature_help',
+            -- option = { ignore_functions = { 'print' } }, -- TODO, pull request?
+        },
         { name = 'nvim_lsp',
             max_item_count = 10,
         },
@@ -99,7 +101,7 @@ cmp.setup {
             vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
             -- Source
             vim_item.menu = ({
-                -- nvim_lua  = "[Lua]", TODO: [Neodev]
+                -- nvim_lua  = "[Lua]", -- TODO: [Neodev]
                 buffer    = "[Buffer]",
                 cmdline   = "[Cmdline]",
                 nvim_lsp  = "[LSP]",
