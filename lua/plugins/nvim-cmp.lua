@@ -38,31 +38,21 @@ cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline {
         -- TODO: ['<c-a>'] = cmp.mapping.abort(),
         -- TODO: confirm cmdline selection with enter. Fix, not working
-        ['<cr>']  = cmp.mapping.confirm({ select = true }),
+        -- ['<cr>'] = cmp.mapping.confirm({ select = true }),
         ['<c-e>'] = cmp.config.disable,
         ['<c-y>'] = cmp.config.disable,
     },
     sources = cmp.config.sources {
         { name = 'path',
-            entry_filter = filter_backups_out,
             max_item_count = 20,
+            entry_filter = filter_backups_out,
+            -- option = { trailing_slash = true }, -- adds a slash but then there is no list of following next items. solved by <tab> in cmp.mapping.confirm but creates other issues
         },
         { name = 'cmdline',
-            entry_filter = filter_backups_out,
             max_item_count = 20,
-            option = { ignore_cmds = { 'Man', '!' } }
+            entry_filter = filter_backups_out,
+            option = { ignore_cmds = { 'Man', '!' } },
         }
-    },
-    formatting = {
-        format = function(entry, vim_item)
-            -- Kind icons, TODO: kind - variable?
-            vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
-            -- Source
-            vim_item.menu = ({
-                cmdline = "[Cmdline]",
-            })[entry.source.name]
-            return vim_item
-        end,
     },
 })
 
@@ -71,10 +61,6 @@ cmp.setup {
         expand = function(args)
             vim.fn["UltiSnips#Anon"](args.body)
         end,
-    },
-    window = {
-        -- completion = cmp.config.window.bordered(),
-        -- documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert {
         ['<c-b>']     = cmp.mapping.scroll_docs(-4),
@@ -87,30 +73,36 @@ cmp.setup {
     },
     sources = cmp.config.sources {
         -- { name = 'nvim_lua' }, TODO: replace with neodev
-        { name = 'nvim_lsp', max_item_count = 10 },
+        { name = 'nvim_lsp',
+            max_item_count = 10,
+        },
         { name = 'buffer',
+            max_item_count = 10,
             option = {
                 get_bufnrs = function()
                     return vim.api.nvim_list_bufs()
                 end
             },
-            max_item_count = 10
         },
-        { name = 'path', max_item_count = 10,
+        { name = 'path',
+            max_item_count = 10,
             entry_filter = filter_backups_out,
         },
-        { name = 'ultisnips', max_item_count = 10 },
+        { name = 'ultisnips',
+            max_item_count = 10,
+        },
     },
     formatting = {
         format = function(entry, vim_item)
             -- Kind icons
-            -- This concatonates the icons with the name of the item kind
+            -- This concatenates the icons with the name of the item kind
             vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
             -- Source
             vim_item.menu = ({
                 -- nvim_lua  = "[Lua]", TODO: [Neodev]
-                nvim_lsp  = "[LSP]",
                 buffer    = "[Buffer]",
+                cmdline   = "[Cmdline]",
+                nvim_lsp  = "[LSP]",
                 path      = "[Path]",
                 ultisnips = "[UltiSnips]",
             })[entry.source.name]
