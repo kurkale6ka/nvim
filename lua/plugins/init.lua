@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({
+require('lazy').setup {
 
     { 'dstein64/vim-startuptime', cmd = 'StartupTime' },
 
@@ -217,4 +217,4 @@ require('lazy').setup({
     { 'kurkale6ka/vim-desertEX', branch = 'menu_colors', lazy = true }, -- TODO: use master
     { 'kurkale6ka/vim-chess', lazy = true },
 
-})
+}
