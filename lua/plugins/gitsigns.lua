@@ -47,6 +47,9 @@ require('gitsigns').setup {
         map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
 
         -- Highlights
-        vim.cmd('highlight link GitSignsChangedelete GitSignsDelete')
+        vim.cmd([[
+        highlight link GitSignsChangedelete GitSignsDelete
+        highlight link GitSignsUntracked GitSignsDelete
+        ]])
     end
 }

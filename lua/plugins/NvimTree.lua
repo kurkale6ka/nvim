@@ -28,6 +28,9 @@ require("nvim-tree").setup {
     filters = {
         custom = { [[^\.git$]] } -- TODO: why is this needed? .git/ is .gitignored!
     },
+    update_focused_file = {
+        enable = true
+    }
 }
 
 -- View NvimTree, :Vexplore
@@ -35,20 +38,12 @@ vim.keymap.set('n', '<leader>v', ':silent! Glcd <bar> NvimTreeFindFileToggle<cr>
     { silent = true }
 )
 
--- Custom statusline + remove final tildes
-local api = require("nvim-tree.api")
-local Event = api.events.Event
-
-api.events.subscribe(Event.TreeOpen, function()
-    vim.wo.statusline = "%{&filetype}" -- TODO: bg color from 'onedark'
-    vim.opt_local.fillchars = { eob = " " }
-end)
-
 -- Highlights
 vim.cmd([[
-highlight NvimTreeNormal guibg=#1f2329 " onedark/palette/darker/bg0
-" highlight link NvimTreeEndOfBuffer NvimTreeNormal " TODO: not working
-highlight NvimTreeEndOfBuffer guibg=#1f2329
 highlight NvimTreeSymlink guifg=cyan
-highlight NvimTreeGitDirty guifg=#af0000 " unstaged
+highlight NvimTreeGitDirty guifg=#af0000 "  unstaged
+highlight NvimTreeGitNew guifg=#af0000 " ? untracked
+highlight NvimTreeNormal guibg=#1f2329 " onedark/palette/darker/bg0
+highlight NvimTreeEndOfBuffer guifg=#1f2329 guibg=#1f2329 " change eob bg + hide final tildes by using the same color
+" highlight link NvimTreeEndOfBuffer NvimTreeNormal " TODO: not working
 ]])
