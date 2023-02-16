@@ -28,31 +28,31 @@ local kind_icons = {
     TypeParameter = "",
 }
 
+-- Filter backup files (*~) out
+local function filter_backups_out(entry)
+    return not entry:get_word():match('~$')
+end
+
 -- cmdline setup
 cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline({
+    mapping = cmp.mapping.preset.cmdline {
         -- TODO: ['<c-a>'] = cmp.mapping.abort(),
         -- TODO: confirm cmdline selection with enter. Fix, not working
         ['<cr>']  = cmp.mapping.confirm({ select = true }),
         ['<c-e>'] = cmp.config.disable,
         ['<c-y>'] = cmp.config.disable,
-    }),
-    sources = cmp.config.sources({
+    },
+    sources = cmp.config.sources {
         { name = 'path',
-            entry_filter = function(entry) -- TODO: remove repetition, group sections?
-                return not entry:get_word():match('~$')
-            end,
+            entry_filter = filter_backups_out,
             max_item_count = 20,
-        }
-    }, {
+        },
         { name = 'cmdline',
-            entry_filter = function(entry)
-                return not entry:get_word():match('~$')
-            end,
+            entry_filter = filter_backups_out,
             max_item_count = 20,
             option = { ignore_cmds = { 'Man', '!' } }
         }
-    }),
+    },
     formatting = {
         format = function(entry, vim_item)
             -- Kind icons, TODO: kind - variable?
@@ -66,7 +66,7 @@ cmp.setup.cmdline(':', {
     },
 })
 
-cmp.setup({
+cmp.setup {
     snippet = {
         expand = function(args)
             vim.fn["UltiSnips#Anon"](args.body)
@@ -76,7 +76,7 @@ cmp.setup({
         -- completion = cmp.config.window.bordered(),
         -- documentation = cmp.config.window.bordered(),
     },
-    mapping = cmp.mapping.preset.insert({
+    mapping = cmp.mapping.preset.insert {
         ['<c-b>']     = cmp.mapping.scroll_docs(-4),
         ['<c-f>']     = cmp.mapping.scroll_docs(4),
         ['<c-space>'] = cmp.mapping.complete(),
@@ -84,8 +84,8 @@ cmp.setup({
         ['<cr>']      = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         ['<c-e>']     = cmp.config.disable,
         ['<c-y>']     = cmp.config.disable,
-    }),
-    sources = cmp.config.sources({
+    },
+    sources = cmp.config.sources {
         -- { name = 'nvim_lua' }, TODO: replace with neodev
         { name = 'nvim_lsp', max_item_count = 10 },
         { name = 'buffer',
@@ -97,12 +97,10 @@ cmp.setup({
             max_item_count = 10
         },
         { name = 'path', max_item_count = 10,
-            entry_filter = function(entry)
-                return not entry:get_word():match('~$')
-            end,
+            entry_filter = filter_backups_out,
         },
         { name = 'ultisnips', max_item_count = 10 },
-    }),
+    },
     formatting = {
         format = function(entry, vim_item)
             -- Kind icons
@@ -119,4 +117,4 @@ cmp.setup({
             return vim_item
         end,
     },
-})
+}

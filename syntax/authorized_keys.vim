@@ -19,5 +19,3 @@ highlight link authorizedKeysType Type
 setlocal synmaxcol&
 syntax match authorizedKeysComment /\S\+\s*$/
 highlight link authorizedKeysComment Comment
-
-" vim: filetype=vim
