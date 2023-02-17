@@ -41,8 +41,9 @@ vim.keymap.set('n', '<leader>v', ':silent! Glcd <bar> NvimTreeFindFileToggle<cr>
 -- Highlights
 vim.cmd([[
 highlight NvimTreeSymlink guifg=cyan
-highlight NvimTreeGitDirty guifg=#af0000 "  unstaged
-highlight NvimTreeGitNew guifg=#af0000 " ? untracked
+highlight NvimTreeGitDirty guifg=#e55561 "  unstaged
+highlight NvimTreeGitNew guifg=#e55561 " ? untracked
+" highlight link NvimTreeGitDirty GitSignsDelete " TODO: not working
 highlight NvimTreeNormal guibg=#1f2329 " onedark/palette/darker/bg0
 highlight NvimTreeEndOfBuffer guifg=#1f2329 guibg=#1f2329 " change eob bg + hide final tildes by using the same color
 " highlight link NvimTreeEndOfBuffer NvimTreeNormal " TODO: not working
