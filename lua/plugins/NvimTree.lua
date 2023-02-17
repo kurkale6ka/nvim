@@ -34,7 +34,7 @@ require("nvim-tree").setup {
 }
 
 -- View NvimTree, :Vexplore
-vim.keymap.set('n', '<leader>v', ':silent! Glcd <bar> NvimTreeFindFileToggle<cr>',
+vim.keymap.set('n', '<leader>v', ':silent! Glcd <bar> NvimTreeFindFileToggle!<cr>',
     { silent = true }
 )
 
