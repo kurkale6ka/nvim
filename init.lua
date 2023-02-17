@@ -118,7 +118,7 @@ vim.o.smarttab = true
 vim.o.shiftwidth = 4
 vim.o.shiftround = true
 
-vim.keymap.set('x', '<tab>', '>', { desc = 'shift rightwards' }) -- TODO: redefined in after/plugin/ultisnips
+vim.keymap.set('x', '<tab>', '>', { desc = 'shift rightwards' })
 vim.keymap.set('x', '<s-tab>', '<', { desc = 'shift leftwards' })
 vim.keymap.set({ 'n', 'x' }, '<leader>0', ':left<cr>', { desc = 'align left' })
 
