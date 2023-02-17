@@ -29,6 +29,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 -- Delete EOL white spaces
 vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "VeryLazy",
     callback = function()
         if vim.bo.filetype ~= 'markdown' then
             vim.fn['spaces#remove']()
@@ -50,6 +51,7 @@ vim.api.nvim_create_autocmd('Filetype', {
 
 -- Highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
+    pattern = "VeryLazy",
     callback = function()
         vim.highlight.on_yank({ on_visual = false })
     end,
@@ -58,6 +60,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- Terminal: no numbers
 vim.api.nvim_create_autocmd("TermOpen", {
+    pattern = "VeryLazy",
     callback = function()
         vim.wo.number = false
         vim.wo.relativenumber = false
