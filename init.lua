@@ -1,5 +1,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
+vim.g.python3_host_prog = '~/py-envs/neovim/bin/python'
 vim.o.termguicolors = true
 
 -- Backups
@@ -97,7 +98,7 @@ vim.o.commentstring = '#%s'
 vim.o.autoindent = true
 vim.o.joinspaces = false
 
-vim.keymap.set('n', 'Q', 'gqap')
+vim.keymap.set('n', 'Q', 'gqap', { desc = 'Format a paragraph with gq' })
 vim.keymap.set('n', '<leader>z', ':call squeeze#lines("")<cr>', { silent = true, desc = 'squeeze lines' })
 vim.keymap.set('n', '=<leader>', '[<leader>]<leader>', { remap = true, desc = 'surround with empty lines' })
 
@@ -169,8 +170,8 @@ vim.keymap.set('n', '<bs>', '"_X', { desc = 'use backspace for deleting' })
 vim.keymap.set('n', '<c-h>', '"_X', { desc = 'use backspace for deleting' })
 
 -- define a file text-object
-vim.keymap.set('x', 'af', 'ggVoG')
-vim.keymap.set('o', 'af', ':normal vaf<cr>')
+vim.keymap.set('x', 'af', 'ggVoG', { desc = 'whole file text-object' })
+vim.keymap.set('o', 'af', ':normal vaf<cr>', { desc = 'whole file text-object' })
 
 vim.api.nvim_create_user_command('RemoveEOLSpaces',
     function()
@@ -208,8 +209,8 @@ vim.keymap.set('o', ']]',
 )
 
 -- Spell check suggestions
-vim.keymap.set('n', '<leader>1', '1z=')
-vim.keymap.set('n', '<leader>2', '2z=')
+vim.keymap.set('n', '<leader>1', '1z=', { desc = 'Replace with 1st spell suggestion' })
+vim.keymap.set('n', '<leader>2', '2z=', { desc = 'Replace with 2nd spell suggestion' })
 
 -- Get ex command output in a buffer
 vim.api.nvim_create_user_command('Scratch',
@@ -243,8 +244,6 @@ vim.api.nvim_create_user_command('Quotes',
 -- duplicate symbols in cmdline, e.g. :h''spr => raise issue
 -- fzf install issues (lazy.nvim) !!!
 -- zsh snippets ft wrong because # defines a zsh shebang
-
-vim.g.python3_host_prog = '~/py-envs/neovim/bin/python'
 
 require('noplugins')
 require('abbreviations')
