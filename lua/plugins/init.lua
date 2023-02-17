@@ -108,13 +108,19 @@ require('lazy').setup {
         end
     },
 
-    { 'junegunn/fzf',
-        build = function()
-            vim.fn['fzf#install']()
-        end
+    { 'junegunn/fzf.vim',
+        event = "VeryLazy",
+        dependencies = {
+            { 'junegunn/fzf',
+                build = function()
+                    vim.fn['fzf#install']()
+                end
+            },
+        },
+        -- config = function()
+        --     require('plugins/fzf-vim')
+        -- end
     },
-
-    'junegunn/fzf.vim',
 
     -- LSP
     { 'neovim/nvim-lspconfig',
