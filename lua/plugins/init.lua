@@ -1,47 +1,95 @@
+-- TODO: add more verylazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
+    vim.fn.system {
         "git",
         "clone",
         "--filter=blob:none",
         "https://github.com/folke/lazy.nvim.git",
         "--branch=stable",
         lazypath,
-    })
+    }
 end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup {
 
-    { 'dstein64/vim-startuptime', cmd = 'StartupTime' },
+    defaults = { lazy = true },
+
+    -- Plugins
+    { 'dstein64/vim-startuptime',
+        cmd = 'StartupTime'
+    },
 
     -- Tpope
-    { 'tpope/vim-abolish', cmd = { 'Abolish', 'Subvert' }, keys = 'cr' },
-    { 'tpope/vim-characterize', keys = 'ga' },
-    { 'tpope/vim-commentary', cmd = 'Commentary', keys = { { 'gc', mode = { 'o', 'n', 'x' } } } },
-    'tpope/vim-endwise',
-    { 'tpope/vim-eunuch',
-        cmd = { 'Remove', 'Unlink', 'Delete', 'Copy', 'Duplicate', 'Move', 'Rename', 'Chmod', 'Mkdir', 'Cfind', 'Lfind', 'Clocate', 'Llocate', 'SudoEdit', 'SudoWrite', 'Wall' }
+    { 'tpope/vim-abolish',
+        cmd = { 'Abolish', 'Subvert' },
+        keys = 'cr'
     },
-    'tpope/vim-fugitive',
-    { 'tpope/vim-markdown', ft = 'markdown' },
+
+    { 'tpope/vim-characterize',
+        keys = 'ga'
+    },
+
+    { 'tpope/vim-commentary',
+        cmd = 'Commentary',
+        keys = {
+            { 'gc', mode = { 'o', 'n', 'x' } },
+            { '\\', mode = { 'o', 'n', 'x' } },
+        },
+        config = function()
+            require('plugins/vim-commentary')
+        end
+    },
+
+    'tpope/vim-endwise',
+
+    { 'tpope/vim-eunuch',
+        cmd = {
+            'Cfind', 'Chmod', 'Clocate', 'Copy', 'Delete', 'Duplicate', 'Lfind',
+            'Llocate', 'Mkdir', 'Move', 'Remove', 'Rename', 'SudoEdit', 'SudoWrite', 'Unlink', 'Wall'
+        }
+    },
+
+    { 'tpope/vim-fugitive',
+        event = "VeryLazy"
+    },
+
+    { 'tpope/vim-markdown',
+        ft = 'markdown'
+    },
+
     { 'tpope/vim-obsession',
         cmd = 'Obsession',
         config = function()
             require('plugins/session')
         end
     },
+
     'tpope/vim-repeat',
+
     { 'tpope/vim-sleuth', cmd = 'Sleuth',
         config = function()
             require('plugins/sleuth')
         end
     },
-    'tpope/vim-surround',
-    'tpope/vim-unimpaired',
+
+    { 'tpope/vim-surround',
+        config = function()
+            require('plugins/vim-surround')
+        end
+    },
+
+    { 'tpope/vim-unimpaired',
+        event = "VeryLazy",
+        config = function()
+            require('plugins/vim-unimpaired')
+        end
+    },
+
     'tpope/vim-projectionist',
 
-    -- Nvim tree
+    -- Nvim Tree
     { 'nvim-tree/nvim-tree.lua',
         event = "VeryLazy",
         config = function()
@@ -49,12 +97,28 @@ require('lazy').setup {
         end
     },
 
-    { 'liuchengxu/vista.vim', cmd = 'Vista' },
+    { 'liuchengxu/vista.vim',
+        cmd = 'Vista'
+    },
 
     -- Junegunn
-    { 'junegunn/vim-easy-align', cmd = 'EasyAlign' },
-    { 'junegunn/fzf', build = function() vim.fn['fzf#install']() end },
-    'junegunn/fzf.vim',
+    { 'junegunn/vim-easy-align',
+        cmd = 'EasyAlign',
+        config = function()
+            require('plugins/vim-easy-align')
+        end
+    },
+
+    { 'junegunn/fzf.vim',
+        event = "VeryLazy",
+        dependencies = {
+            { 'junegunn/fzf',
+                build = function()
+                    vim.fn['fzf#install']()
+                end
+            },
+        },
+    },
 
     -- LSP
     { 'neovim/nvim-lspconfig',
@@ -212,9 +276,14 @@ require('lazy').setup {
     { 'StanAngeloff/php.vim', lazy = true },
     { 'tmux-plugins/vim-tmux', lazy = true },
 
-    -- Own
+    -- Own and local
     'kurkale6ka/vim-pairs',
-    { 'kurkale6ka/vim-desertEX', branch = 'menu_colors', lazy = true }, -- TODO: use master
+    { 'kurkale6ka/vim-desertEX', lazy = true },
     { 'kurkale6ka/vim-chess', lazy = true },
+    { dir = '../../local/vsearch.vim',
+        -- keys = { -- TODO: lazy loading not working?
+        --     { '*', mode = { 'x' } },
+        -- },
+    },
 
 }

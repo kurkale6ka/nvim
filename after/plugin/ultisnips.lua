@@ -1,6 +1,5 @@
-if not vim.fn.exists("did_plugin_ultisnips")
+if vim.fn.exists("did_plugin_ultisnips")
 then
-    vim.fn.finish()
+    -- override this: :call UltiSnips#SaveLastVisualSelection()<CR>gvs
+    vim.keymap.set('x', '<tab>', '>')
 end
-
-vim.keymap.set('x', '<tab>', '>')

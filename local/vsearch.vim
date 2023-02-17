@@ -30,6 +30,6 @@ endfunction
 inoremap <silent> <c-r>/ <c-r>=Del_word_delims()<cr>
 cnoremap          <c-r>/ <c-r>=Del_word_delims()<cr>
 
-vnoremap <kmultiply> :<C-u>call <SID>VSetSearch()<CR>/<CR>
-vnoremap *           :<C-u>call <SID>VSetSearch()<CR>/<CR>
-vnoremap #           :<C-u>call <SID>VSetSearch()<CR>?<CR>
+xnoremap <kmultiply> :<c-u>call <SID>VSetSearch()<cr>/<cr>
+xnoremap *           :<c-u>call <SID>VSetSearch()<cr>/<cr>
+xnoremap #           :<c-u>call <SID>VSetSearch()<cr>?<cr>

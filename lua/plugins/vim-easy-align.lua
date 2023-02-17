@@ -4,6 +4,3 @@
 vim.g.easy_align_delimiters = {
     a = { pattern = [[[-=]\+>]] }
 }
-
--- nmap ga :'{,'}EasyAlign*
--- xmap ga :EasyAlign*
