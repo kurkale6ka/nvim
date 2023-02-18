@@ -235,9 +235,8 @@ vim.api.nvim_create_user_command('Quotes',
 -- jinja2 syntax? TS inject in ansible buffers?
 -- redefine command G with :vert Git -p
 -- yaf highlight on yank
--- ts/lsp info
+-- TS info
 -- gK for help, test it still works with 'wrap
--- improve cmp completion. compare with coc completion
 -- after ciw confirm with enter from completion, '.' won't repeat
 -- se dg still no luck
 -- Session.vim went into wrong folder

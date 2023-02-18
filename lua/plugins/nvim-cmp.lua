@@ -41,19 +41,34 @@ cmp.setup.cmdline(':', {
         ['<c-e>'] = cmp.config.disable,
         ['<c-y>'] = cmp.config.disable,
     },
-    sources = cmp.config.sources {
-        { name = 'path',
-            max_item_count = 20,
-            entry_filter = filter_backups_out,
-            -- option = { trailing_slash = true }, -- adds a slash but then there is no list of following next items. solved by <tab> in cmp.mapping.confirm but creates other issues
+    sources = cmp.config.sources(
+        {
+            { name = 'path',
+                max_item_count = 20,
+                entry_filter = filter_backups_out,
+                -- option = { trailing_slash = true }, -- adds a slash but then there is no list of following next items. solved by <tab> in cmp.mapping.confirm but creates other issues
+            }
         },
-        { name = 'cmdline',
-            max_item_count = 20,
-            entry_filter = filter_backups_out,
-            option = { ignore_cmds = { 'Man', '!' } },
+        {
+            { name = 'cmdline',
+                max_item_count = 20,
+                entry_filter = filter_backups_out,
+                option = { ignore_cmds = { 'Man', '!' } },
+            }
         }
-    },
+    )
 })
+
+-- cmp.setup.filetype('gitcommit', {
+--     sources = cmp.config.sources(
+--         {
+--             { name = 'cmp_git' },
+--         },
+--         {
+--             { name = 'buffer' },
+--         }
+--     )
+-- })
 
 cmp.setup {
     snippet = {
@@ -70,30 +85,38 @@ cmp.setup {
         ['<c-e>']     = cmp.config.disable,
         ['<c-y>']     = cmp.config.disable,
     },
-    sources = cmp.config.sources {
+    sources = cmp.config.sources(
         -- { name = 'nvim_lua' }, -- TODO: replace with neodev
-        { name = 'nvim_lsp_signature_help',
-            -- option = { ignore_functions = { 'print' } }, -- TODO, pull request?
-        },
-        { name = 'nvim_lsp',
-            max_item_count = 10,
-        },
-        { name = 'buffer',
-            max_item_count = 10,
-            option = {
-                get_bufnrs = function()
-                    return vim.api.nvim_list_bufs()
-                end
+        {
+            { name = 'nvim_lsp',
+                max_item_count = 10,
             },
+            { name = 'ultisnips',
+                max_item_count = 10,
+            }
         },
-        { name = 'path',
-            max_item_count = 10,
-            entry_filter = filter_backups_out,
+        {
+            { name = 'nvim_lsp_signature_help',
+                -- option = { ignore_functions = { 'print' } }, -- TODO, pull request?
+            }
         },
-        { name = 'ultisnips',
-            max_item_count = 10,
+        {
+            { name = 'buffer',
+                max_item_count = 10,
+                option = {
+                    get_bufnrs = function()
+                        return vim.api.nvim_list_bufs()
+                    end
+                },
+            }
         },
-    },
+        {
+            { name = 'path',
+                max_item_count = 10,
+                entry_filter = filter_backups_out,
+            }
+        }
+    ),
     formatting = {
         format = function(entry, vim_item)
             -- Kind icons
