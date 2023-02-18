@@ -227,14 +227,14 @@ vim.api.nvim_create_user_command('Quotes',
 )
 
 -- TODO:
--- ts text objects: test selections
 -- use in mappings: coc, =oc, old option changing combis, db ... find all free mappings
--- add alt-. in cmdline and c-y to paste
 -- install dictionaries?
+-- add alt-. in cmdline and c-y to paste
 -- ls! unlisted help buffers, include in <leader>b?
--- jinja2 syntax? TS inject in ansible buffers?
 -- redefine command G with :vert Git -p
 -- yaf highlight on yank
+-- jinja2 syntax? TS inject in ansible buffers?
+-- TS text objects: test selections
 -- TS info
 -- gK for help, test it still works with 'wrap
 -- after ciw confirm with enter from completion, '.' won't repeat

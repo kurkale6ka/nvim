@@ -59,6 +59,7 @@ cmp.setup.cmdline(':', {
     )
 })
 
+-- TODO: do I need it?
 -- cmp.setup.filetype('gitcommit', {
 --     sources = cmp.config.sources(
 --         {
