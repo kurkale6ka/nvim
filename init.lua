@@ -255,4 +255,4 @@ require('plugins') -- last so if a plugin errors, my config will still mostly wo
 
 -- TODO: move above so we can set vars for plugins?
 vim.opt.runtimepath:append(vim.fn.stdpath('config') .. '/lua/local')
-pcall(require, 'local') -- custom setup, TODO: use '... { rtp = }'?
+pcall(require, 'local') -- custom setup
