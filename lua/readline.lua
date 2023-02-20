@@ -9,7 +9,7 @@ vim.keymap.set('i', '<a-d>', '<c-o>de')
 
 -- ctrl + k
 vim.keymap.set('c', '<c-k>', [[<c-\>estrpart(getcmdline(), 0, getcmdpos() - 1)<cr>]])
-vim.keymap.set('i', '<c-k>', '<c-o>D')
+vim.keymap.set('i', '<c-k>', '<c-o>D', { desc = 'Kill text (cut) to eol' })
 
 -- ctrl + u
 vim.keymap.set('i', '<c-u>', '<c-g>u<c-u>')
