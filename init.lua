@@ -238,7 +238,6 @@ vim.api.nvim_create_user_command('Quotes',
 -- add alt-. in cmdline and c-y to paste
 -- ls! unlisted help buffers, include in <leader>b?
 -- redefine command G with :vert Git -p
--- yaf highlight on yank
 -- jinja2 syntax? TS inject in ansible buffers?
 -- TS text objects: test selections
 -- TS info
