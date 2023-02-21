@@ -206,10 +206,9 @@ vim.api.nvim_create_user_command('Scriptnames',
     function(input)
         vim.fn['fzf#run'](
             vim.fn['fzf#wrap'] {
-                -- the script arg below will represent a line from source
                 source = vim.fn.split(vim.fn.execute('scriptnames'), '\n'),
-                sink = function(name)
-                    vim.fn.execute('script' .. name)
+                sink = function(name) -- represents a line from source
+                    vim.fn.execute('script ' .. vim.trim(vim.split(name, ':', { plain = true })[1]))
                 end,
                 options = '--cycle -1 +m -q "' .. input.args .. '" --prompt "Scriptnames> "'
             }
