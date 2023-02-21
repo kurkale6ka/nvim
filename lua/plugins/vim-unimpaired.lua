@@ -16,6 +16,7 @@ vim.keymap.set('n', 'yom',
 )
 
 -- "Kill to eol" toggle
+-- allows me to enter digraphs with c-k
 vim.keymap.set('n', 'yok',
     function()
         local ok, _ = pcall(vim.keymap.del, 'i', '<c-k>')
