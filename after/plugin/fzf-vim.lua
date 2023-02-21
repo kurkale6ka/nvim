@@ -25,7 +25,9 @@ vim.api.nvim_create_user_command('Buffers',
     function(input)
         vim.fn['fzf#vim#buffers'](
             input.args, -- buffer
-            { options = { '--cycle' } },
+            vim.fn['fzf#vim#with_preview'] {
+                options = { '--cycle' }
+            },
             input.bang
         )
     end,
@@ -36,7 +38,9 @@ vim.api.nvim_create_user_command('Buffers',
 vim.api.nvim_create_user_command('History',
     function(input)
         vim.fn['fzf#vim#history'](
-            { options = { '--cycle' } },
+            vim.fn['fzf#vim#with_preview'] {
+                options = { '--cycle' }
+            },
             input.bang
         )
     end,
@@ -48,7 +52,9 @@ vim.api.nvim_create_user_command('GFiles',
     function(input)
         vim.fn['fzf#vim#gitfiles'](
             input.args, -- git options
-            { options = { '--cycle' } },
+            vim.fn['fzf#vim#with_preview'] {
+                options = { '--cycle' }
+            },
             input.bang -- fullscreen bool
         )
     end,
@@ -60,7 +66,9 @@ vim.api.nvim_create_user_command('Files',
     function(input)
         vim.fn['fzf#vim#files'](
             input.args, -- directory
-            { options = { '--cycle' } },
+            vim.fn['fzf#vim#with_preview'] {
+                options = { '--cycle' }
+            },
             input.bang
         )
     end,
