@@ -238,7 +238,7 @@ vim.api.nvim_create_user_command('Quotes',
 -- TS info
 -- gK for help, test it still works with 'wrap
 -- after ciw confirm with enter from completion, '.' won't repeat
--- se dg still no luck
+-- se dg still no luck: problem with both nvim cmp and lualine plugins
 -- Session.vim went into wrong folder
 -- duplicate symbols in cmdline, e.g. :h''spr => raise issue
 -- fzf install issues (lazy.nvim) !!!

@@ -14,3 +14,17 @@ vim.keymap.set('n', 'yom',
     end,
     { desc = 'Toggle mouse option' }
 )
+
+-- "Kill to eol" toggle
+vim.keymap.set('n', 'yok',
+    function()
+        local ok, _ = pcall(vim.keymap.del, 'i', '<c-k>')
+        if ok then
+            print('"Kill to eol" off')
+        else
+            vim.keymap.set('i', '<c-k>', '<c-o>D', { desc = 'Kill text (cut) to eol' })
+            print('"Kill to eol" on')
+        end
+    end,
+    { desc = '"Kill to eol" toggle' }
+)
