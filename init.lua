@@ -220,10 +220,16 @@ vim.api.nvim_create_user_command('Scratch',
     { nargs = '+', desc = 'Get ex command output in a buffer' }
 )
 
--- TODO: fix a, b, c case (extra comas) + port to lua
 vim.api.nvim_create_user_command('Quotes',
-    ".py3do return line.split('=', 1)[0].rstrip() + ' = ' + str(line.split('=', 1)[1].lstrip().split()).translate(str.maketrans('[]','()')) if '=' in line else str(line.split()).translate(str.maketrans('[]','()'))",
-    { desc = 'Quote words: turn them into a python tuple("word1", "word2")' }
+    function ()
+        local line = vim.fn.getline('.')
+        local eq_idx = (line:find('=') or 0) + 1
+        local str_bgn = line:sub(1, eq_idx - 1) -- from start to '='
+        local str_end = line:sub(eq_idx):gsub("(%w+)%W*", "'%1', ") -- from '=' to end
+        str_end = str_end:gsub("'", "('", 1):sub(1, -3) .. ')' -- add "(", then remove final ", "
+        vim.fn.setline('.', str_bgn .. str_end)
+    end,
+    { desc = "Quote words: coordinates = x y => coordinates = ('x', 'y')" }
 )
 
 -- TODO:
@@ -232,13 +238,12 @@ vim.api.nvim_create_user_command('Quotes',
 -- add alt-. in cmdline and c-y to paste
 -- ls! unlisted help buffers, include in <leader>b?
 -- redefine command G with :vert Git -p
--- yaf highlight on yank
 -- jinja2 syntax? TS inject in ansible buffers?
 -- TS text objects: test selections
 -- TS info
 -- gK for help, test it still works with 'wrap
 -- after ciw confirm with enter from completion, '.' won't repeat
--- se dg still no luck
+-- se dg still no luck: problem with both nvim cmp and lualine plugins
 -- Session.vim went into wrong folder
 -- duplicate symbols in cmdline, e.g. :h''spr => raise issue
 -- fzf install issues (lazy.nvim) !!!
