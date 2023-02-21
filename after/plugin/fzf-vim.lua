@@ -90,7 +90,10 @@ vim.api.nvim_create_user_command('Filetypes',
 vim.api.nvim_create_user_command('Helptags',
     function(input)
         vim.fn['fzf#vim#helptags'](
-            { options = { '--cycle' } },
+            vim.fn['fzf#vim#with_preview'] {
+                options = { '--cycle' },
+                placeholder = '--tag {2}:{3}:{4}',
+            },
             input.bang
         )
     end,
@@ -186,7 +189,10 @@ vim.api.nvim_create_user_command('Tags',
     function(input)
         vim.fn['fzf#vim#tags'](
             input.args, -- tag
-            { options = { '--cycle' } },
+            vim.fn['fzf#vim#with_preview'] {
+                options = { '--cycle' },
+                placeholder = '--tag {2}:{-1}:{3..}',
+            },
             input.bang
         )
     end,
