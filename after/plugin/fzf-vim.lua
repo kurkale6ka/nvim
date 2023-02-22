@@ -1,3 +1,6 @@
+-- Original definitions at:
+-- ~/.local/share/nvim/lazy/fzf.vim/plugin/fzf.vim
+
 -- Fuzzy files
 vim.keymap.set('n', '<leader>b', ':Buffers<cr>')
 vim.keymap.set('n', '<leader>h', ':History<cr>') -- recently edited files
@@ -7,7 +10,7 @@ vim.keymap.set('n', '<leader>t', ':Filetypes<cr>')
 
 -- Fuzzy help
 vim.keymap.set('n', '<leader>sh', ':Helptags<cr>') -- search help files
-vim.keymap.set('n', 'gh', ':Files ' .. vim.env.XDG_CONFIG_HOME .. '/repos/help<cr>') -- own help files
+vim.keymap.set('n', 'gh', ':Files ' .. vim.env.XDG_CONFIG_HOME .. '/repos/github/help<cr>') -- own help files
 
 -- Fuzzy grep
 vim.keymap.set('n', '<leader>/', ':BLines<cr>') -- /fuzzy
@@ -25,8 +28,11 @@ vim.api.nvim_create_user_command('Buffers',
     function(input)
         vim.fn['fzf#vim#buffers'](
             input.args, -- buffer
-            { options = { '--cycle' } },
-            input.bang
+            vim.fn['fzf#vim#with_preview'] {
+                options = { '--cycle' },
+                placeholder = '{1}',
+            },
+            input.bang -- fullscreen bool
         )
     end,
     { bang = true, bar = true, complete = 'buffer', nargs = '?', desc = 'Show all buffers' }
@@ -36,7 +42,9 @@ vim.api.nvim_create_user_command('Buffers',
 vim.api.nvim_create_user_command('History',
     function(input)
         vim.fn['fzf#vim#history'](
-            { options = { '--cycle' } },
+            vim.fn['fzf#vim#with_preview'] {
+                options = { '--cycle' }
+            },
             input.bang
         )
     end,
@@ -46,11 +54,25 @@ vim.api.nvim_create_user_command('History',
 -- GFiles: git ls-files
 vim.api.nvim_create_user_command('GFiles',
     function(input)
-        vim.fn['fzf#vim#gitfiles'](
-            input.args, -- git options
-            { options = { '--cycle' } },
-            input.bang -- fullscreen bool
-        )
+        if input.args ~= '?' then
+            vim.fn['fzf#vim#gitfiles'](
+                input.args, -- git options
+                vim.fn['fzf#vim#with_preview'] {
+                    options = { '--cycle' }
+                },
+                input.bang
+            )
+        else
+            -- GFiles?
+            vim.fn['fzf#vim#gitfiles'](
+                input.args, -- git options
+                vim.fn['fzf#vim#with_preview'] {
+                    options = { '--cycle' },
+                    placeholder = ""
+                },
+                input.bang
+            )
+        end
     end,
     { bang = true, nargs = '?', desc = 'git -h ls-files' }
 )
@@ -60,7 +82,9 @@ vim.api.nvim_create_user_command('Files',
     function(input)
         vim.fn['fzf#vim#files'](
             input.args, -- directory
-            { options = { '--cycle' } },
+            vim.fn['fzf#vim#with_preview'] {
+                options = { '--cycle' }
+            },
             input.bang
         )
     end,
@@ -82,7 +106,10 @@ vim.api.nvim_create_user_command('Filetypes',
 vim.api.nvim_create_user_command('Helptags',
     function(input)
         vim.fn['fzf#vim#helptags'](
-            { options = { '--cycle' } },
+            vim.fn['fzf#vim#with_preview'] {
+                options = { '--cycle' },
+                placeholder = '--tag {2}:{3}:{4}',
+            },
             input.bang
         )
     end,
@@ -178,7 +205,10 @@ vim.api.nvim_create_user_command('Tags',
     function(input)
         vim.fn['fzf#vim#tags'](
             input.args, -- tag
-            { options = { '--cycle' } },
+            vim.fn['fzf#vim#with_preview'] {
+                options = { '--cycle' },
+                placeholder = '--tag {2}:{-1}:{3..}',
+            },
             input.bang
         )
     end,
@@ -210,7 +240,7 @@ vim.api.nvim_create_user_command('Scriptnames',
                 sink = function(name) -- represents a line from source
                     vim.fn.execute('script ' .. vim.trim(vim.split(name, ':', { plain = true })[1]))
                 end,
-                options = '--cycle -1 +m -q "' .. input.args .. '" --prompt "Scriptnames> "'
+                options = '--cycle --preview "bat {2}" -1 +m -q "' .. input.args .. '" --prompt "Scriptnames> "'
             }
         )
     end,
