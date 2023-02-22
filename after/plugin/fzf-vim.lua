@@ -224,7 +224,7 @@ vim.api.nvim_create_user_command('Scriptnames',
                 sink = function(name) -- represents a line from source
                     vim.fn.execute('script ' .. vim.trim(vim.split(name, ':', { plain = true })[1]))
                 end,
-                options = '--cycle -1 +m -q "' .. input.args .. '" --prompt "Scriptnames> "'
+                options = '--cycle --preview "bat {2}" -1 +m -q "' .. input.args .. '" --prompt "Scriptnames> "'
             }
         )
     end,
