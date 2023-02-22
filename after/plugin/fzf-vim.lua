@@ -1,3 +1,6 @@
+-- Original definitions at:
+-- ~/.local/share/nvim/lazy/fzf.vim/plugin/fzf.vim
+
 -- Fuzzy files
 vim.keymap.set('n', '<leader>b', ':Buffers<cr>')
 vim.keymap.set('n', '<leader>h', ':History<cr>') -- recently edited files
@@ -26,9 +29,10 @@ vim.api.nvim_create_user_command('Buffers',
         vim.fn['fzf#vim#buffers'](
             input.args, -- buffer
             vim.fn['fzf#vim#with_preview'] {
-                options = { '--cycle' }
+                options = { '--cycle' },
+                placeholder = '{1}',
             },
-            input.bang
+            input.bang -- fullscreen bool
         )
     end,
     { bang = true, bar = true, complete = 'buffer', nargs = '?', desc = 'Show all buffers' }
@@ -50,13 +54,25 @@ vim.api.nvim_create_user_command('History',
 -- GFiles: git ls-files
 vim.api.nvim_create_user_command('GFiles',
     function(input)
-        vim.fn['fzf#vim#gitfiles'](
-            input.args, -- git options
-            vim.fn['fzf#vim#with_preview'] {
-                options = { '--cycle' }
-            },
-            input.bang -- fullscreen bool
-        )
+        if input.args ~= '?' then
+            vim.fn['fzf#vim#gitfiles'](
+                input.args, -- git options
+                vim.fn['fzf#vim#with_preview'] {
+                    options = { '--cycle' }
+                },
+                input.bang
+            )
+        else
+            -- GFiles?
+            vim.fn['fzf#vim#gitfiles'](
+                input.args, -- git options
+                vim.fn['fzf#vim#with_preview'] {
+                    options = { '--cycle' },
+                    placeholder = ""
+                },
+                input.bang
+            )
+        end
     end,
     { bang = true, nargs = '?', desc = 'git -h ls-files' }
 )
