@@ -225,7 +225,7 @@ vim.api.nvim_create_user_command('Quotes',
         local line = vim.fn.getline('.')
         local eq_idx = (line:find('=') or 0) + 1
         local str_bgn = line:sub(1, eq_idx - 1) -- from start to '='
-        local str_end = line:sub(eq_idx):gsub("(%w+)%W*", "'%1', ") -- from '=' to end
+        local str_end = line:sub(eq_idx):gsub("([^%s,]+),?%s*", "'%1', ") -- from '=' to end
         str_end = str_end:gsub("'", "('", 1):sub(1, -3) .. ')' -- add "(", then remove final ", "
         vim.fn.setline('.', str_bgn .. str_end)
     end,
