@@ -12,7 +12,6 @@ require('nvim-treesitter.configs').setup {
         "help",
         "lua",
         "markdown",
-        "perl",
         "python",
         "terraform",
         "vim",
