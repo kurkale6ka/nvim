@@ -21,7 +21,7 @@ vim.keymap.set('n', '<leader>sc', ':Commands<cr>')
 vim.keymap.set('n', '<leader>sd', ':Diagnostics<cr>') -- search LSP diagnostics
 vim.keymap.set('n', '<leader>sm', ':Maps<cr>')
 vim.keymap.set('n', '<leader>ss', ':Snippets<cr>')
-vim.keymap.set('n', '<leader>st', ':Tags<cr>') -- search project tags
+vim.keymap.set('n', '<leader>st', ':BTags<cr>') -- search buffer tags
 
 -- Buffers
 vim.api.nvim_create_user_command('Buffers',
@@ -213,6 +213,21 @@ vim.api.nvim_create_user_command('Tags',
         )
     end,
     { bang = true, nargs = '*', desc = 'Fuzzy project (ctags -R) tags' }
+)
+
+-- Btags
+vim.api.nvim_create_user_command('Btags',
+    function(input)
+        vim.fn['fzf#vim#buffer_tags'](
+            input.args, -- tag
+            vim.fn['fzf#vim#with_preview'] {
+                options = { '--cycle' },
+                placeholder = '{2}:{3..}',
+            },
+            input.bang
+        )
+    end,
+    { bang = true, nargs = '*', desc = 'Fuzzy tags in the current buffer' }
 )
 
 -- Keymaps
