@@ -229,6 +229,7 @@ vim.api.nvim_create_user_command('Quotes',
     end,
     { desc = "Quote words: coordinates = x y => coordinates = ('x', 'y')" }
 )
+vim.keymap.set('n', 'goq', ':Quotes<cr>', { desc = "Quote words: coordinates = x y => coordinates = ('x', 'y')" })
 
 -- TODO:
 -- use in mappings: coc, =oc, old option changing combis, db ... find all free mappings
