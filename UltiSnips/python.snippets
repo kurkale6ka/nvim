@@ -1,15 +1,25 @@
 snippet #
 #! /usr/bin/env python3
 
-'''$1'''
+"""$1
+"""
 endsnippet
 
 snippet doc
-'''$1'''
+"""$1"""
+endsnippet
+
+# Imports
+snippet colors
+from styles.styles import Text
 endsnippet
 
 snippet env
 from os import environ as env
+endsnippet
+
+snippet run
+from subprocess import run
 endsnippet
 
 snippet pp
@@ -17,13 +27,7 @@ from pprint import pprint as p
 p($1)
 endsnippet
 
-snippet colors
-from colorama import Fore as fg, Style as st
-
-def color(msg, color):
-	return(color + msg + st.RESET_ALL)
-endsnippet
-
+# Functional
 snippet count
 from collections import Counter
 $1 = Counter($2)
@@ -67,7 +71,7 @@ endsnippet
 
 # File open
 snippet open
-with open('$1') as file:
+with open("$1") as file:
 	for line in file:
 endsnippet
 
@@ -86,11 +90,45 @@ $1 if $2 else $3
 endsnippet
 
 snippet tr "transliterate" i
-translate(str.maketrans('${1:set1}', '${2:set2}'))
+translate(str.maketrans("${1:set1}", "${2:set2}"))
+endsnippet
+
+snippet basename
+Path("${1:dir}").name
+endsnippet
+
+snippet dirname
+Path("${1:dir}").parent
 endsnippet
 
 snippet mkdir
-os.makedirs('${1:dir}', exist_ok=True)
+Path("${1:dir}").mkdir(parents=True, exist_ok=True)
+endsnippet
+
+snippet warn
+print($1, file=sys.stderr)
+endsnippet
+
+snippet 'bench|perf|time' "Time some code" r
+import time
+tic = time.perf_counter()
+toc = time.perf_counter()
+print(f"Time elapsed: {toc - tic:0.4f} seconds")
+endsnippet
+
+snippet 'multi(proc(essing)?)?' "Multiprocessing" r
+from multiprocessing import Process
+p = Process(target=$1, args=(${2:cmd},))
+p.start()
+p.join()
+endsnippet
+
+snippet 'async(io)?' "Asyncio" r
+async def main():
+	async with asyncio.TaskGroup() as tg:
+		tg.create_task(${1:func}(${2:parameters}))
+
+asyncio.run(main())
 endsnippet
 
 snippet with
@@ -114,11 +152,7 @@ groupby(${1:iterable})
 endsnippet
 
 snippet os
-sys.platform == '${1:linux}'
-endsnippet
-
-snippet run
-from subprocess import run
+sys.platform == "${1:linux}"
 endsnippet
 
 snippet cpu
@@ -126,7 +160,7 @@ os.cpu_count()
 endsnippet
 
 snippet //
-re.compile(r'$1')
+re.compile(r"$1")
 endsnippet
 
 snippet ++ "increment" i
@@ -134,6 +168,6 @@ snippet ++ "increment" i
 endsnippet
 
 snippet main
-if __name__  == "__main__":
+if __name__ == "__main__":
 	$1
 endsnippet
