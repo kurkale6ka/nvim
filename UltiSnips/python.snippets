@@ -9,8 +9,17 @@ snippet doc
 """$1"""
 endsnippet
 
+# Imports
+snippet colors
+from styles.styles import Text
+endsnippet
+
 snippet env
 from os import environ as env
+endsnippet
+
+snippet run
+from subprocess import run
 endsnippet
 
 snippet pp
@@ -18,10 +27,7 @@ from pprint import pprint as p
 p($1)
 endsnippet
 
-snippet colors
-from styles.styles import Text
-endsnippet
-
+# Functional
 snippet count
 from collections import Counter
 $1 = Counter($2)
@@ -132,10 +138,6 @@ endsnippet
 
 snippet os
 sys.platform == "${1:linux}"
-endsnippet
-
-snippet run
-from subprocess import run
 endsnippet
 
 snippet cpu
