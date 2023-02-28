@@ -116,6 +116,21 @@ toc = time.perf_counter()
 print(f"Time elapsed: {toc - tic:0.4f} seconds")
 endsnippet
 
+snippet 'multi(proc(essing)?)?' "Multiprocessing" r
+from multiprocessing import Process
+p = Process(target=$1, args=(${2:cmd},))
+p.start()
+p.join()
+endsnippet
+
+snippet 'async(io)?' "Asyncio" r
+async def main():
+	async with asyncio.TaskGroup() as tg:
+		tg.create_task(${1:func}(${2:parameters}))
+
+asyncio.run(main())
+endsnippet
+
 snippet with
 from contextlib import contextmanager
 
