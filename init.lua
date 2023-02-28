@@ -232,7 +232,8 @@ vim.api.nvim_create_user_command('Quotes',
 vim.keymap.set('n', 'goq', ':Quotes<cr>', { desc = "Quote words: coordinates = x y => coordinates = ('x', 'y')" })
 
 -- TODO:
--- use in mappings: coc, =oc, old option changing combis, db ... find all free mappings
+-- use in mappings + find all free mappings:
+--     goX, coc, =oc (old option changing combis), db ...
 -- install dictionaries?
 -- add alt-. in cmdline and c-y to paste
 -- ls! unlisted help buffers, include in <leader>b?
