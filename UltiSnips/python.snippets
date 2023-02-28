@@ -14,7 +14,11 @@ snippet colors
 from styles.styles import Text
 endsnippet
 
-snippet env
+snippet env "Use"
+env["${1:XDG_CONFIG_HOME}`!p t[1] = t[1].upper()`"]
+endsnippet
+
+snippet env "Import"
 from os import environ as env
 endsnippet
 
