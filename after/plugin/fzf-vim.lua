@@ -10,8 +10,8 @@ vim.keymap.set('n', 'gof', ':silent! Glcd <bar> Files<cr>') -- search fzf files
 vim.keymap.set('n', 'got', ':Filetypes<cr>')
 
 -- Fuzzy help
-vim.keymap.set('n', 'gh', ':Helptags<cr>') -- search help files
-vim.keymap.set('n', 'goh', ':Files ' .. vim.env.XDG_CONFIG_HOME .. '/repos/github/help<cr>') -- own help files
+vim.keymap.set('n', 'goh', ':Helptags<cr>') -- search help files
+vim.keymap.set('n', 'gh', ':Files ' .. vim.env.XDG_CONFIG_HOME .. '/repos/github/help<cr>') -- own help files
 
 -- Fuzzy grep
 vim.keymap.set('n', '<leader>/', ':BLines<cr>') -- /fuzzy
