@@ -5,11 +5,12 @@
 vim.keymap.set('n', '<leader>b', ':Buffers<cr>')
 vim.keymap.set('n', '<leader>h', ':History<cr>') -- recently edited files
 vim.keymap.set('n', '<leader>l', ':GFiles<cr>') -- ls git files
-vim.keymap.set('n', '<leader>sf', ':silent! Glcd <bar> Files<cr>') -- search fzf files
-vim.keymap.set('n', '<leader>t', ':Filetypes<cr>')
+vim.keymap.set('n', 'gol', ':GFiles?<cr>') -- git status
+vim.keymap.set('n', 'gof', ':silent! Glcd <bar> Files<cr>') -- search fzf files
+vim.keymap.set('n', 'got', ':Filetypes<cr>')
 
 -- Fuzzy help
-vim.keymap.set('n', '<leader>sh', ':Helptags<cr>') -- search help files
+vim.keymap.set('n', 'goh', ':Helptags<cr>') -- search help files
 vim.keymap.set('n', 'gh', ':Files ' .. vim.env.XDG_CONFIG_HOME .. '/repos/github/help<cr>') -- own help files
 
 -- Fuzzy grep
@@ -17,11 +18,11 @@ vim.keymap.set('n', '<leader>/', ':BLines<cr>') -- /fuzzy
 vim.keymap.set('n', '<leader>G', ':BLines <c-r><c-a>') -- :g/fuzzy
 vim.keymap.set('n', '<leader>g', ':silent! Glcd <bar> exe "Rg ".input("ripgrep> ")<cr>') -- ripgrep
 
-vim.keymap.set('n', '<leader>sc', ':Commands<cr>')
-vim.keymap.set('n', '<leader>sd', ':Diagnostics<cr>') -- search LSP diagnostics
-vim.keymap.set('n', '<leader>sm', ':Maps<cr>')
-vim.keymap.set('n', '<leader>ss', ':Snippets<cr>')
-vim.keymap.set('n', '<leader>st', ':BTags<cr>') -- search buffer tags
+vim.keymap.set('n', 'goc', ':Commands<cr>')
+vim.keymap.set('n', 'god', ':Diagnostics<cr>') -- search LSP diagnostics
+vim.keymap.set('n', 'gom', ':Maps<cr>')
+vim.keymap.set('n', 'gos', ':Snippets<cr>')
+vim.keymap.set('n', '<leader>t', ':BTags<cr>') -- search buffer tags
 
 -- Buffers
 vim.api.nvim_create_user_command('Buffers',
