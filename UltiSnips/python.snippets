@@ -5,8 +5,17 @@ snippet #
 """
 endsnippet
 
-snippet doc
+snippet '(here)?doc' "In the 1st column" r
 """$1"""
+endsnippet
+
+snippet '(here)?doc' "Indented" r
+from textwrap import dedent
+dedent(
+	"""
+	$1
+	"""
+).strip()
 endsnippet
 
 # Imports
