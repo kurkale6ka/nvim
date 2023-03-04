@@ -221,6 +221,7 @@ vim.api.nvim_create_user_command('Scratch',
 vim.api.nvim_create_user_command('Quotes',
     function ()
         local line = vim.fn.getline('.')
+        -- TODO: json "key": "value"
         local eq_idx = (line:find('=') or 0) + 1
         local str_bgn = line:sub(1, eq_idx - 1) -- from start to '='
         local str_end = line:sub(eq_idx):gsub("([^%s,]+),?%s*", "'%1', ") -- from '=' to end
