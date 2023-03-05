@@ -221,14 +221,21 @@ vim.api.nvim_create_user_command('Scratch',
 vim.api.nvim_create_user_command('Quotes',
     function ()
         local line = vim.fn.getline('.')
-        -- TODO: json "key": "value"
-        local eq_idx = (line:find('=') or 0) + 1
-        local str_bgn = line:sub(1, eq_idx - 1) -- from start to '='
-        local str_end = line:sub(eq_idx):gsub("([^%s,]+),?%s*", "'%1', ") -- from '=' to end
-        str_end = str_end:gsub("'", "('", 1):sub(1, -3) .. ')' -- add "(", then remove final ", "
+        local str_bgn = ''
+        local idx = line:find('[=:]') or 0
+        if line:sub(idx, idx) == '=' then
+            str_bgn = line:sub(1, idx) -- from start to =
+        end
+        if idx == 0 or line:sub(idx, idx) == '=' then
+            str_end = line:sub(idx + 1):gsub('([^%s,]+)%s*,?%s*', '"%1", ') -- from = to end
+            str_end = str_end:gsub('"', '("', 1):sub(1, -3) .. ')' -- add "(", then remove final ", "
+        else
+            str_end = line:gsub('([^%s:]+)%s*(:?)%s*', '"%1"%2 ') -- "key": "value"
+            str_end = str_end:sub(1, -2) -- remove final ' '
+        end
         vim.fn.setline('.', str_bgn .. str_end)
     end,
-    { desc = "Quote words: coordinates = x y => coordinates = ('x', 'y')" }
+    { desc = 'Quote words: coordinates = x y => coordinates = ("x", "y"); key: value => "key": "value"' }
 )
 vim.keymap.set('n', 'goq', ':Quotes<cr>', { desc = "Quote words: coordinates = x y => coordinates = ('x', 'y')" })
 
