@@ -7,7 +7,7 @@
 function! ascii#codes (...)
 
     if a:0 == 0
-        view local/ascii
+        view $XDG_CONFIG_HOME/nvim/local/ascii
         return
     endif
 
