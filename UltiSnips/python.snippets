@@ -5,8 +5,17 @@ snippet #
 """
 endsnippet
 
-snippet doc
+snippet '(here)?doc' "In the 1st column" r
 """$1"""
+endsnippet
+
+snippet '(here)?doc' "Indented" r
+from textwrap import dedent
+dedent(
+	"""
+	$1
+	"""
+).strip()
 endsnippet
 
 # Imports
@@ -14,7 +23,11 @@ snippet colors
 from styles.styles import Text
 endsnippet
 
-snippet env
+snippet env "Use"
+env["${1:XDG_CONFIG_HOME}`!p t[1] = t[1].upper()`"]
+endsnippet
+
+snippet env "Import"
 from os import environ as env
 endsnippet
 
@@ -82,7 +95,7 @@ endsnippet
 
 snippet 'init?|new' "__init__" r
 def __init__(self, $1):
-	self.$1 = $1
+	self._$1 = $1
 endsnippet
 
 snippet ?
