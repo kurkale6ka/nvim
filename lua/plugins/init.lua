@@ -282,10 +282,5 @@ require('lazy').setup {
     'kurkale6ka/vim-pairs',
     { 'kurkale6ka/vim-desertEX', lazy = true },
     { 'kurkale6ka/vim-chess', lazy = true },
-    { dir = '../../local/vsearch.vim',
-        -- keys = { -- TODO: lazy loading not working?
-        --     { '*', mode = { 'x' } },
-        -- },
-    },
 
 }
