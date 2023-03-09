@@ -1,4 +1,5 @@
 -- TODO: use the API to auto install linters/formatters vs
+-- MasonInstall ansible-lint
 -- MasonInstall black
 -- MasonInstall shfmt
 -- ...
