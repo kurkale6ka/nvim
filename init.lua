@@ -243,24 +243,7 @@ vim.api.nvim_create_user_command('Quotes',
 )
 vim.keymap.set('n', 'goq', ':Quotes<cr>', { desc = "Quote words: coordinates = x y => coordinates = ('x', 'y')" })
 
--- TODO:
--- use in mappings + find all free mappings:
---     goX, coc, =oc (old option changing combis), db ...
--- install dictionaries?
--- add alt-. in cmdline and c-y to paste
--- ls! unlisted help buffers, include in <leader>b?
--- redefine command G with :vert Git -p
--- jinja2 syntax? TS inject in ansible buffers?
--- TS text objects: test selections
--- TS info
--- gK for help, test it still works with 'wrap
--- after ciw confirm with enter from completion, '.' won't repeat
--- se dg still no luck: problem with both nvim cmp and lualine plugins
--- Session.vim went into wrong folder
--- duplicate symbols in cmdline, e.g. :h''spr => raise issue
--- fzf install issues (lazy.nvim) !!!
--- zsh snippets ft wrong because # defines a zsh shebang
-
+-- Includes
 require('noplugins')
 require('abbreviations')
 require('auto-commands')

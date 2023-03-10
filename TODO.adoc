@@ -1,0 +1,40 @@
+== Broken
+- unicode char top left corner, dockerimage icon in NvimTree
+- `^xn ^xn` complete 2/3 words seems to be \~broken
+- `^p` completion without any visible menu doesn't work
+- python indentation broken because of TS highlight
+- `:term` doesn't split window
+- after `ciw` confirm with enter from completion, `.` won't repeat
+- `Session.vim` went into wrong folder
+- duplicate symbols in cmdline, e.g. `:h''spr` => raise issue?
+- fzf install issues (lazy.nvim) !!! (`unset https_proxy` fixes it?)
+
+== Workarounds
+- zsh snippets ft wrong because # defines a zsh shebang, https://github.com/SirVer/ultisnips/issues/1520
+- `se dg` still no luck: problem caused by both nvim cmp and lualine plugins, got `yok` now
+
+== New features + ideas
+- `EHelp`, `ELocalHelp`, `EScript`, ...
+- `Quotes` with `!` or argument to change surround delimiter (e.g. use backticks)
+- `goX`, `coc`, `=oc`, `db`..., use in mappings + find all free mappings:
+- add `alt-.` in cmdline and `c-y` to paste
+- redefine command `G` with `:vert Git -p`
+- TS info in statusline
+- ulti, show my snippets only
+- undo, redo without jumping
+- no whitespace removing if not my file?
+- `\w` -> `:w` if no path
+- `ls!` unlisted help buffers, include in `<leader>b`?
+- `gK` for help, test it still works with `'wrap`
+
+== Plugins
+- undo tree plugin?
+
+== Test
+- TS text objects: test selections
+- check new fold logic
+
+== Questions
+- install dictionaries?
+- jinja2 syntax? TS inject in ansible buffers?
+- ask in weechat - disable map for one go
