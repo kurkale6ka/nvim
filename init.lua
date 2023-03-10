@@ -90,6 +90,8 @@ vim.keymap.set('n', '<leader>8', ':call highlight#column()<cr>', { silent = true
 -- Mouse support
 vim.o.mouse = 'a'
 vim.o.mousemodel = 'extend'
+vim.keymap.set('n', '<S-ScrollWheelDown>', '5zl', { desc = 'Scroll right' })
+vim.keymap.set('n', '<S-ScrollWheelUp>', '5zh', { desc = 'Scroll left' })
 
 -- Text formating
 vim.opt.formatoptions:append('ron')
