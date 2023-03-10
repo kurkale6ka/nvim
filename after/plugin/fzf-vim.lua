@@ -122,6 +122,10 @@ vim.api.nvim_create_user_command('BLines',
     function(input)
         vim.fn['fzf#vim#buffer_lines'](
             input.args, -- fzf query
+            -- TODO: same file, show current line
+            -- vim.fn['fzf#vim#with_preview'] {
+            --     options = { '--cycle' }
+            -- },
             { options = { '--cycle' } },
             input.bang
         )
