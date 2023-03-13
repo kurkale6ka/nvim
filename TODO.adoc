@@ -8,6 +8,7 @@
 - `Session.vim` went into wrong folder
 - duplicate symbols in cmdline, e.g. `:h''spr` => raise issue?
 - fzf install issues (lazy.nvim) !!! (`unset https_proxy` fixes it?)
+- `gf` doesn't work on `plugins/...`
 
 == Workarounds
 - zsh snippets ft wrong because # defines a zsh shebang, https://github.com/SirVer/ultisnips/issues/1520
