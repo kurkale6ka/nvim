@@ -97,6 +97,14 @@ require('lazy').setup {
         end
     },
 
+    { 'mbbill/undotree',
+        cmd = { 'UndotreeHide', 'UndotreeShow', 'UndotreeFocus', 'UndotreeToggle' },
+        keys = 'gou',
+        config = function()
+            require('plugins/undotree')
+        end
+    },
+
     { 'liuchengxu/vista.vim',
         cmd = 'Vista'
     },
