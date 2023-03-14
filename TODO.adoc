@@ -27,6 +27,8 @@
 - `\w` -> `:w` if no path
 - `ls!` unlisted help buffers, include in `<leader>b`?
 - `gK` for help, test it still works with `'wrap`
+- `BTags` filter by class/function/...
+- `Trouble` references?
 
 == Plugins
 - undo tree plugin?
