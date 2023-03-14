@@ -106,7 +106,10 @@ require('lazy').setup {
     },
 
     { 'liuchengxu/vista.vim',
-        cmd = 'Vista'
+        cmd = 'Vista',
+        config = function()
+            vim.g.vista_sidebar_position = 'vertical topleft'
+        end
     },
 
     -- Junegunn
