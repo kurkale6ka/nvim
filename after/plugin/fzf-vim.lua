@@ -220,8 +220,8 @@ vim.api.nvim_create_user_command('Tags',
     { bang = true, nargs = '*', desc = 'Fuzzy project (ctags -R) tags' }
 )
 
--- Btags
-vim.api.nvim_create_user_command('Btags',
+-- BTags
+vim.api.nvim_create_user_command('BTags',
     function(input)
         vim.fn['fzf#vim#buffer_tags'](
             input.args, -- tag
