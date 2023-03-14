@@ -226,7 +226,7 @@ vim.api.nvim_create_user_command('BTags',
         vim.fn['fzf#vim#buffer_tags'](
             input.args, -- tag
             vim.fn['fzf#vim#with_preview'] {
-                options = { '--cycle' },
+                options = { '--cycle', '--nth', '..-2,-1' },
                 placeholder = '{2}:{3..}',
             },
             input.bang
