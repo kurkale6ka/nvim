@@ -151,7 +151,6 @@ vim.o.modeline = true
 vim.o.modelines = 3
 
 -- Editing
-vim.o.clipboard = 'unnamed,unnamedplus'
 vim.opt.nrformats:remove('octal')
 vim.o.whichwrap = 'b,s,<,>,[,]'
 vim.o.virtualedit = 'block'
@@ -249,6 +248,7 @@ require('abbreviations')
 require('auto-commands')
 require('auto-commands/comments')
 require('auto-commands/html')
+require('clipboard')
 require('readline')
 require('statusline')
 require('plugins') -- last so if a plugin errors, my config will still mostly work
