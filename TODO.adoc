@@ -3,7 +3,6 @@
 - `^xn ^xn` complete 2/3 words seems to be \~broken
 - `^p` completion without any visible menu doesn't work
 - python indentation broken because of TS highlight
-- `:term` doesn't split window
 - after `ciw` confirm with enter from completion, `.` won't repeat
 - `Session.vim` went into wrong folder
 - duplicate symbols in cmdline, e.g. `:h''spr` => raise issue?
@@ -13,6 +12,7 @@
 == Workarounds
 - zsh snippets ft wrong because # defines a zsh shebang, https://github.com/SirVer/ultisnips/issues/1520
 - `se dg` still no luck: problem caused by both nvim cmp and lualine plugins, got `yok` now
+- `:term` doesn't split window, now I've got the `^w^t` map
 
 == New features + ideas
 - `EHelp`, `ELocalHelp`, `EScript`, ...
@@ -30,7 +30,6 @@
 - `Trouble` references?
 
 == Plugins
-- undo tree plugin?
 
 == Test
 - TS text objects: test selections
