@@ -29,7 +29,7 @@ vim.o.smartcase  = true
 vim.o.infercase  = true
 
 vim.o.inccommand = 'nosplit'
-vim.opt.path:append(vim.env.XDG_CONFIG_HOME .. '/repos/**')
+vim.opt.path:append(vim.env.REPOS_BASE .. '/**')
 vim.o.grepprg = 'rg --column --line-number --no-heading --vimgrep --smart-case --hidden'
 
 vim.keymap.set('n', '<leader>G', ':g/<c-r><c-a>/', { desc = ':g/WORD/' })
@@ -95,7 +95,7 @@ vim.keymap.set('n', '<S-ScrollWheelUp>', '5zh', { desc = 'Scroll left' })
 
 -- Text formating
 vim.opt.formatoptions:append('ron')
-vim.o.comments = vim.o.comments:gsub('fb:%-', 'b:-') -- lists with dashes
+vim.o.comments = vim.o.comments:gsub('fb:%-', 'b:-') -- lists with dashes. Note: - is a magic character in lua patterns => it needs to be escaped with %
 vim.o.commentstring = '#%s'
 vim.o.autoindent = true
 vim.o.joinspaces = false
@@ -126,7 +126,7 @@ vim.keymap.set('x', '<s-tab>', '<', { desc = 'shift leftwards' })
 vim.keymap.set({ 'n', 'x' }, '<leader>0', ':left<cr>', { desc = 'align left' })
 
 -- Tags
-vim.opt.tags:append(vim.env.XDG_CONFIG_HOME .. '/repos/tags')
+vim.opt.tags:append(vim.env.REPOS_BASE .. '/tags')
 vim.opt.complete:remove('i')
 vim.opt.completeopt:append('menuone')
 vim.o.showfulltag = true
