@@ -95,7 +95,7 @@ vim.keymap.set('n', '<S-ScrollWheelUp>', '5zh', { desc = 'Scroll left' })
 
 -- Text formating
 vim.opt.formatoptions:append('ron')
-vim.o.comments = vim.o.comments:gsub('fb:%-', 'b:-') -- lists with dashes
+vim.o.comments = vim.o.comments:gsub('fb:%-', 'b:-') -- lists with dashes. Note: - is a magic character in lua patterns => it needs to be escaped with %
 vim.o.commentstring = '#%s'
 vim.o.autoindent = true
 vim.o.joinspaces = false

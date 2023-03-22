@@ -31,7 +31,6 @@
 - `Trouble` references?
 - class member snip
 - perl lsp
-- python ulti len -> length is wrong
 - fd -H same as rg?
 
 == Plugins
