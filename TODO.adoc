@@ -8,6 +8,7 @@
 - duplicate symbols in cmdline, e.g. `:h''spr` => raise issue?
 - fzf install issues (lazy.nvim) !!! (`unset https_proxy` fixes it?)
 - `gf` doesn't work on `plugins/...`
+- Client 1 quit with exit code 1 and signal 0: LSP issue with Dockerfile
 
 == Workarounds
 - zsh snippets ft wrong because # defines a zsh shebang, https://github.com/SirVer/ultisnips/issues/1520
@@ -28,6 +29,10 @@
 - `ls!` unlisted help buffers, include in `<leader>b`?
 - `gK` for help, test it still works with `'wrap`
 - `Trouble` references?
+- class member snip
+- perl lsp
+- python ulti len -> length is wrong
+- fd -H same as rg?
 
 == Plugins
 
