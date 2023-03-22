@@ -1,4 +1,4 @@
-vim.filetype.add({
+vim.filetype.add {
     extension = {
         ftl = 'xml',
         pgn = 'pgn', -- chess
@@ -19,4 +19,4 @@ vim.filetype.add({
         ['.*/zsh/autoload/.+'] = 'zsh',
         ['.*/zsh/after/.+'] = 'zsh'
     },
-})
+}
