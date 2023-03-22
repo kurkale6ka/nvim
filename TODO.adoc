@@ -9,6 +9,7 @@
 - fzf install issues (lazy.nvim) !!! (`unset https_proxy` fixes it?)
 - `gf` doesn't work on `plugins/...`
 - Client 1 quit with exit code 1 and signal 0: LSP issue with Dockerfile
+- Change all RESET color to Text(...)
 
 == Workarounds
 - zsh snippets ft wrong because # defines a zsh shebang, https://github.com/SirVer/ultisnips/issues/1520
