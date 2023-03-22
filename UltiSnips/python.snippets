@@ -95,7 +95,7 @@ endsnippet
 
 snippet 'init?|new' "__init__" r
 def __init__(self, $1):
-	self._$1 = $1
+	`!p snip.rv = '\n\t'.expandtabs(4).join(f"self._{arg.lstrip()} = {arg.lstrip()}" for arg in t[1].split(','))`
 endsnippet
 
 snippet ?

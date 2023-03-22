@@ -30,10 +30,7 @@
 - `ls!` unlisted help buffers, include in `<leader>b`?
 - `gK` for help, test it still works with `'wrap`
 - `Trouble` references?
-- python: class member snip
-- python: improve __init__ snip
 - perl lsp
-- fd -H same as rg?
 
 == Plugins
 
