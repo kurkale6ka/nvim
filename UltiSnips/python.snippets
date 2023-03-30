@@ -3,6 +3,9 @@ snippet #
 
 """$1
 """
+
+if __name__ == "__main__":
+	pass
 endsnippet
 
 snippet '(here)?doc' "In the 1st column" r
@@ -102,6 +105,7 @@ snippet ?
 $1 if $2 else $3
 endsnippet
 
+# TODO: fix str<tab>
 snippet tr "transliterate" i
 translate(str.maketrans("${1:set1}", "${2:set2}"))
 endsnippet
