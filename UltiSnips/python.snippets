@@ -69,8 +69,14 @@ arg$1
 args = parser.parse_args()$2
 endsnippet
 
-snippet 'arg(ument)?s|opt(ion)?s' "group" r
-group = parser.add_mutually_exclusive_group()
+snippet 'gr(ou)?p' "Group" r
+${1:group} = parser.add_argument_group("$2")
+$1.add_argument("-`!p snip.rv = t[3][0:1]`", "--$3", action="store_true", help="$4")
+endsnippet
+
+snippet 'gr(ou)?p' "Exclusive Group" r
+${1:group}  = parser.add_mutually_exclusive_group()
+$1.add_argument("-`!p snip.rv = t[2][0:1]`", "--$2", action="store_true", help="$3")
 endsnippet
 
 snippet 'arg|opt' "--optional" r
