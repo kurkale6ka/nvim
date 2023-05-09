@@ -32,6 +32,7 @@
 - `Trouble` references?
 - perl lsp
 - gitsigns in lualine
+- `yof` to set manual folding
 
 == Plugins
 
