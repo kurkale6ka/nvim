@@ -61,18 +61,18 @@ set lazyredraw
 set scrolloff=2
 set sidescroll=1
 set sidescrolloff=1
-set timeoutlen=2000 -- 2s before timing out a mapping (twice the default, else I fail to complete some maps)
-set ttimeoutlen=100 -- 100 ms before timing out on a keypress (..^)
-set visualbell -- visual bell instead of beeps, but...
-set linebreak -- wrap at characters in 'breakat
-vim.wo.breakindent = true -- respect indentation when wrapping
+set timeoutlen=2000 " 2s before timing out a mapping (twice the default, else I fail to complete some maps)
+set ttimeoutlen=100 " 100 ms before timing out on a keypress (..^)
+set visualbell " visual bell instead of beeps, but...
+set linebreak " wrap at characters in 'breakat
+vim.wo.breakindent = true " respect indentation when wrapping
 set showbreak='↪ '
 vim.opt.listchars = { precedes = '<', tab = '▷⋅', nbsp = '⋅', trail = '⋅', extends = '>' }
 vim.wo.list = true
 set synmaxcol=301
 
 if not vim.wo.diff then
-    vim.wo.cursorline = true -- unless nvim -d was used, ref: https://github.com/neovim/neovim/issues/9800
+    vim.wo.cursorline = true " unless nvim -d was used, ref: https://github.com/neovim/neovim/issues/9800
 end
 
 vim.api.nvim_create_user_command('Ascii',
@@ -82,7 +82,7 @@ vim.api.nvim_create_user_command('Ascii',
 })
 
 " folding
-vim.wo.foldnestmax = 1 -- maximum nesting for indent and syntax
+vim.wo.foldnestmax = 1 " maximum nesting for indent and syntax
 vim.cmd([[cabbrev <expr> fold getcmdtype() == ':' ? "se fdm=expr fde=getline(v\\:lnum)=~'^\\\\s*##'?'>'.(len(matchstr(getline(v\\:lnum),'###*'))-1)\\:'='".abbreviations#eat_char('\s') : 'fold']])
 vim.cmd([[cabbrev foldx se fdm=expr fde=getline(v\:lnum)=~'<'?'>1'\:'='<left><left><left><left><left><left><left><left><left><left><left><c-r>=abbreviations#eat_char('\s')<cr>]])
 
@@ -97,7 +97,7 @@ vim.keymap.set('n', '<S-ScrollWheelUp>', '5zh', { desc = 'Scroll left' })
 
 " Text formating
 vim.opt.formatoptions:append('ron')
-set comments=vim.o.comments:gsub('fb:%-', 'b:-') -- lists with dashes. Note: - is a magic character in lua patterns => it needs to be escaped with %
+set comments=vim.o.comments:gsub('fb:%-', 'b:-') " lists with dashes. Note: - is a magic character in lua patterns => it needs to be escaped with %
 set commentstring='#%s'
 set autoindent
 set nojoinspaces
@@ -111,7 +111,7 @@ vim.keymap.set('n', '=<leader>', '[<leader>]<leader>', { remap = true, desc = 's
 " imap <s-cr> <esc>O
 
 vim.api.nvim_create_user_command('Underline',
-    'call underline#current(<q-args>)', -- TODO: function() ... args?
+    'call underline#current(<q-args>)', " TODO: function() ... args?
     { nargs = '?', desc = 'Underline with dashes by default' }
 )
 
@@ -148,7 +148,7 @@ vim.keymap.set('n', '<c-w><c-t>', ':vs term://zsh<cr>i', { desc = "Open terminal
 
 " Security
 set exrc
-set secure -- :autocmd, shell and write commands not allowed in CWD .exrc
+set secure " :autocmd, shell and write commands not allowed in CWD .exrc
 set modeline
 set modelines=3
 
@@ -156,7 +156,7 @@ set modelines=3
 vim.opt.nrformats:remove('octal')
 set whichwrap='b,s,<,>,[,]'
 set virtualedit='block'
-set paragraphs=nil -- no wrongly defined paragraphs for non nroff,groff filetypes
+set paragraphs=nil " no wrongly defined paragraphs for non nroff,groff filetypes
 
 set nostartofline
 vim.keymap.set('x', '}', [[mode() == '<c-v>' ? line("'}")-1.'G' : '}']], { expr = true, desc = 'let } select the current column only when in visual-block mode' })
@@ -229,14 +229,14 @@ vim.api.nvim_create_user_command('Quotes',
         local str_bgn = ''
         local idx = line:find('[=:]') or 0
         if line:sub(idx, idx) == '=' then
-            str_bgn = line:sub(1, idx) -- from start to =
+            str_bgn = line:sub(1, idx) " from start to =
         end
         if idx == 0 or line:sub(idx, idx) == '=' then
-            str_end = line:sub(idx + 1):gsub('([^%s,]+)%s*,?%s*', '"%1", ') -- from = to end
-            str_end = str_end:gsub('"', '("', 1):sub(1, -3) .. ')' -- add "(", then remove final ", "
+            str_end = line:sub(idx + 1):gsub('([^%s,]+)%s*,?%s*', '"%1", ') " from = to end
+            str_end = str_end:gsub('"', '("', 1):sub(1, -3) .. ')' " add "(", then remove final ", "
         else
-            str_end = line:gsub('([^%s:]+)%s*(:?)%s*', '"%1"%2 ') -- "key": "value"
-            str_end = str_end:sub(1, -2) -- remove final ' '
+            str_end = line:gsub('([^%s:]+)%s*(:?)%s*', '"%1"%2 ') " "key": "value"
+            str_end = str_end:sub(1, -2) " remove final ' '
         end
         vim.fn.setline('.', str_bgn .. str_end)
     end,
@@ -253,8 +253,8 @@ require('auto-commands/html')
 require('clipboard')
 require('readline')
 require('statusline')
-require('plugins') -- last so if a plugin errors, my config will still mostly work
+require('plugins') " last so if a plugin errors, my config will still mostly work
 
 " TODO: move above so we can set vars for plugins?
 vim.opt.runtimepath:append(vim.fn.stdpath('config') .. '/lua/local')
-pcall(require, 'local') -- custom setup
+pcall(require, 'local') " custom setup
