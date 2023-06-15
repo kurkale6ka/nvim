@@ -1,8 +1,8 @@
 " Use if nvim doesn't support loading from init.lua!
 
 let mapleader = "\<space>"
-" vim.g.maplocalleader = '\\'
-" vim.g.python3_host_prog = '~/py-envs/neovim/bin/python'
+let maplocalleader = '\\'
+let g:python3_host_prog = '~/py-envs/neovim/bin/python'
 set termguicolors
 
 " Backups
@@ -15,13 +15,13 @@ set noautowriteall
 set autoread
 set undofile
 set history=10000
-vim.opt.shada:prepend('!')
+set shada^=!
 
-vim.keymap.set('n', '<leader>e', ':e', { desc = 'avoid typing colon :-)' })
-vim.keymap.set('n', '<leader>w', ':w<cr>', { desc = 'save buffer' })
-vim.keymap.set('n', 'gr', ':later 9999<cr>', { desc = 'redo all changes' })
-vim.keymap.set('n', '<leader>-', '<c-^>', { desc = 'switch to the alternate file' })
-vim.keymap.set('n', '<leader>a', ':A<cr>', { desc = 'switch to projectionist-alternate' })
+nmap <leader>e :e
+nmap <leader>w :w<cr>
+nmap gr :later 9999<cr>
+nmap <leader>- <c-^>
+nmap <leader>a :A<cr>
 
 " Search and replace
 set incsearch
