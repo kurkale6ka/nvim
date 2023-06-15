@@ -203,7 +203,7 @@ nmap goq :Quotes<cr>
 " source lua/auto-commands/html.vim
 " source lua/clipboard.vim
 " source lua/readline.vim
-source lua/statusline.vim
+exe 'source '.stdpath('config').'/lua/statusline.vim'
 
 colorscheme onedark
 
