@@ -137,7 +137,7 @@ set switchbuf=useopen,usetab
 
 " TODO: correctly restore window sizes.
 " execute "Plug '".s:vim."/plugged/win_full_screen', { 'on': 'WinFullScreen' }"
-nmap Zi <c-w>|<c-w>_
+nmap Zi <c-w><bar><c-w>_
 nmap Zo <c-w>=
 nmap <c-w><c-t> :vs term://zsh<cr>i
 
