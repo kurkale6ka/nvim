@@ -205,6 +205,8 @@ nmap goq :Quotes<cr>
 " source lua/readline.vim
 source lua/statusline.vim
 
+colorscheme onedark
+
 " TODO: move above so we can set vars for plugins?
 " custom setup
 exe 'set runtimepath+='.stdpath('config').'/lua/local'
