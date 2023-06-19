@@ -103,10 +103,6 @@ nmap Q gqap
 nmap <silent> <leader>z :call squeeze#lines("")<cr>
 nmap =<leader> [<leader>]<leader>
 
-" TODO: Ctrl + Enter to open a line below in INSERT mode
-" imap <c-cr> <esc>o
-" imap <s-cr> <esc>O
-
 command! -nargs=? Underline call underline#current(<q-args>)
 
 " Tabs and shifting
@@ -161,6 +157,7 @@ nmap [P :pu!<cr>
 nmap ]P :pu<cr>
 xmap <leader>x <esc>'<dd'>[pjdd`<P==
 nmap <silent> dl :call spaces#remove_eof()<cr>
+nmap Y y$
 
 " backspace
 set backspace=indent,eol,start
