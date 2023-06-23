@@ -1,9 +1,12 @@
-cd to the plugin dir
 noplugins - enable vimball
-:packadd vimball
-:let g:vimball_home='/home/mitko/.local/share/nvim/lazy/ultisnips'
-:0r !fd -tf --strip-cwd-prefix
-:v#/#d # delete all files that aren't under any dir/
-also delete unnecessary folders such as test/
+
+cd to the plugin dir
+packadd vimball
+let g:vimball_home='/home/mitko/.local/share/nvim/lazy/vim-snippets'
+0r !fd -tf -H
+dl
 vaf
-:'<,'>MkVimball! UltiSnips
+'<,'>MkVimball! vim-snippets
+
+open the vimball file
+UseVimball ~/.config/nvim/pack/plugins/start/vim-snippets
