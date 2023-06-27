@@ -1,0 +1,19 @@
+# Create
+```
+cd ~/.local/share/nvim/lazy/vim-snippets
+:packadd vimball
+:let g:vimball_home='/home/mitko/.local/share/nvim/lazy/vim-snippets'
+:0r !fd -tf -H
+dl
+vaf
+:'<,'>MkVimball! vim-snippets
+:q!
+mv vim-snippets.vmb ~/.config/nvim
+```
+
+# Install
+```
+mkdir ~/.config/nvim/pack/plugins/start/vim-snippets
+open the vimball file
+:UseVimball ~/.config/nvim/pack/plugins/start/vim-snippets
+```
