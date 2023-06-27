@@ -2,7 +2,7 @@
 
 let mapleader = "\<space>"
 let maplocalleader = '\\'
-let g:python3_host_prog = '~/py-envs/neovim/bin/python'
+let g:python3_host_prog = $HOME.'/py-envs/neovim/bin/python'
 set termguicolors
 
 " Backups
