@@ -195,13 +195,16 @@ nmap goq :Quotes<cr>
 " Includes
 " source lua/noplugins.vim
 " source lua/abbreviations.vim
-" source lua/auto-commands.vim
+exe 'source '.stdpath('config').'/lua/auto-commands.vim'
 " source lua/auto-commands/comments.vim
 " source lua/auto-commands/html.vim
 " source lua/clipboard.vim
-" source lua/readline.vim
+exe 'source '.stdpath('config').'/lua/plugins/ale.vim'
+exe 'source '.stdpath('config').'/lua/abbreviations.vim'
+exe 'source '.stdpath('config').'/lua/readline.vim'
 exe 'source '.stdpath('config').'/lua/statusline.vim'
 
+packadd! onedark.vim
 colorscheme onedark
 
 " TODO: move above so we can set vars for plugins?
