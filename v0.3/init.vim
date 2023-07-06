@@ -195,7 +195,7 @@ nmap goq :Quotes<cr>
 " Includes
 " source lua/noplugins.vim
 " source lua/abbreviations.vim
-exe 'source '.stdpath('config').'/lua/auto-commands.vim'
+exe 'source '.stdpath('config').'/lua/auto-commands/init.vim'
 " source lua/auto-commands/comments.vim
 " source lua/auto-commands/html.vim
 " source lua/clipboard.vim
