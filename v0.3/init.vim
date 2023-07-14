@@ -200,6 +200,7 @@ exe 'source '.stdpath('config').'/lua/auto-commands/init.vim'
 " source lua/auto-commands/html.vim
 " source lua/clipboard.vim
 exe 'source '.stdpath('config').'/lua/plugins/ale.vim'
+exe 'source '.stdpath('config').'/lua/plugins/vim-gitgutter.vim'
 exe 'source '.stdpath('config').'/lua/abbreviations.vim'
 exe 'source '.stdpath('config').'/lua/readline.vim'
 exe 'source '.stdpath('config').'/lua/statusline.vim'
