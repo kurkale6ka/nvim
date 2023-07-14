@@ -11,7 +11,7 @@ vaf
 :q!
 ```
 
-`mv vim-snippets.vmb ~/.config/nvim`
+`mv vim-snippets.vmb ~/.config/nvim/v0.3/vimballs`
 
 # Install
 `mkdir ~/.config/nvim/pack/plugins/start/vim-snippets`
