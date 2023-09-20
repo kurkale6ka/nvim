@@ -16,8 +16,8 @@ vaf
 # Install
 `mkdir ~/.config/nvim/pack/plugins/start/vim-snippets`
 
-Open the vimball file
 ```vim
+:e ~/.config/nvim/pack/vimballs/vim-snippets.vmb
 :packadd vimball
 :UseVimball ~/.config/nvim/pack/plugins/start/vim-snippets
 ```
