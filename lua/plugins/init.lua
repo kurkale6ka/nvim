@@ -141,9 +141,7 @@ require('lazy').setup {
             },
             'williamboman/mason-lspconfig.nvim',
             { 'j-hui/fidget.nvim', -- useful LSP status updates
-                config = function()
-                    require('fidget').setup()
-                end
+                opts = {},
             },
             { 'folke/neodev.nvim', -- additional lua configuration, makes nvim stuff amazing
                 config = function()
@@ -219,7 +217,7 @@ require('lazy').setup {
 
     -- Colorschemes
     { 'navarasu/onedark.nvim',
-        lazy = false, -- necessary for the main colorscheme
+        lazy = false,    -- necessary for the main colorscheme
         priority = 1000, -- necessary for the main colorscheme
         config = function()
             require('plugins/onedark')
@@ -228,9 +226,9 @@ require('lazy').setup {
 
     { 'Everblush/everblush.nvim', name = 'everblush', lazy = true },
     { 'ellisonleao/gruvbox.nvim', lazy = true },
-    { 'savq/melange', lazy = true },
-    { 'Shatur/neovim-ayu', lazy = true },
-    { 'EdenEast/nightfox.nvim', lazy = true },
+    { 'savq/melange',             lazy = true },
+    { 'Shatur/neovim-ayu',        lazy = true },
+    { 'EdenEast/nightfox.nvim',   lazy = true },
 
     -- colors
     { 'norcalli/nvim-colorizer.lua',
@@ -248,11 +246,8 @@ require('lazy').setup {
     },
 
     { 'lukas-reineke/indent-blankline.nvim',
-        config = function()
-            require("indent_blankline").setup {
-                show_trailing_blankline_indent = false,
-            }
-        end,
+        main = "ibl",
+        opts = {},
     },
 
     { 'phaazon/hop.nvim',
@@ -282,16 +277,16 @@ require('lazy').setup {
 
     -- TODO: 'bfredl/nvim-miniyank', {}
     { 'pearofducks/ansible-vim', lazy = true }, -- let g:ansible_attribute_highlight = "ab"
-    { 'rodjek/vim-puppet', lazy = true },
-    { 'terceiro/vim-foswiki', lazy = true },
-    { 'vim-scripts/iptables', lazy = true },
-    { 'vim-scripts/nginx.vim', lazy = true },
-    { 'StanAngeloff/php.vim', lazy = true },
-    { 'tmux-plugins/vim-tmux', lazy = true },
+    { 'rodjek/vim-puppet',       lazy = true },
+    { 'terceiro/vim-foswiki',    lazy = true },
+    { 'vim-scripts/iptables',    lazy = true },
+    { 'vim-scripts/nginx.vim',   lazy = true },
+    { 'StanAngeloff/php.vim',    lazy = true },
+    { 'tmux-plugins/vim-tmux',   lazy = true },
 
     -- Own and local
     'kurkale6ka/vim-pairs',
     { 'kurkale6ka/vim-desertEX', lazy = true },
-    { 'kurkale6ka/vim-chess', lazy = true },
+    { 'kurkale6ka/vim-chess',    lazy = true },
 
 }
