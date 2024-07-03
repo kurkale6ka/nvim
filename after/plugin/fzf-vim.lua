@@ -149,7 +149,6 @@ vim.api.nvim_create_user_command('Rg',
     function(input)
         vim.fn['fzf#vim#grep'](
             'rg --column --line-number --no-heading --color=always --smart-case --hidden -- ' .. vim.fn.shellescape(input.args),
-            true, -- column option was passed
             vim.fn['fzf#vim#with_preview'] {
                 options = { '--cycle' }
             },
