@@ -36,6 +36,10 @@ endsnippet
 
 snippet run
 from subprocess import run
+cmd = ($1)
+res = run(cmd, capture_output=True, text=True)
+for ${2:line} in res.stdout.splitlines():
+	$2
 endsnippet
 
 snippet pp
@@ -132,6 +136,12 @@ endsnippet
 
 snippet mkdir
 Path("${1:dir}").mkdir(parents=True, exist_ok=True)
+endsnippet
+
+snippet cd
+from contextlib import chdir
+with chdir(pathlib.Path($1)):
+	$2
 endsnippet
 
 snippet warn
