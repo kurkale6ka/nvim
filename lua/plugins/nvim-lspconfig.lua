@@ -15,8 +15,6 @@ end
 local opts = { silent = true }
 
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<leader>q', ':TroubleToggle document_diagnostics<cr>', opts)
 
 -- Use an on_attach function to only map the following keys
@@ -121,6 +119,7 @@ local servers = {
 -- ensure the above servers are installed
 mason_lspconfig.setup {
     ensure_installed = vim.tbl_keys(servers),
+    automatic_installation = false,
 }
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
