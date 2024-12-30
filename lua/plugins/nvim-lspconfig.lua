@@ -99,7 +99,26 @@ local servers = {
     dockerls = {},
     jsonls = {},
     marksman = {},
-    pyright = {},
+    pyright = {
+        settings = {
+            pyright = {
+                disableOrganizeImports = true, -- using ruff
+            },
+            python = {
+                analysis = {
+                    ignore = { '*' }, -- using ruff
+                },
+            },
+        },
+    },
+    -- TODO: space-f to also organize imports vs space-ca, plus auto-fix all on format?
+    ruff = {
+        init_options = {
+            settings = {
+                configuration = os.getenv("XDG_CONFIG_HOME") .. "/ruff.toml"
+            },
+        },
+    },
     lua_ls = {
         settings = {
             Lua = {
