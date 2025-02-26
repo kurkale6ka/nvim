@@ -99,7 +99,21 @@ local servers = {
     dockerls = {},
     jsonls = {},
     marksman = {},
-    pyright = {},
+    pyright = {
+        settings = {
+            pyright = {
+                -- use isort
+                disableOrganizeImports = true,
+            },
+            python = {
+                analysis = {
+                    -- use ruff for linting
+                    ignore = { '*' },
+                },
+            },
+        },
+    },
+    ruff = {},
     lua_ls = {
         settings = {
             Lua = {
