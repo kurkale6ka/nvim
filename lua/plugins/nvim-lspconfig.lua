@@ -102,13 +102,11 @@ local servers = {
     pyright = {
         settings = {
             pyright = {
-                -- use isort
-                disableOrganizeImports = true,
+                disableOrganizeImports = true, -- use isort
             },
             python = {
                 analysis = {
-                    -- use ruff for linting
-                    ignore = { '*' },
+                    ignore = { '*' }, -- use ruff for linting
                 },
             },
         },
