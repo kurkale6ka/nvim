@@ -111,6 +111,7 @@ local servers = {
             },
         },
     },
+    rust_analyzer = {},
     ruff = {},
     lua_ls = {
         settings = {
