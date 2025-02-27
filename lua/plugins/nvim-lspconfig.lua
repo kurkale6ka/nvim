@@ -102,23 +102,16 @@ local servers = {
     pyright = {
         settings = {
             pyright = {
-                disableOrganizeImports = true, -- using ruff
+                disableOrganizeImports = true, -- use isort
             },
             python = {
                 analysis = {
-                    ignore = { '*' }, -- using ruff
+                    ignore = { '*' }, -- use ruff for linting
                 },
             },
         },
     },
-    -- TODO: space-f to also organize imports vs space-ca, plus auto-fix all on format?
-    ruff = {
-        init_options = {
-            settings = {
-                configuration = os.getenv("XDG_CONFIG_HOME") .. "/ruff.toml"
-            },
-        },
-    },
+    ruff = {},
     lua_ls = {
         settings = {
             Lua = {

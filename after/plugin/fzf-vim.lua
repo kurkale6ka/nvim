@@ -5,23 +5,25 @@
 vim.keymap.set('n', '<leader>b', ':Buffers<cr>')
 vim.keymap.set('n', '<leader>h', ':History<cr>') -- recently edited files
 vim.keymap.set('n', '<leader>l', ':GFiles<cr>') -- ls git files
-vim.keymap.set('n', 'gol', ':GFiles?<cr>') -- git status
-vim.keymap.set('n', 'gof', ':silent! Glcd <bar> Files<cr>') -- search fzf files
-vim.keymap.set('n', 'got', ':Filetypes<cr>')
+vim.keymap.set('n', '<a-l>', ':GFiles?<cr>') -- git status
+vim.keymap.set('n', '<a-f>', ':silent! Glcd <bar> Files<cr>') -- search fzf files
+vim.keymap.set('n', '<a-t>', ':Filetypes<cr>')
 
 -- Fuzzy help
-vim.keymap.set('n', 'goh', ':Helptags<cr>') -- search help files
-vim.keymap.set('n', 'gh', ':Files ' .. vim.env.REPOS_BASE .. '/github/help<cr>') -- own help files
+vim.keymap.set('n', 'gh', ':Helptags<cr>') -- search help files
+vim.keymap.set('n', '<a-h>', function()
+    return ':Files ' .. vim.env.REPOS_BASE .. '/github/help<cr>'
+end, { expr = true }) -- own help files
 
 -- Fuzzy grep
 vim.keymap.set('n', '<leader>/', ':BLines<cr>') -- /fuzzy
 vim.keymap.set('n', '<leader>G', ':BLines <c-r><c-a>') -- :g/fuzzy
 vim.keymap.set('n', '<leader>g', ':silent! Glcd <bar> exe "Rg ".input("ripgrep> ")<cr>') -- ripgrep
 
-vim.keymap.set('n', 'goc', ':Commands<cr>')
-vim.keymap.set('n', 'god', ':Diagnostics<cr>') -- search LSP diagnostics
-vim.keymap.set('n', 'gom', ':Maps<cr>')
-vim.keymap.set('n', 'gos', ':Snippets<cr>')
+vim.keymap.set('n', '<a-c>', ':Commands<cr>')
+vim.keymap.set('n', '<a-d>', ':Diagnostics<cr>') -- search LSP diagnostics
+vim.keymap.set('n', '<a-m>', ':Maps<cr>')
+vim.keymap.set('n', '<a-s>', ':Snippets<cr>')
 vim.keymap.set('n', '<leader>t', ':BTags<cr>') -- search buffer tags
 
 -- Buffers
