@@ -93,66 +93,74 @@ end
 -- Mason lspconfig
 local mason_lspconfig = require('mason-lspconfig')
 
-local servers = {
-    ansiblels = {},
-    bashls = {},
-    dockerls = {},
-    jsonls = {},
-    marksman = {},
-    pyright = {
-        settings = {
-            pyright = {
-                disableOrganizeImports = true, -- use isort
-            },
-            python = {
-                analysis = {
-                    ignore = { '*' }, -- use ruff for linting
-                },
-            },
-        },
-    },
-    bacon = {},
-    bacon_ls = {},
-    rust_analyzer = {},
-    ruff = {},
-    lua_ls = {
-        settings = {
-            Lua = {
-                workspace = { checkThirdParty = false },
-                telemetry = { enable = false },
-            },
+-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+local cmp_capabilities = {
+    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities),
+    on_attach = on_attach
+}
+
+local handlers = {
+    function(server_name)
+        require('lspconfig')[server_name].setup {}
+    end,
+    ["pyright"] = function()
+        require('lspconfig')['pyright'].setup {
+            vim.tbl_extend("error", -- TODO: can we simplify this, and not DRY?
+                cmp_capabilities,
+                {
+                    settings = {
+                        pyright = {
+                            disableOrganizeImports = true, -- use isort
+                        },
+                        python = {
+                            analysis = {
+                                ignore = { '*' }, -- use ruff for linting
+                            },
+                        },
+                    }
+                }
+            )
         }
-    },
-    terraformls = {
-        -- filetypes = { "terraform", "terraform-vars", "hcl" }
-    },
-    tflint = {}, -- TODO: this is a 'LS', does it conflict with terraformls? Where to automate linter install?
-    vimls = {},
-    yamlls = {},
+    end,
+    ["lua_ls"] = function()
+        require('lspconfig')['lua_ls'].setup {
+            vim.tbl_extend("error",
+                cmp_capabilities,
+                {
+                    settings = {
+                        Lua = {
+                            workspace = { checkThirdParty = false },
+                            telemetry = { enable = false },
+                        },
+                    }
+                }
+            )
+        }
+    end,
 }
 
 vim.g.lazyvim_rust_diagnostics = "bacon-ls"
 
--- ensure the above servers are installed
 mason_lspconfig.setup {
-    ensure_installed = vim.tbl_keys(servers),
+    ensure_installed = {
+        -- 'ansiblels',
+        'bashls',
+        -- 'dockerls',
+        'jsonls',
+        'marksman',
+        'pyright',
+        -- 'bacon', -- error: entry not listed in https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
+        -- 'bacon-ls',
+        'rust_analyzer',
+        'ruff',
+        'lua_ls',
+        -- 'terraformls', -- add extra .setup section above? with: filetypes = { "terraform", "terraform-vars", "hcl" }
+        -- 'tflint',
+        'vimls',
+        'yamlls',
+    },
     automatic_installation = false,
 }
 
--- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
-mason_lspconfig.setup_handlers {
-    function(server_name)
-        require('lspconfig')[server_name].setup(
-            vim.tbl_extend("error",
-                {
-                    capabilities = capabilities,
-                    on_attach = on_attach
-                },
-                servers[server_name]
-            )
-        )
-    end
-}
+mason_lspconfig.setup_handlers(handlers)
