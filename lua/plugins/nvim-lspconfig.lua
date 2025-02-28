@@ -111,6 +111,8 @@ local servers = {
             },
         },
     },
+    bacon = {},
+    bacon_ls = {},
     rust_analyzer = {},
     ruff = {},
     lua_ls = {
@@ -128,6 +130,8 @@ local servers = {
     vimls = {},
     yamlls = {},
 }
+
+vim.g.lazyvim_rust_diagnostics = "bacon-ls"
 
 -- ensure the above servers are installed
 mason_lspconfig.setup {
