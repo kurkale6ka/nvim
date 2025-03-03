@@ -13,6 +13,7 @@ require('nvim-treesitter.configs').setup {
         "lua",
         "markdown",
         "python",
+        "rust", "ron", -- rust object notation
         "terraform",
         "vim",
         "yaml",
@@ -72,7 +73,7 @@ require('nvim-treesitter.configs').setup {
     query_linter = {
         enable = true,
         use_virtual_text = true,
-        lint_events = {"BufWrite", "CursorHold"},
+        lint_events = { "BufWrite", "CursorHold" },
     },
     textobjects = {
         select = {
