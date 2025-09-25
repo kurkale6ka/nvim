@@ -100,45 +100,37 @@ local cmp_capabilities = {
     on_attach = on_attach
 }
 
-local handlers = {
-    function(server_name)
-        require('lspconfig')[server_name].setup {}
-    end,
-    ["pyright"] = function()
-        require('lspconfig')['pyright'].setup {
-            vim.tbl_extend("error", -- TODO: can we simplify this, and not DRY?
-                cmp_capabilities,
-                {
-                    settings = {
-                        pyright = {
-                            disableOrganizeImports = true, -- use isort
-                        },
-                        python = {
-                            analysis = {
-                                ignore = { '*' }, -- use ruff for linting
-                            },
-                        },
-                    }
-                }
-            )
+vim.lsp.config('pyright', {
+    vim.tbl_extend("error", -- TODO: can we simplify this, and not DRY?
+        cmp_capabilities,
+        {
+            settings = {
+                pyright = {
+                    disableOrganizeImports = true, -- use isort
+                },
+                python = {
+                    analysis = {
+                        ignore = { '*' }, -- use ruff for linting
+                    },
+                },
+            }
         }
-    end,
-    ["lua_ls"] = function()
-        require('lspconfig')['lua_ls'].setup {
-            vim.tbl_extend("error",
-                cmp_capabilities,
-                {
-                    settings = {
-                        Lua = {
-                            workspace = { checkThirdParty = false },
-                            telemetry = { enable = false },
-                        },
-                    }
-                }
-            )
+    )
+})
+
+vim.lsp.config('lua_ls', {
+    vim.tbl_extend("error",
+        cmp_capabilities,
+        {
+            settings = {
+                Lua = {
+                    workspace = { checkThirdParty = false },
+                    telemetry = { enable = false },
+                },
+            }
         }
-    end,
-}
+    )
+})
 
 vim.g.lazyvim_rust_diagnostics = "bacon-ls"
 
@@ -162,5 +154,3 @@ mason_lspconfig.setup {
     },
     automatic_installation = false,
 }
-
-mason_lspconfig.setup_handlers(handlers)

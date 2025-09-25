@@ -1,6 +1,5 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
-vim.g.python3_host_prog = '~/py-envs/neovim/bin/python'
 vim.o.termguicolors = true
 
 -- Backups
