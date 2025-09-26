@@ -90,9 +90,6 @@ local on_attach = function(client, bufnr)
     end
 end
 
--- Mason lspconfig
-local mason_lspconfig = require('mason-lspconfig')
-
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local cmp_capabilities = {
@@ -118,39 +115,4 @@ vim.lsp.config('pyright', {
     )
 })
 
-vim.lsp.config('lua_ls', {
-    vim.tbl_extend("error",
-        cmp_capabilities,
-        {
-            settings = {
-                Lua = {
-                    workspace = { checkThirdParty = false },
-                    telemetry = { enable = false },
-                },
-            }
-        }
-    )
-})
-
 vim.g.lazyvim_rust_diagnostics = "bacon-ls"
-
-mason_lspconfig.setup {
-    ensure_installed = {
-        -- 'ansiblels',
-        'bashls',
-        -- 'dockerls',
-        'jsonls',
-        'marksman',
-        'pyright',
-        -- 'bacon', -- error: entry not listed in https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
-        -- 'bacon-ls',
-        'rust_analyzer',
-        'ruff',
-        'lua_ls',
-        -- 'terraformls', -- add extra .setup section above? with: filetypes = { "terraform", "terraform-vars", "hcl" }
-        -- 'tflint',
-        'vimls',
-        'yamlls',
-    },
-    automatic_installation = false,
-}

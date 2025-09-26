@@ -241,6 +241,8 @@ vim.api.nvim_create_user_command('Quotes',
 )
 vim.keymap.set('n', 'goq', ':Quotes<cr>', { desc = "Quote words: coordinates = x y => coordinates = ('x', 'y')" })
 
+vim.lsp.enable({'lua-ls'})
+
 -- Includes
 require('noplugins')
 require('abbreviations')

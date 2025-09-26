@@ -132,27 +132,21 @@ require('lazy').setup {
     },
 
     -- LSP
-    { 'neovim/nvim-lspconfig',
-        dependencies = {
-            { 'mason-org/mason.nvim', -- automatically install LSPs to stdpath for neovim
-                config = function()
-                    require('plugins/mason')
-                end
-            },
-            'mason-org/mason-lspconfig.nvim',
-            { 'j-hui/fidget.nvim', -- useful LSP status updates
-                opts = {},
-            },
-            { 'folke/neodev.nvim', -- additional lua configuration, makes nvim stuff amazing
-                config = function()
-                    require('neodev').setup()
-                end
-            },
-        },
+    { 'mason-org/mason.nvim', -- automatically install LSPs to stdpath for neovim
         config = function()
-            require('plugins/nvim-lspconfig')
+            require('plugins/mason')
         end
     },
+
+    { 'j-hui/fidget.nvim', -- useful LSP status updates
+        opts = {},
+    },
+
+    -- { 'folke/neodev.nvim', -- additional lua configuration, makes nvim stuff amazing
+    --     config = function()
+    --         require('neodev').setup()
+    --     end
+    -- },
 
     { 'nvimtools/none-ls.nvim',
         dependencies = {
