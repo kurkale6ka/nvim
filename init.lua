@@ -130,7 +130,7 @@ vim.keymap.set({ 'n', 'x' }, '<leader>0', ':left<cr>', { desc = 'align left' })
 -- Tags
 vim.opt.tags:append(vim.env.REPOS_BASE .. '/tags')
 vim.opt.complete:remove('i')
-vim.opt.completeopt:append { 'fuzzy', 'menuone', 'noselect' }
+vim.opt.completeopt:append { 'fuzzy', 'noinsert', 'menuone', 'preview' }
 vim.o.showfulltag = true
 
 -- Windows and buffers
@@ -263,9 +263,6 @@ vim.diagnostic.config({
         current_line = true -- TODO: echo below! (in :...)
     },
 })
-
-vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { silent = true })
-vim.keymap.set('n', '<leader>q', ':TroubleToggle document_diagnostics<cr>', { silent = true })
 
 local icons = {
     Class = " ",
@@ -422,10 +419,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
-vim.lsp.enable({
+vim.lsp.enable {
     'lua-ls',
     'pyright'
-})
+}
 
 -- Includes
 require('noplugins')

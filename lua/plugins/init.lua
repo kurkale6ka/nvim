@@ -146,13 +146,25 @@ require('lazy').setup {
     },
 
     { 'folke/trouble.nvim',
-        dependencies = {
-            'kyazdani42/nvim-web-devicons' -- TODO: plugin shouldn't complain as I've manually installed Nerd Fonts, issue?
+        opts = {},
+        cmd = "Trouble",
+        keys = {
+            { "<leader>d",
+                "<cmd>Trouble diagnostics toggle filter.buf=0 win.position=left<cr>",
+                desc = "Buffer Diagnostics (Trouble)",
+                silent = true
+            },
+            {
+                "<leader>T",
+                "<cmd>Trouble symbols toggle focus=false win.position=left<cr>",
+                desc = "Symbols (Trouble)",
+            },
+            {
+                "<leader>cq",
+                "<cmd>Trouble qflist toggle win.position=left<cr>",
+                desc = "Quickfix List (Trouble)",
+            },
         },
-        cmd = { 'Trouble', 'TroubleClose', 'TroubleToggle', 'TroubleRefresh' },
-        config = function()
-            require('plugins/trouble')
-        end
     },
 
     -- Tree-sitter
