@@ -248,6 +248,70 @@ vim.api.nvim_create_user_command('Quotes',
 )
 vim.keymap.set('n', 'goq', ':Quotes<cr>', { desc = "Quote words: coordinates = x y => coordinates = ('x', 'y')" })
 
+-- vim.lsp.config('*', {
+--     capabilities = {
+--         textDocument = {
+--             semanticTokens = {
+--                 multilineTokenSupport = true,
+--             }
+--         }
+--     },
+--     root_markers = { '.git' },
+-- })
+
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('my.lsp', {}),
+    callback = function(args)
+        local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+        local bufopts = { silent = true, buffer = args.buf }
+
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+        vim.keymap.set('n', '<leader>i', vim.lsp.buf.implementation, bufopts)
+        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+
+        vim.keymap.set('n', '<localleader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+        vim.keymap.set('n', '<localleader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+        vim.keymap.set('n', '<localleader>wl',
+            function()
+                print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+            end,
+            bufopts
+        )
+
+        vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
+        vim.keymap.set('n', '<leader>m', vim.lsp.buf.rename, bufopts)
+        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+        vim.keymap.set('n', '<leader>r', vim.lsp.buf.references, bufopts)
+
+        -- TODO: merge?
+        vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+        vim.api.nvim_buf_create_user_command(args.buf, 'Format',
+            function(l_args)
+                vim.lsp.buf.format {
+                    async = true,
+                    range = {
+                        ['start'] = { l_args.line1, 0 }, -- TODO: not sure why start without the wraps doesn't work
+                        ['end'] = { l_args.line2, 0 }
+                    }
+                }
+            end,
+            { range = '%', desc = 'Format current buffer with LSP' }
+        )
+
+        -- Enable auto-completion. Note: Use CTRL-Y to select an item. |complete_CTRL-Y|
+        -- vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = bufnr })
+        if client:supports_method('textDocument/completion') then
+            -- Optional: trigger autocompletion on EVERY keypress. May be slow!
+            -- local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
+            -- client.server_capabilities.completionProvider.triggerCharacters = chars
+
+            vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+        end
+    end,
+})
+
 vim.lsp.enable({ 'lua-ls' })
 
 -- Includes
