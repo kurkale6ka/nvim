@@ -81,9 +81,9 @@ vim.api.nvim_create_user_command('Ascii',
 -- folding
 vim.wo.foldnestmax = 1 -- maximum nesting for indent and syntax
 vim.cmd(
-[[cabbrev <expr> fold getcmdtype() == ':' ? "se fdm=expr fde=getline(v\\:lnum)=~'^\\\\s*##'?'>'.(len(matchstr(getline(v\\:lnum),'###*'))-1)\\:'='".abbreviations#eat_char('\s') : 'fold']])
+    [[cabbrev <expr> fold getcmdtype() == ':' ? "se fdm=expr fde=getline(v\\:lnum)=~'^\\\\s*##'?'>'.(len(matchstr(getline(v\\:lnum),'###*'))-1)\\:'='".abbreviations#eat_char('\s') : 'fold']])
 vim.cmd(
-[[cabbrev foldx se fdm=expr fde=getline(v\:lnum)=~'<'?'>1'\:'='<left><left><left><left><left><left><left><left><left><left><left><c-r>=abbreviations#eat_char('\s')<cr>]])
+    [[cabbrev foldx se fdm=expr fde=getline(v\:lnum)=~'<'?'>1'\:'='<left><left><left><left><left><left><left><left><left><left><left><c-r>=abbreviations#eat_char('\s')<cr>]])
 
 vim.keymap.set('n', '<c-g>', '2<c-g>', { desc = 'print working directory' })
 vim.keymap.set('n', '<leader>8', ':call highlight#column()<cr>',
