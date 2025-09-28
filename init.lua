@@ -130,7 +130,7 @@ vim.keymap.set({ 'n', 'x' }, '<leader>0', ':left<cr>', { desc = 'align left' })
 -- Tags
 vim.opt.tags:append(vim.env.REPOS_BASE .. '/tags')
 vim.opt.complete:remove('i')
-vim.opt.completeopt:append('menuone')
+vim.opt.completeopt:append { 'fuzzy', 'menuone', 'noselect' }
 vim.o.showfulltag = true
 
 -- Windows and buffers
@@ -258,12 +258,75 @@ vim.diagnostic.config({
             -- [vim.diagnostic.severity.HINT] = "", -- TODO: find what that utf char is
             [vim.diagnostic.severity.INFO] = "",
         },
-    }
+    },
+    virtual_text = {
+        current_line = true -- TODO: echo below! (in :...)
+    },
 })
 
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { silent = true })
 vim.keymap.set('n', '<leader>q', ':TroubleToggle document_diagnostics<cr>', { silent = true })
 
+local icons = {
+    Class = " ",
+    Color = " ",
+    Constant = " ",
+    Constructor = " ",
+    Enum = " ",
+    EnumMember = " ",
+    Event = " ",
+    Field = " ",
+    File = " ",
+    Folder = " ",
+    Function = "󰊕 ",
+    Interface = " ",
+    Keyword = " ",
+    Method = "ƒ ",
+    Module = "󰏗 ",
+    Property = " ",
+    Snippet = " ",
+    Struct = " ",
+    Text = " ",
+    Unit = " ",
+    Value = " ",
+    Variable = " ",
+}
+-- TODO: find utf text (see below)
+-- {
+--     Text          = "",
+--     Method        = "",
+--     Function      = "",
+--     Constructor   = "",
+--     Field         = "",
+--     Variable      = "",
+--     Class         = "ﴯ",
+--     Interface     = "",
+--     Module        = "",
+--     Property      = "ﰠ",
+--     Unit          = "",
+--     Value         = "",
+--     Enum          = "",
+--     Keyword       = "",
+--     Snippet       = "",
+--     Color         = "",
+--     File          = "",
+--     Reference     = "",
+--     Folder        = "",
+--     EnumMember    = "",
+--     Constant      = "",
+--     Struct        = "",
+--     Event         = "",
+--     Operator      = "",
+--     TypeParameter = "",
+-- }
+
+
+local completion_kinds = vim.lsp.protocol.CompletionItemKind
+for i, kind in ipairs(completion_kinds) do
+    completion_kinds[i] = icons[kind] and icons[kind] .. kind or kind
+end
+
+-- TODO: what's this?
 -- vim.lsp.config('*', {
 --     capabilities = {
 --         textDocument = {
@@ -279,6 +342,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('my.lsp', {}),
     callback = function(args)
         local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+
         local bufopts = { silent = true, buffer = args.buf }
 
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
@@ -346,14 +410,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
             })
         end
 
-        -- Enable auto-completion. Note: Use CTRL-Y to select an item. |complete_CTRL-Y|
-        -- vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = bufnr })
+        -- TODO: help for method parameters?
         if client:supports_method('textDocument/completion') then
-            -- Optional: trigger autocompletion on EVERY keypress. May be slow!
-            -- local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
-            -- client.server_capabilities.completionProvider.triggerCharacters = chars
-
+            client.server_capabilities.completionProvider.triggerCharacters = { '.' }
             vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+
+            vim.keymap.set('i', '<c-space>', function()
+                vim.lsp.completion.get()
+            end)
         end
     end,
 })

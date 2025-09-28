@@ -122,13 +122,7 @@ require('lazy').setup {
 
     { 'junegunn/fzf.vim',
         event = "VeryLazy",
-        dependencies = {
-            { 'junegunn/fzf',
-                build = function()
-                    vim.fn['fzf#install']()
-                end
-            },
-        },
+        dependencies = 'junegunn/fzf',
     },
 
     -- LSP
@@ -141,12 +135,6 @@ require('lazy').setup {
     { 'j-hui/fidget.nvim', -- useful LSP status updates
         opts = {},
     },
-
-    -- { 'folke/neodev.nvim', -- additional lua configuration, makes nvim stuff amazing
-    --     config = function()
-    --         require('neodev').setup()
-    --     end
-    -- },
 
     { 'nvimtools/none-ls.nvim',
         dependencies = {
@@ -184,26 +172,9 @@ require('lazy').setup {
         end
     },
 
-    -- Autocompletion
-    { 'hrsh7th/nvim-cmp',
-        dependencies = {
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-cmdline',
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-nvim-lsp-signature-help',
-            'hrsh7th/cmp-path',
-        },
-        config = function()
-            require('plugins/nvim-cmp')
-        end
-    },
-
     -- Snippets
     { 'SirVer/ultisnips',
-        dependencies = {
-            'quangnguyen30192/cmp-nvim-ultisnips',
-            'honza/vim-snippets',
-        },
+        dependencies = 'honza/vim-snippets',
         config = function()
             require('plugins/ultisnips')
         end
