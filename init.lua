@@ -248,6 +248,22 @@ vim.api.nvim_create_user_command('Quotes',
 )
 vim.keymap.set('n', 'goq', ':Quotes<cr>', { desc = "Quote words: coordinates = x y => coordinates = ('x', 'y')" })
 
+-- Diagnostics
+vim.diagnostic.config({
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "",
+            [vim.diagnostic.severity.WARN] = "",
+            [vim.diagnostic.severity.HINT] = "",
+            -- [vim.diagnostic.severity.HINT] = "", -- TODO: find what that utf char is
+            [vim.diagnostic.severity.INFO] = "",
+        },
+    }
+})
+
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { silent = true })
+vim.keymap.set('n', '<leader>q', ':TroubleToggle document_diagnostics<cr>', { silent = true })
+
 -- vim.lsp.config('*', {
 --     capabilities = {
 --         textDocument = {
@@ -287,6 +303,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         -- TODO: merge?
         vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+
         vim.api.nvim_buf_create_user_command(args.buf, 'Format',
             function(l_args)
                 vim.lsp.buf.format {
@@ -300,6 +317,35 @@ vim.api.nvim_create_autocmd('LspAttach', {
             { range = '%', desc = 'Format current buffer with LSP' }
         )
 
+        if client:supports_method('textDocument/documentHighlight')
+        then
+            vim.o.updatetime = 250
+
+            local cursor = vim.api.nvim_create_augroup("Auto highlight occurences of word under cursor", { clear = true })
+
+            vim.cmd([[
+                highlight link LspReferenceRead Visual
+                highlight link LspReferenceText Visual
+                highlight link LspReferenceWrite Visual
+            ]])
+
+            vim.api.nvim_create_autocmd("CursorHold", {
+                callback = function()
+                    vim.lsp.buf.document_highlight()
+                end,
+                buffer = args.buf,
+                group = cursor
+            })
+
+            vim.api.nvim_create_autocmd("CursorMoved", {
+                callback = function()
+                    vim.lsp.buf.clear_references()
+                end,
+                buffer = args.buf,
+                group = cursor
+            })
+        end
+
         -- Enable auto-completion. Note: Use CTRL-Y to select an item. |complete_CTRL-Y|
         -- vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = bufnr })
         if client:supports_method('textDocument/completion') then
@@ -312,7 +358,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
-vim.lsp.enable({ 'lua-ls' })
+vim.lsp.enable({
+    'lua-ls',
+    'pyright'
+})
 
 -- Includes
 require('noplugins')
