@@ -16,7 +16,7 @@ vim.opt.shada:prepend('!')
 
 vim.keymap.set('n', '<leader>e', ':e', { desc = 'avoid typing colon :-)' })
 vim.keymap.set('n', '<leader>w', ':w<cr>', { desc = 'save buffer' })
-vim.keymap.set('n', 'gr', ':later 9999<cr>', { desc = 'redo all changes' })
+vim.keymap.set('n', 'gr', ':later 9999<cr>', { nowait = true, desc = 'redo all changes' })
 vim.keymap.set('n', '<leader>-', '<c-^>', { desc = 'switch to the alternate file' })
 vim.keymap.set('n', '<leader>a', ':A<cr>', { desc = 'switch to projectionist-alternate' })
 
@@ -58,10 +58,10 @@ vim.o.lazyredraw = true
 vim.o.scrolloff = 2
 vim.o.sidescroll = 1
 vim.o.sidescrolloff = 1
-vim.o.timeoutlen = 2000 -- 2s before timing out a mapping (twice the default, else I fail to complete some maps)
-vim.o.ttimeoutlen = 100 -- 100 ms before timing out on a keypress (..^)
-vim.o.visualbell = true -- visual bell instead of beeps, but...
-vim.o.linebreak = true -- wrap at characters in 'breakat
+vim.o.timeoutlen = 2000   -- 2s before timing out a mapping (twice the default, else I fail to complete some maps)
+vim.o.ttimeoutlen = 100   -- 100 ms before timing out on a keypress (..^)
+vim.o.visualbell = true   -- visual bell instead of beeps, but...
+vim.o.linebreak = true    -- wrap at characters in 'breakat
 vim.wo.breakindent = true -- respect indentation when wrapping
 vim.o.showbreak = '↪ '
 vim.opt.listchars = { precedes = '<', tab = '▷⋅', nbsp = '⋅', trail = '⋅', extends = '>' }
@@ -74,17 +74,20 @@ end
 
 vim.api.nvim_create_user_command('Ascii',
     'call ascii#codes(<f-args>)', {
-    nargs = '*',
-    desc = 'Print a range of ascii characters. Ex: Ascii 30 50',
-})
+        nargs = '*',
+        desc = 'Print a range of ascii characters. Ex: Ascii 30 50',
+    })
 
 -- folding
 vim.wo.foldnestmax = 1 -- maximum nesting for indent and syntax
-vim.cmd([[cabbrev <expr> fold getcmdtype() == ':' ? "se fdm=expr fde=getline(v\\:lnum)=~'^\\\\s*##'?'>'.(len(matchstr(getline(v\\:lnum),'###*'))-1)\\:'='".abbreviations#eat_char('\s') : 'fold']])
-vim.cmd([[cabbrev foldx se fdm=expr fde=getline(v\:lnum)=~'<'?'>1'\:'='<left><left><left><left><left><left><left><left><left><left><left><c-r>=abbreviations#eat_char('\s')<cr>]])
+vim.cmd(
+[[cabbrev <expr> fold getcmdtype() == ':' ? "se fdm=expr fde=getline(v\\:lnum)=~'^\\\\s*##'?'>'.(len(matchstr(getline(v\\:lnum),'###*'))-1)\\:'='".abbreviations#eat_char('\s') : 'fold']])
+vim.cmd(
+[[cabbrev foldx se fdm=expr fde=getline(v\:lnum)=~'<'?'>1'\:'='<left><left><left><left><left><left><left><left><left><left><left><c-r>=abbreviations#eat_char('\s')<cr>]])
 
 vim.keymap.set('n', '<c-g>', '2<c-g>', { desc = 'print working directory' })
-vim.keymap.set('n', '<leader>8', ':call highlight#column()<cr>', { silent = true, desc = 'highlight text beyond the 80th column' })
+vim.keymap.set('n', '<leader>8', ':call highlight#column()<cr>',
+    { silent = true, desc = 'highlight text beyond the 80th column' })
 
 -- Mouse support
 vim.o.mouse = 'a'
@@ -156,8 +159,10 @@ vim.o.virtualedit = 'block'
 vim.o.paragraphs = nil -- no wrongly defined paragraphs for non nroff,groff filetypes
 
 vim.o.startofline = false
-vim.keymap.set('x', '}', [[mode() == '<c-v>' ? line("'}")-1.'G' : '}']], { expr = true, desc = 'let } select the current column only when in visual-block mode' })
-vim.keymap.set('x', '{', [[mode() == '<c-v>' ? line("'{")+1.'G' : '{']], { expr = true, desc = 'let { select the current column only when in visual-block mode' })
+vim.keymap.set('x', '}', [[mode() == '<c-v>' ? line("'}")-1.'G' : '}']],
+    { expr = true, desc = 'let } select the current column only when in visual-block mode' })
+vim.keymap.set('x', '{', [[mode() == '<c-v>' ? line("'{")+1.'G' : '{']],
+    { expr = true, desc = 'let { select the current column only when in visual-block mode' })
 
 vim.keymap.set('n', '[P', ':pu!<cr>', { desc = 'force paste above' })
 vim.keymap.set('n', ']P', ':pu<cr>', { desc = 'force paste below' })
@@ -181,8 +186,10 @@ vim.api.nvim_create_user_command('RemoveEOLSpaces',
 )
 
 -- Let [[, ]] work even when { is not in the first column
-vim.keymap.set('n', '[[', [[:call search('^\S\@=.*{\s*$', 'besW')<cr>]], { silent = true, desc = 'let [[ work even when { is not in the first column' })
-vim.keymap.set('n', ']]', [[:call search('^\S\@=.*{\s*$',  'esW')<cr>]], { silent = true, desc = 'let ]] work even when { is not in the first column' })
+vim.keymap.set('n', '[[', [[:call search('^\S\@=.*{\s*$', 'besW')<cr>]],
+    { silent = true, desc = 'let [[ work even when { is not in the first column' })
+vim.keymap.set('n', ']]', [[:call search('^\S\@=.*{\s*$',  'esW')<cr>]],
+    { silent = true, desc = 'let ]] work even when { is not in the first column' })
 
 vim.keymap.set('o', '[[',
     function()
@@ -221,7 +228,7 @@ vim.api.nvim_create_user_command('Scratch',
 )
 
 vim.api.nvim_create_user_command('Quotes',
-    function ()
+    function()
         local line = vim.fn.getline('.')
         local str_bgn = ''
         local idx = line:find('[=:]') or 0
@@ -230,10 +237,10 @@ vim.api.nvim_create_user_command('Quotes',
         end
         if idx == 0 or line:sub(idx, idx) == '=' then
             str_end = line:sub(idx + 1):gsub('([^%s,]+)%s*,?%s*', '"%1", ') -- from = to end
-            str_end = str_end:gsub('"', '("', 1):sub(1, -3) .. ')' -- add "(", then remove final ", "
+            str_end = str_end:gsub('"', '("', 1):sub(1, -3) .. ')'          -- add "(", then remove final ", "
         else
-            str_end = line:gsub('([^%s:]+)%s*(:?)%s*', '"%1"%2 ') -- "key": "value"
-            str_end = str_end:sub(1, -2) -- remove final ' '
+            str_end = line:gsub('([^%s:]+)%s*(:?)%s*', '"%1"%2 ')           -- "key": "value"
+            str_end = str_end:sub(1, -2)                                    -- remove final ' '
         end
         vim.fn.setline('.', str_bgn .. str_end)
     end,
@@ -241,7 +248,7 @@ vim.api.nvim_create_user_command('Quotes',
 )
 vim.keymap.set('n', 'goq', ':Quotes<cr>', { desc = "Quote words: coordinates = x y => coordinates = ('x', 'y')" })
 
-vim.lsp.enable({'lua-ls'})
+vim.lsp.enable({ 'lua-ls' })
 
 -- Includes
 require('noplugins')
