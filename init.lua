@@ -249,20 +249,19 @@ vim.api.nvim_create_user_command('Quotes',
 vim.keymap.set('n', 'goq', ':Quotes<cr>', { desc = "Quote words: coordinates = x y => coordinates = ('x', 'y')" })
 
 -- Diagnostics
-vim.diagnostic.config({
+vim.diagnostic.config {
     signs = {
         text = {
             [vim.diagnostic.severity.ERROR] = "",
             [vim.diagnostic.severity.WARN] = "",
             [vim.diagnostic.severity.HINT] = "",
-            -- [vim.diagnostic.severity.HINT] = "", -- TODO: find what that utf char is
             [vim.diagnostic.severity.INFO] = "",
         },
     },
     virtual_text = {
         current_line = true -- TODO: echo below! (in :...)
     },
-})
+}
 
 local icons = {
     Class = " ",
@@ -288,35 +287,6 @@ local icons = {
     Value = " ",
     Variable = " ",
 }
--- TODO: find utf text (see below)
--- {
---     Text          = "",
---     Method        = "",
---     Function      = "",
---     Constructor   = "",
---     Field         = "",
---     Variable      = "",
---     Class         = "ﴯ",
---     Interface     = "",
---     Module        = "",
---     Property      = "ﰠ",
---     Unit          = "",
---     Value         = "",
---     Enum          = "",
---     Keyword       = "",
---     Snippet       = "",
---     Color         = "",
---     File          = "",
---     Reference     = "",
---     Folder        = "",
---     EnumMember    = "",
---     Constant      = "",
---     Struct        = "",
---     Event         = "",
---     Operator      = "",
---     TypeParameter = "",
--- }
-
 
 local completion_kinds = vim.lsp.protocol.CompletionItemKind
 for i, kind in ipairs(completion_kinds) do
