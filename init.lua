@@ -129,9 +129,18 @@ vim.keymap.set({ 'n', 'x' }, '<leader>0', ':left<cr>', { desc = 'align left' })
 
 -- Tags
 vim.opt.tags:append(vim.env.REPOS_BASE .. '/tags')
+vim.o.showfulltag = true
+
+-- Completion
 vim.opt.complete:remove('i')
 vim.opt.completeopt:append { 'fuzzy', 'noinsert', 'menuone', 'preview' }
-vim.o.showfulltag = true
+
+vim.keymap.set('i', '<cr>',
+    function()
+        return vim.fn.pumvisible() == 1 and '<c-y>' or '<cr>'
+    end,
+    { expr = true, desc = '"Enter" to accept completion item' }
+)
 
 -- Windows and buffers
 vim.o.hidden = true
