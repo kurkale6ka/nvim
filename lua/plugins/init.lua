@@ -184,6 +184,8 @@ require('lazy').setup {
         end
     },
 
+    'nvim-treesitter/nvim-treesitter-context',
+
     -- Snippets
     { 'SirVer/ultisnips',
         dependencies = 'honza/vim-snippets',
