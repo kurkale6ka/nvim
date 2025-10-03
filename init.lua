@@ -133,7 +133,7 @@ vim.o.showfulltag = true
 
 -- Completion
 vim.opt.complete:remove('i')
-vim.opt.completeopt:append { 'fuzzy', 'noinsert', 'menuone', 'preview' }
+vim.opt.completeopt:append { 'fuzzy', 'menuone', 'preview' }
 
 vim.keymap.set('i', '<cr>',
     function()
@@ -388,8 +388,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         -- TODO: help for method parameters?
         if client:supports_method('textDocument/completion') then
-            client.server_capabilities.completionProvider.triggerCharacters = { '.' }
-            vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+            vim.lsp.completion.enable(true, client.id, args.buf)
 
             vim.keymap.set('i', '<c-space>', function()
                 vim.lsp.completion.get()
