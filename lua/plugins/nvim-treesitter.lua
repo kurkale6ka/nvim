@@ -6,6 +6,7 @@ require('nvim-treesitter.configs').setup {
         "dot",
         "dockerfile",
         "git_rebase",
+        "javascript",
         "json",
         "jsonc",
         "hcl",
