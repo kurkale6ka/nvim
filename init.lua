@@ -412,7 +412,7 @@ require('auto-commands/html')
 require('clipboard')
 require('readline')
 require('statusline')
-require('plugins') -- last so if a plugin errors, my config will still mostly work
+require('config.lazy') -- last so if a plugin errors, my config will still mostly work
 
 -- TODO: move above so we can set vars for plugins?
 vim.opt.runtimepath:append(vim.fn.stdpath('config') .. '/lua/local')
