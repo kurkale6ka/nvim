@@ -1,3 +1,12 @@
+-- Highlights, FIXME
+vim.api.nvim_set_hl(0, 'NvimTreeSymlink', { fg = 'cyan'})
+vim.api.nvim_set_hl(0, 'NvimTreeGitDirty', { fg = '#e55561'}) --  unstaged
+-- vim.api.nvim_set_hl(0, 'NvimTreeGitDirty', { link = 'GitSignsDelete' }) -- FIXME: not working?
+vim.api.nvim_set_hl(0, 'NvimTreeGitNew', { fg = '#e55561'}) -- ? untracked
+vim.api.nvim_set_hl(0, 'NvimTreeNormal', { fg = '#1f2329'}) -- onedark/palette/darker/bg0
+vim.api.nvim_set_hl(0, 'NvimTreeEndOfBuffer', { fg = '#1f2329', bg = '#1f2329' }) -- change eob bg + hide final tildes by using the same color
+-- vim.api.nvim_set_hl(0, 'NvimTreeEndOfBuffer', { link = 'NvimTreeNormal' }) -- FIXME: not working?
+
 local function my_attach(bufnr)
     local api = require('nvim-tree.api')
 
@@ -71,17 +80,6 @@ end
 vim.keymap.set('n', '<leader>v', ':silent! Glcd <bar> NvimTreeFindFileToggle!<cr>',
     { silent = true }
 )
-
--- Highlights, FIXME
-vim.cmd([[
-highlight NvimTreeSymlink guifg=cyan
-highlight NvimTreeGitDirty guifg=#e55561 "  unstaged
-highlight NvimTreeGitNew guifg=#e55561 " ? untracked
-" highlight link NvimTreeGitDirty GitSignsDelete " TODO: not working
-highlight NvimTreeNormal guibg=#1f2329 " onedark/palette/darker/bg0
-highlight NvimTreeEndOfBuffer guifg=#1f2329 guibg=#1f2329 " change eob bg + hide final tildes by using the same color
-" highlight link NvimTreeEndOfBuffer NvimTreeNormal " TODO: not working
-]])
 
 return {
     {

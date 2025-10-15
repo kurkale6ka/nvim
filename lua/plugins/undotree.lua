@@ -1,8 +1,3 @@
--- TODO: check
-vim.keymap.set('n', 'gou', ':UndotreeToggle<cr>', {
-    desc = 'Visualise the Undo Tree'
-})
-
 return {
     {
         'mbbill/undotree',
@@ -12,6 +7,8 @@ return {
             vim.g.undotree_DiffpanelHeight = 14
         end,
         cmd = { 'UndotreeHide', 'UndotreeShow', 'UndotreeFocus', 'UndotreeToggle' },
-        keys = 'gou'
+        keys = {
+            { 'gou', ':UndotreeToggle<cr>', desc = 'Visualise the Undo Tree' }
+        },
     }
 }

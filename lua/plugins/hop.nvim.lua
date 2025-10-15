@@ -1,6 +1,3 @@
--- FIXME: move to plugins.lua?
-vim.keymap.set('n', 'gs', ':HopWord<cr>', { desc = 'Go Search: go to a random word' })
-
 -- TODO: re-enable when these mappings respect ; , and count
 
 -- local directions = require('hop.hint').HintDirection
@@ -26,7 +23,9 @@ return {
         'smoka7/hop.nvim',
         version = "*",
         cmd = 'HopWord',
-        keys = 'gs',
+        keys = {
+            { 'gs', ':HopWord<cr>', desc = 'Go Search: go to a random word' }
+        },
         opts = {
             keys = 'etovxqpdygfblzhckisuran'
         }

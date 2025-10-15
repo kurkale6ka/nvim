@@ -1,13 +1,10 @@
+-- FIXME: links to GitSignsAdd
+vim.api.nvim_set_hl(0, 'GitSignsChangedelete', { link = 'GitSignsDelete' })
+vim.api.nvim_set_hl(0, 'GitSignsUntracked', { link = 'GitSignsDelete' })
+
 return {
     {
         'lewis6991/gitsigns.nvim',
-        -- FIXME
-        init = function()
-            vim.cmd([[
-                highlight link GitSignsChangedelete GitSignsDelete
-                highlight link GitSignsUntracked GitSignsDelete
-            ]])
-        end,
         opts = {
             signs = {
                 add          = { text = '+' },
