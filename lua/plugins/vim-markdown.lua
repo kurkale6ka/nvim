@@ -1,5 +1,6 @@
 return {
-    { 'tpope/vim-markdown',
+    {
+        'tpope/vim-markdown',
         ft = 'markdown'
     }
 }

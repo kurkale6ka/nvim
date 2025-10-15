@@ -54,11 +54,11 @@ vim.keymap.set('n', '<c-w>N', ':leftabove vnew<cr>', { silent = true })
 vim.keymap.set('n', '<c-w><c-w>', ':wincmd p<cr>', { silent = true })
 
 -- ctrl + / to goto '^' and '$'
-vim.keymap.set('n', '<c-left>',  '^')
+vim.keymap.set('n', '<c-left>', '^')
 vim.keymap.set('n', '<c-right>', '$')
-vim.keymap.set('c', '<c-left>',  '<c-b>')
+vim.keymap.set('c', '<c-left>', '<c-b>')
 vim.keymap.set('c', '<c-right>', '<c-e>')
-vim.keymap.set('i', '<c-left>',  '<c-o>^')
+vim.keymap.set('i', '<c-left>', '<c-o>^')
 vim.keymap.set('i', '<c-right>', '<c-o>$')
 
 -- ctrl +  to go up by a paragraph

@@ -1,10 +1,12 @@
+-- TODO: check
 vim.api.nvim_create_user_command('Session',
     'silent! Glcd | Obsession', {
-    desc = 'Create Session.vim in the git root folder',
-})
+        desc = 'Create Session.vim in the git root folder',
+    })
 
 return {
-    { 'tpope/vim-obsession',
+    {
+        'tpope/vim-obsession',
         cmd = 'Obsession'
     }
 }

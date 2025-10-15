@@ -1,5 +1,6 @@
 return {
-    { 'tpope/vim-characterize',
+    {
+        'tpope/vim-characterize',
         keys = 'ga'
     }
 }

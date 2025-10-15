@@ -1,3 +1,5 @@
+-- TODO: check the maps work
+
 -- Custom virtualedit toggle
 vim.keymap.set('n', 'yov', ":se <C-R>=(&ve != 'all') ? 've=all' : 've=block'<CR><CR>")
 
@@ -29,3 +31,10 @@ vim.keymap.set('n', 'yok',
     end,
     { desc = '"Kill to eol" toggle' }
 )
+
+return {
+    {
+        'tpope/vim-unimpaired',
+        event = "VeryLazy",
+    }
+}

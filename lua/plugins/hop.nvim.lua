@@ -1,6 +1,4 @@
-local hop = require('hop')
-hop.setup()
-
+-- FIXME: move to plugins.lua?
 vim.keymap.set('n', 'gs', ':HopWord<cr>', { desc = 'Go Search: go to a random word' })
 
 -- TODO: re-enable when these mappings respect ; , and count
@@ -22,3 +20,15 @@ vim.keymap.set('n', 'gs', ':HopWord<cr>', { desc = 'Go Search: go to a random wo
 -- vim.keymap.set('n', 'T', function()
 --     hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
 -- end, { remap = true })
+
+return {
+    {
+        'smoka7/hop.nvim',
+        version = "*",
+        cmd = 'HopWord',
+        keys = 'gs',
+        opts = {
+            keys = 'etovxqpdygfblzhckisuran'
+        }
+    }
+}

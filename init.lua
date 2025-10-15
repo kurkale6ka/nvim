@@ -398,7 +398,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 vim.lsp.enable {
-    'lua-ls',
+    'lua_ls',
     'pyright',
     'ts_ls'
 }
@@ -413,6 +413,7 @@ require('clipboard')
 require('readline')
 require('statusline')
 require('config.lazy') -- last so if a plugin errors, my config will still mostly work
+require('onedark').load()
 
 -- TODO: move above so we can set vars for plugins?
 vim.opt.runtimepath:append(vim.fn.stdpath('config') .. '/lua/local')
