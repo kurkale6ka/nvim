@@ -21,13 +21,13 @@
 return {
     {
         'smoka7/hop.nvim',
-        version = "*",
+        version = '*',
         cmd = 'HopWord',
         keys = {
-            { 'gs', ':HopWord<cr>', desc = 'Go Search: go to a random word' }
+            { 'gs', ':HopWord<cr>', desc = 'Go Search: go to a random word' },
         },
         opts = {
-            keys = 'etovxqpdygfblzhckisuran'
-        }
-    }
+            keys = 'etovxqpdygfblzhckisuran',
+        },
+    },
 }

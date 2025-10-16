@@ -4,6 +4,6 @@ return {
         cmd = 'Commentary',
         keys = {
             { 'gc', mode = { 'o', 'n', 'x' } },
-        }
-    }
+        },
+    },
 }

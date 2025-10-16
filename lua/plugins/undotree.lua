@@ -8,7 +8,7 @@ return {
         end,
         cmd = { 'UndotreeHide', 'UndotreeShow', 'UndotreeFocus', 'UndotreeToggle' },
         keys = {
-            { 'gou', ':UndotreeToggle<cr>', desc = 'Visualise the Undo Tree' }
+            { 'gou', ':UndotreeToggle<cr>', desc = 'Visualise the Undo Tree' },
         },
-    }
+    },
 }

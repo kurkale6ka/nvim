@@ -17,7 +17,7 @@ return {
             'SudoEdit',
             'SudoWrite',
             'Unlink',
-            'Wall'
-        }
-    }
+            'Wall',
+        },
+    },
 }

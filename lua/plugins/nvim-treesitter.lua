@@ -2,14 +2,14 @@ return {
     {
         'nvim-treesitter/nvim-treesitter',
         lazy = false,
-        build = ":TSUpdate",
+        build = ':TSUpdate',
         dependencies = {
             'nvim-treesitter/nvim-treesitter-textobjects',
             {
                 'nvim-treesitter/playground',
                 build = ':TSInstall query',
-                cmd = 'TSPlaygroundToggle'
-            }
+                cmd = 'TSPlaygroundToggle',
+            },
         },
         init = function()
             -- TODO: check
@@ -17,22 +17,22 @@ return {
             vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
             vim.wo.foldenable = false
         end,
-        main = "nvim-treesitter.configs",
+        main = 'nvim-treesitter.configs',
         opts = {
             ensure_installed = {
-                "bash",
-                "git_rebase",
-                "javascript",
-                "json",
-                "jsonc",
-                "hcl",
-                "vimdoc",
-                "lua",
-                "markdown",
-                "python",
-                "terraform",
-                "vim",
-                "yaml",
+                'bash',
+                'git_rebase',
+                'javascript',
+                'json',
+                'jsonc',
+                'hcl',
+                'vimdoc',
+                'lua',
+                'markdown',
+                'python',
+                'terraform',
+                'vim',
+                'yaml',
             },
 
             -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -55,10 +55,10 @@ return {
             incremental_selection = {
                 enable = true,
                 keymaps = {
-                    init_selection    = "<c-leader>",     -- set to `false` to disable one of the mappings, TODO: map not working
-                    node_incremental  = "grn",
-                    scope_incremental = "grc",
-                    node_decremental  = "grm",
+                    init_selection = '<c-leader>', -- set to `false` to disable one of the mappings, TODO: map not working
+                    node_incremental = 'grn',
+                    scope_incremental = 'grc',
+                    node_decremental = 'grm',
                 },
             },
             indent = {
@@ -68,12 +68,12 @@ return {
             query_linter = {
                 enable = true,
                 use_virtual_text = true,
-                lint_events = { "BufWrite", "CursorHold" },
+                lint_events = { 'BufWrite', 'CursorHold' },
             },
             textobjects = {
                 select = {
                     enable = true,
-                    lookahead = true,     -- Automatically jump forward to textobj, similar to targets.vim
+                    lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
                     keymaps = {
                         -- You can use the capture groups defined in textobjects.scm
                         -- ['ia'] = '@attribute.inner',
@@ -85,16 +85,16 @@ return {
                         ['ic'] = '@class.inner',
                         ['ac'] = '@class.outer',
                         -- ['ac'] = '@comment.outer',
-                        ['ii'] = '@conditional.inner',     -- inner if
+                        ['ii'] = '@conditional.inner', -- inner if
                         ['ai'] = '@conditional.outer',
                         -- ['if'] = '@frame.inner', -- taken: I use 'if' for 'inner file'
                         -- ['af'] = '@frame.outer',
-                        ['im'] = '@function.inner',     -- method
+                        ['im'] = '@function.inner', -- method
                         ['am'] = '@function.outer',
                         ['il'] = '@loop.inner',
                         ['al'] = '@loop.outer',
                         ['in'] = '@number.inner',
-                        ['ia'] = '@parameter.inner',     -- argument
+                        ['ia'] = '@parameter.inner', -- argument
                         ['aa'] = '@parameter.outer',
                         -- ['is'] = '@scope.inner',
                         -- ['as'] = '@statement.outer', -- taken: sentence
@@ -102,7 +102,7 @@ return {
                 },
                 move = {
                     enable = true,
-                    set_jumps = true,     -- whether to set jumps in the jumplist
+                    set_jumps = true, -- whether to set jumps in the jumplist
                     goto_next_start = {
                         [']m'] = '@function.outer',
                         -- [']c'] = '@class.outer', -- used to jump to diffs with unimpaired, might still work for bothe. TODO: test
@@ -128,8 +128,8 @@ return {
                     swap_previous = {
                         ['<leader>X'] = '@parameter.inner',
                     },
-                }
-            }
-        }
-    }
+                },
+            },
+        },
+    },
 }

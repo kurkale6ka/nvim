@@ -21,13 +21,11 @@ return {
                     statusline = 1000,
                     tabline = 1000,
                     winbar = 1000,
-                }
+                },
             },
             sections = {
                 lualine_a = { -- paste mode
-                    function()
-                        return vim.o.paste and '-- paste --' or ''
-                    end
+                    function() return vim.o.paste and '-- paste --' or '' end,
                 },
                 lualine_b = {
                     {
@@ -44,14 +42,14 @@ return {
                         end,
                         symbols = {
                             readonly = '[RO]',
-                        }
+                        },
                     },
                     { 'branch', icon = '', color = { fg = '#18a558' } },
                 },
                 lualine_c = {
                     'diagnostics',
-                    { 'searchcount', color = { fg = '#e8c88c' } },                  -- :hi Search
-                    { '%v',          fmt = function(str) return 'col:' .. str end } -- current column
+                    { 'searchcount', color = { fg = '#e8c88c' } }, -- :hi Search
+                    { '%v', fmt = function(str) return 'col:' .. str end }, -- current column
                 },
                 lualine_x = {
                     { -- LSP server name
@@ -59,9 +57,7 @@ return {
                             local msg = 'no LSP'
                             local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
                             local clients = vim.lsp.get_clients()
-                            if next(clients) == nil then
-                                return msg
-                            end
+                            if next(clients) == nil then return msg end
                             for _, client in ipairs(clients) do
                                 local filetypes = client.config.filetypes
                                 if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
@@ -70,30 +66,30 @@ return {
                             end
                             return msg
                         end,
-                        icon = ''
+                        icon = '',
                     },
                     { -- encoding
                         function()
-                            local enc, _ = (vim.bo.fenc or vim.go.enc):gsub("^utf%-8$", "")
+                            local enc, _ = (vim.bo.fenc or vim.go.enc):gsub('^utf%-8$', '')
                             return enc
                         end,
-                        color = { fg = red }
+                        color = { fg = red },
                     },
                     { -- fileformat
                         function()
-                            local ff, _ = vim.bo.fileformat:gsub("^unix$", "")
+                            local ff, _ = vim.bo.fileformat:gsub('^unix$', '')
                             return ff
                         end,
                         color = { fg = red },
-                        icon = '␤'
+                        icon = '␤',
                     },
                     'diff',
                 },
                 lualine_y = {
                     { 'filetype', color = { fg = '#ffab60' } },
-                    'progress'
+                    'progress',
                 },
-                lualine_z = {}
+                lualine_z = {},
             },
             inactive_sections = {
                 lualine_a = {},
@@ -101,12 +97,12 @@ return {
                 lualine_c = { 'filename' },
                 lualine_x = { 'location' },
                 lualine_y = {},
-                lualine_z = {}
+                lualine_z = {},
             },
             tabline = {},
             winbar = {},
             inactive_winbar = {},
-            extensions = {}
-        }
-    }
+            extensions = {},
+        },
+    },
 }

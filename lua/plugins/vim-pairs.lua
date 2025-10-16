@@ -1,3 +1,3 @@
 return {
-    'kurkale6ka/vim-pairs'
+    'kurkale6ka/vim-pairs',
 }

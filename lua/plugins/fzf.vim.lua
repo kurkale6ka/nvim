@@ -1,7 +1,7 @@
 return {
     {
         'junegunn/fzf.vim',
-        event = "VeryLazy",
+        event = 'VeryLazy',
         dependencies = 'junegunn/fzf',
-    }
+    },
 }
