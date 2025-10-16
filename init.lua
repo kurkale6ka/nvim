@@ -21,11 +21,11 @@ vim.keymap.set('n', '<leader>-', '<c-^>', { desc = 'switch to the alternate file
 vim.keymap.set('n', '<leader>a', ':A<cr>', { desc = 'switch to projectionist-alternate' })
 
 -- Search and replace
-vim.o.incsearch  = true
-vim.o.hlsearch   = true
+vim.o.incsearch = true
+vim.o.hlsearch = true
 vim.o.ignorecase = true
-vim.o.smartcase  = true
-vim.o.infercase  = true
+vim.o.smartcase = true
+vim.o.infercase = true
 
 vim.o.inccommand = 'nosplit'
 vim.opt.path:append(vim.env.REPOS_BASE .. '/**')
@@ -58,10 +58,10 @@ vim.o.lazyredraw = true
 vim.o.scrolloff = 2
 vim.o.sidescroll = 1
 vim.o.sidescrolloff = 1
-vim.o.timeoutlen = 2000   -- 2s before timing out a mapping (twice the default, else I fail to complete some maps)
-vim.o.ttimeoutlen = 100   -- 100 ms before timing out on a keypress (..^)
-vim.o.visualbell = true   -- visual bell instead of beeps, but...
-vim.o.linebreak = true    -- wrap at characters in 'breakat
+vim.o.timeoutlen = 2000 -- 2s before timing out a mapping (twice the default, else I fail to complete some maps)
+vim.o.ttimeoutlen = 100 -- 100 ms before timing out on a keypress (..^)
+vim.o.visualbell = true -- visual bell instead of beeps, but...
+vim.o.linebreak = true -- wrap at characters in 'breakat
 vim.wo.breakindent = true -- respect indentation when wrapping
 vim.o.showbreak = '↪ '
 vim.opt.listchars = { precedes = '<', tab = '▷⋅', nbsp = '⋅', trail = '⋅', extends = '>' }
@@ -72,22 +72,27 @@ if not vim.wo.diff then
     vim.wo.cursorline = true -- unless nvim -d was used, ref: https://github.com/neovim/neovim/issues/9800
 end
 
-vim.api.nvim_create_user_command('Ascii',
-    'call ascii#codes(<f-args>)', {
-        nargs = '*',
-        desc = 'Print a range of ascii characters. Ex: Ascii 30 50',
-    })
+vim.api.nvim_create_user_command('Ascii', 'call ascii#codes(<f-args>)', {
+    nargs = '*',
+    desc = 'Print a range of ascii characters. Ex: Ascii 30 50',
+})
 
 -- folding
 vim.wo.foldnestmax = 1 -- maximum nesting for indent and syntax
 vim.cmd(
-    [[cabbrev <expr> fold getcmdtype() == ':' ? "se fdm=expr fde=getline(v\\:lnum)=~'^\\\\s*##'?'>'.(len(matchstr(getline(v\\:lnum),'###*'))-1)\\:'='".abbreviations#eat_char('\s') : 'fold']])
+    [[cabbrev <expr> fold getcmdtype() == ':' ? "se fdm=expr fde=getline(v\\:lnum)=~'^\\\\s*##'?'>'.(len(matchstr(getline(v\\:lnum),'###*'))-1)\\:'='".abbreviations#eat_char('\s') : 'fold']]
+)
 vim.cmd(
-    [[cabbrev foldx se fdm=expr fde=getline(v\:lnum)=~'<'?'>1'\:'='<left><left><left><left><left><left><left><left><left><left><left><c-r>=abbreviations#eat_char('\s')<cr>]])
+    [[cabbrev foldx se fdm=expr fde=getline(v\:lnum)=~'<'?'>1'\:'='<left><left><left><left><left><left><left><left><left><left><left><c-r>=abbreviations#eat_char('\s')<cr>]]
+)
 
 vim.keymap.set('n', '<c-g>', '2<c-g>', { desc = 'print working directory' })
-vim.keymap.set('n', '<leader>8', ':call highlight#column()<cr>',
-    { silent = true, desc = 'highlight text beyond the 80th column' })
+vim.keymap.set(
+    'n',
+    '<leader>8',
+    ':call highlight#column()<cr>',
+    { silent = true, desc = 'highlight text beyond the 80th column' }
+)
 
 -- Mouse support
 vim.o.mouse = 'a'
@@ -110,7 +115,8 @@ vim.keymap.set('n', '=<leader>', '[<leader>]<leader>', { remap = true, desc = 's
 -- imap <c-cr> <esc>o
 -- imap <s-cr> <esc>O
 
-vim.api.nvim_create_user_command('Underline',
+vim.api.nvim_create_user_command(
+    'Underline',
     'call underline#current(<q-args>)', -- TODO: function() ... args?
     { nargs = '?', desc = 'Underline with dashes by default' }
 )
@@ -135,10 +141,10 @@ vim.o.showfulltag = true
 vim.opt.complete:remove('i')
 vim.opt.completeopt:append { 'fuzzy', 'menuone', 'preview' }
 
-vim.keymap.set('i', '<cr>',
-    function()
-        return vim.fn.pumvisible() == 1 and '<c-y>' or '<cr>'
-    end,
+vim.keymap.set(
+    'i',
+    '<cr>',
+    function() return vim.fn.pumvisible() == 1 and '<c-y>' or '<cr>' end,
     { expr = true, desc = '"Enter" to accept completion item' }
 )
 
@@ -168,10 +174,18 @@ vim.o.virtualedit = 'block'
 vim.o.paragraphs = nil -- no wrongly defined paragraphs for non nroff,groff filetypes
 
 vim.o.startofline = false
-vim.keymap.set('x', '}', [[mode() == '<c-v>' ? line("'}")-1.'G' : '}']],
-    { expr = true, desc = 'let } select the current column only when in visual-block mode' })
-vim.keymap.set('x', '{', [[mode() == '<c-v>' ? line("'{")+1.'G' : '{']],
-    { expr = true, desc = 'let { select the current column only when in visual-block mode' })
+vim.keymap.set(
+    'x',
+    '}',
+    [[mode() == '<c-v>' ? line("'}")-1.'G' : '}']],
+    { expr = true, desc = 'let } select the current column only when in visual-block mode' }
+)
+vim.keymap.set(
+    'x',
+    '{',
+    [[mode() == '<c-v>' ? line("'{")+1.'G' : '{']],
+    { expr = true, desc = 'let { select the current column only when in visual-block mode' }
+)
 
 vim.keymap.set('n', '[P', ':pu!<cr>', { desc = 'force paste above' })
 vim.keymap.set('n', ']P', ':pu<cr>', { desc = 'force paste below' })
@@ -187,114 +201,109 @@ vim.keymap.set('n', '<c-h>', '"_X', { desc = 'use backspace for deleting' })
 vim.keymap.set('x', 'af', 'ggVoG', { desc = 'whole file text-object' })
 vim.keymap.set('o', 'af', ':normal vaf<cr>', { desc = 'whole file text-object' })
 
-vim.api.nvim_create_user_command('RemoveEOLSpaces',
-    function()
-        vim.fn['spaces#remove']()
-    end,
+vim.api.nvim_create_user_command(
+    'RemoveEOLSpaces',
+    function() vim.fn['spaces#remove']() end,
     { desc = 'remove EOL spaces' }
 )
 
 -- Let [[, ]] work even when { is not in the first column
-vim.keymap.set('n', '[[', [[:call search('^\S\@=.*{\s*$', 'besW')<cr>]],
-    { silent = true, desc = 'let [[ work even when { is not in the first column' })
-vim.keymap.set('n', ']]', [[:call search('^\S\@=.*{\s*$',  'esW')<cr>]],
-    { silent = true, desc = 'let ]] work even when { is not in the first column' })
-
-vim.keymap.set('o', '[[',
-    function()
-        if vim.fn.search([[^\S\@=.*{\s*$]], 'besW') ~= 0 and vim.fn.setpos("''", vim.fn.getpos('.')) == 0
-        then
-            return "''"
-        else
-            return [[\<esc>]]
-        end
-    end,
-    { expr = true, desc = 'let [[ work even when { is not in the first column' }
+vim.keymap.set(
+    'n',
+    '[[',
+    [[:call search('^\S\@=.*{\s*$', 'besW')<cr>]],
+    { silent = true, desc = 'let [[ work even when { is not in the first column' }
+)
+vim.keymap.set(
+    'n',
+    ']]',
+    [[:call search('^\S\@=.*{\s*$',  'esW')<cr>]],
+    { silent = true, desc = 'let ]] work even when { is not in the first column' }
 )
 
-vim.keymap.set('o', ']]',
-    function()
-        if vim.fn.search([[^\S\@=.*{\s*$]], 'esW') ~= 0 and vim.fn.setpos("''", vim.fn.getpos('.')) == 0
-        then
-            return "''"
-        else
-            return [[\<esc>]]
-        end
-    end,
-    { expr = true, desc = 'let ]] work even when { is not in the first column' }
-)
+vim.keymap.set('o', '[[', function()
+    if vim.fn.search([[^\S\@=.*{\s*$]], 'besW') ~= 0 and vim.fn.setpos("''", vim.fn.getpos('.')) == 0 then
+        return "''"
+    else
+        return [[\<esc>]]
+    end
+end, { expr = true, desc = 'let [[ work even when { is not in the first column' })
+
+vim.keymap.set('o', ']]', function()
+    if vim.fn.search([[^\S\@=.*{\s*$]], 'esW') ~= 0 and vim.fn.setpos("''", vim.fn.getpos('.')) == 0 then
+        return "''"
+    else
+        return [[\<esc>]]
+    end
+end, { expr = true, desc = 'let ]] work even when { is not in the first column' })
 
 -- Spell check suggestions
 vim.keymap.set('n', '<leader>1', '1z=', { desc = 'Replace with 1st spell suggestion' })
 vim.keymap.set('n', '<leader>2', '2z=', { desc = 'Replace with 2nd spell suggestion' })
 
 -- Get ex command output in a buffer
-vim.api.nvim_create_user_command('Scratch',
-    function(input)
-        vim.fn['scratch#buffer'](input.args)
-    end,
+vim.api.nvim_create_user_command(
+    'Scratch',
+    function(input) vim.fn['scratch#buffer'](input.args) end,
     { nargs = '+', desc = 'Get ex command output in a buffer' }
 )
 
-vim.api.nvim_create_user_command('Quotes',
-    function()
-        local line = vim.fn.getline('.')
-        local str_bgn = ''
-        local idx = line:find('[=:]') or 0
-        if line:sub(idx, idx) == '=' then
-            str_bgn = line:sub(1, idx) -- from start to =
-        end
-        if idx == 0 or line:sub(idx, idx) == '=' then
-            str_end = line:sub(idx + 1):gsub('([^%s,]+)%s*,?%s*', '"%1", ') -- from = to end
-            str_end = str_end:gsub('"', '("', 1):sub(1, -3) .. ')'          -- add "(", then remove final ", "
-        else
-            str_end = line:gsub('([^%s:]+)%s*(:?)%s*', '"%1"%2 ')           -- "key": "value"
-            str_end = str_end:sub(1, -2)                                    -- remove final ' '
-        end
-        vim.fn.setline('.', str_bgn .. str_end)
-    end,
-    { desc = 'Quote words: coordinates = x y => coordinates = ("x", "y"); key: value => "key": "value"' }
-)
+vim.api.nvim_create_user_command('Quotes', function()
+    local line = vim.fn.getline('.')
+    local str_bgn = ''
+    local idx = line:find('[=:]') or 0
+    if line:sub(idx, idx) == '=' then
+        str_bgn = line:sub(1, idx) -- from start to =
+    end
+    if idx == 0 or line:sub(idx, idx) == '=' then
+        str_end = line:sub(idx + 1):gsub('([^%s,]+)%s*,?%s*', '"%1", ') -- from = to end
+        str_end = str_end:gsub('"', '("', 1):sub(1, -3) .. ')' -- add "(", then remove final ", "
+    else
+        str_end = line:gsub('([^%s:]+)%s*(:?)%s*', '"%1"%2 ') -- "key": "value"
+        str_end = str_end:sub(1, -2) -- remove final ' '
+    end
+    vim.fn.setline('.', str_bgn .. str_end)
+end, { desc = 'Quote words: coordinates = x y => coordinates = ("x", "y"); key: value => "key": "value"' })
 vim.keymap.set('n', 'goq', ':Quotes<cr>', { desc = "Quote words: coordinates = x y => coordinates = ('x', 'y')" })
 
 -- Diagnostics
 vim.diagnostic.config {
     signs = {
         text = {
-            [vim.diagnostic.severity.ERROR] = "",
-            [vim.diagnostic.severity.WARN] = "",
-            [vim.diagnostic.severity.HINT] = "",
-            [vim.diagnostic.severity.INFO] = "",
+            [vim.diagnostic.severity.ERROR] = '',
+            [vim.diagnostic.severity.WARN] = '',
+            [vim.diagnostic.severity.HINT] = '',
+            [vim.diagnostic.severity.INFO] = '',
         },
     },
     virtual_text = {
-        current_line = true -- TODO: echo below! (in :...)
+        current_line = true, -- TODO: echo below! (in :...)
     },
 }
 
 local icons = {
-    Class = " ",
-    Color = " ",
-    Constant = " ",
-    Constructor = " ",
-    Enum = " ",
-    EnumMember = " ",
-    Event = " ",
-    Field = " ",
-    File = " ",
-    Folder = " ",
-    Function = "󰊕 ",
-    Interface = " ",
-    Keyword = " ",
-    Method = "ƒ ",
-    Module = "󰏗 ",
-    Property = " ",
-    Snippet = " ",
-    Struct = " ",
-    Text = " ",
-    Unit = " ",
-    Value = " ",
-    Variable = " ",
+    Class = ' ',
+    Color = ' ',
+    Constant = ' ',
+    Constructor = ' ',
+    Enum = ' ',
+    EnumMember = ' ',
+    Event = ' ',
+    Field = ' ',
+    File = ' ',
+    Folder = ' ',
+    Function = '󰊕 ',
+    Interface = ' ',
+    Keyword = ' ',
+    Method = 'ƒ ',
+    Module = '󰏗 ',
+    Property = ' ',
+    Snippet = ' ',
+    Struct = ' ',
+    Text = ' ',
+    Unit = ' ',
+    Value = ' ',
+    Variable = ' ',
 }
 
 local completion_kinds = vim.lsp.protocol.CompletionItemKind
@@ -329,10 +338,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         vim.keymap.set('n', '<localleader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
         vim.keymap.set('n', '<localleader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-        vim.keymap.set('n', '<localleader>wl',
-            function()
-                print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-            end,
+        vim.keymap.set(
+            'n',
+            '<localleader>wl',
+            function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
             bufopts
         )
 
@@ -341,35 +350,26 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
         vim.keymap.set('n', '<leader>r', vim.lsp.buf.references, bufopts)
 
-        -- TODO: merge?
-        vim.keymap.set('n', '<leader>f', function()
-            require("conform").format({ async = true })
-        end, bufopts)
-
-        if client:supports_method('textDocument/documentHighlight')
-        then
+        if client:supports_method('textDocument/documentHighlight') then
             vim.o.updatetime = 250
 
-            local cursor = vim.api.nvim_create_augroup("Auto highlight occurences of word under cursor", { clear = true })
+            local cursor =
+                vim.api.nvim_create_augroup('Auto highlight occurences of word under cursor', { clear = true })
 
             vim.api.nvim_set_hl(0, 'LspReferenceRead', { link = 'Visual' })
             vim.api.nvim_set_hl(0, 'LspReferenceText', { link = 'Visual' })
             vim.api.nvim_set_hl(0, 'LspReferenceWrite', { link = 'Visual' })
 
-            vim.api.nvim_create_autocmd("CursorHold", {
-                callback = function()
-                    vim.lsp.buf.document_highlight()
-                end,
+            vim.api.nvim_create_autocmd('CursorHold', {
+                callback = function() vim.lsp.buf.document_highlight() end,
                 buffer = args.buf,
-                group = cursor
+                group = cursor,
             })
 
-            vim.api.nvim_create_autocmd("CursorMoved", {
-                callback = function()
-                    vim.lsp.buf.clear_references()
-                end,
+            vim.api.nvim_create_autocmd('CursorMoved', {
+                callback = function() vim.lsp.buf.clear_references() end,
                 buffer = args.buf,
-                group = cursor
+                group = cursor,
             })
         end
 
@@ -377,18 +377,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
         if client:supports_method('textDocument/completion') then
             vim.lsp.completion.enable(true, client.id, args.buf)
 
-            vim.keymap.set('i', '<c-space>', function()
-                vim.lsp.completion.get()
-            end)
+            vim.keymap.set('i', '<c-space>', function() vim.lsp.completion.get() end)
         end
     end,
 })
 
 vim.lsp.enable {
+    'bashls',
     'lua_ls',
     'pyright',
     'ruff',
-    'ts_ls'
+    'ts_ls',
 }
 
 -- Includes
