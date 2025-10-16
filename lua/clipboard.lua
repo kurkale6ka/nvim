@@ -1,7 +1,7 @@
 -- This option slows copy/paste down. Instead, use "*/"+ to copy to the terminal
 -- vim.o.clipboard = 'unnamed,unnamedplus'
 
-if vim.fn.executable('clip.exe') then
+if vim.fn.executable('clip.exe') == 1 then
     vim.g.clipboard = {
         name = 'WslClipboard',
         copy = {
