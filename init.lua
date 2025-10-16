@@ -363,11 +363,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
             local cursor = vim.api.nvim_create_augroup("Auto highlight occurences of word under cursor", { clear = true })
 
-            vim.cmd([[
-                highlight link LspReferenceRead Visual
-                highlight link LspReferenceText Visual
-                highlight link LspReferenceWrite Visual
-            ]])
+            vim.api.nvim_set_hl(0, 'LspReferenceRead', { link = 'Visual' })
+            vim.api.nvim_set_hl(0, 'LspReferenceText', { link = 'Visual' })
+            vim.api.nvim_set_hl(0, 'LspReferenceWrite', { link = 'Visual' })
 
             vim.api.nvim_create_autocmd("CursorHold", {
                 callback = function()
@@ -400,6 +398,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 vim.lsp.enable {
     'lua_ls',
     'pyright',
+    'ruff',
     'ts_ls'
 }
 
