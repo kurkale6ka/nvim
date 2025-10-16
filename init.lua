@@ -342,20 +342,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', '<leader>r', vim.lsp.buf.references, bufopts)
 
         -- TODO: merge?
-        vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
-
-        vim.api.nvim_buf_create_user_command(args.buf, 'Format',
-            function(l_args)
-                vim.lsp.buf.format {
-                    async = true,
-                    range = {
-                        ['start'] = { l_args.line1, 0 }, -- TODO: not sure why start without the wraps doesn't work
-                        ['end'] = { l_args.line2, 0 }
-                    }
-                }
-            end,
-            { range = '%', desc = 'Format current buffer with LSP' }
-        )
+        vim.keymap.set('n', '<leader>f', function()
+            require("conform").format({ async = true })
+        end, bufopts)
 
         if client:supports_method('textDocument/documentHighlight')
         then
