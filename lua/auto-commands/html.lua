@@ -1,4 +1,4 @@
-local html = vim.api.nvim_create_augroup("HTML-family", { clear = true })
+local html = vim.api.nvim_create_augroup('HTML-family', { clear = true })
 
 vim.api.nvim_create_autocmd('FileType', {
     pattern = { 'html', 'phtml', 'xhtml' },
