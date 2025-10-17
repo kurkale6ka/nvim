@@ -1,35 +1,27 @@
-local comments = vim.api.nvim_create_augroup("Comments", { clear = true })
+local comments = vim.api.nvim_create_augroup('Comments', { clear = true })
 
 -- Comment strings
 vim.api.nvim_create_autocmd('FileType', {
     pattern = { 'c', 'cpp', 'cs', 'dot', 'arduino' },
-    callback = function()
-        vim.bo.commentstring = '//%s'
-    end,
+    callback = function() vim.bo.commentstring = '//%s' end,
     group = comments,
 })
 
 vim.api.nvim_create_autocmd('FileType', {
     pattern = { 'sql' },
-    callback = function()
-        vim.bo.commentstring = '--%s'
-    end,
+    callback = function() vim.bo.commentstring = '--%s' end,
     group = comments,
 })
 
 vim.api.nvim_create_autocmd('FileType', {
     pattern = { 'bindzone' },
-    callback = function()
-        vim.bo.commentstring = ';%s'
-    end,
+    callback = function() vim.bo.commentstring = ';%s' end,
     group = comments,
 })
 
 vim.api.nvim_create_autocmd('FileType', {
     pattern = { 'xdefaults' },
-    callback = function()
-        vim.bo.commentstring = '!%s'
-    end,
+    callback = function() vim.bo.commentstring = '!%s' end,
     group = comments,
 })
 

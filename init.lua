@@ -311,18 +311,6 @@ for i, kind in ipairs(completion_kinds) do
     completion_kinds[i] = icons[kind] and icons[kind] .. kind or kind
 end
 
--- TODO: what's this?
--- vim.lsp.config('*', {
---     capabilities = {
---         textDocument = {
---             semanticTokens = {
---                 multilineTokenSupport = true,
---             }
---         }
---     },
---     root_markers = { '.git' },
--- })
-
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('my.lsp', {}),
     callback = function(args)

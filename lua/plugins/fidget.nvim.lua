@@ -3,6 +3,8 @@
 return {
     {
         'j-hui/fidget.nvim',
-        opts = {},
+        opts = {
+            notification = { window = { avoid = { 'NvimTree' } } },
+        },
     },
 }

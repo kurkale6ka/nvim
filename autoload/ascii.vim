@@ -7,7 +7,9 @@
 function! ascii#codes (...)
 
     if a:0 == 0
-        view $XDG_CONFIG_HOME/nvim/local/ascii
+        echohl ErrorMsg
+        echomsg 'Usage: Ascii start [end], e.g. Ascii 32 39'
+        echohl None
         return
     endif
 
