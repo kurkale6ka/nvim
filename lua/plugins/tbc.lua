@@ -1,12 +1,5 @@
--- TODO: add more verylazy
+-- TODO: add more VeryLazy
 return {
-    -- colors
-    {
-        'norcalli/nvim-colorizer.lua',
-        lazy = true,
-        opts = {},
-    },
-
     {
         'glacambre/firenvim',
         build = ':call firenvim#install(0)',
