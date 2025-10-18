@@ -21,17 +21,17 @@ return {
         opts = {
             ensure_installed = {
                 'bash',
+                'css',
                 'git_rebase',
                 'javascript',
                 'json',
                 'jsonc',
                 'hcl',
-                'vimdoc',
                 'lua',
                 'markdown',
                 'python',
-                'terraform',
                 'vim',
+                'vimdoc',
                 'yaml',
             },
 
