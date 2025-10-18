@@ -330,43 +330,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 group = cursor,
             })
         end
-
-        -- TODO: help for method parameters?
-        if client:supports_method('textDocument/completion') then
-            local icons = {
-                Class = ' ',
-                Color = ' ',
-                Constant = ' ',
-                Constructor = ' ',
-                Enum = ' ',
-                EnumMember = ' ',
-                Event = ' ',
-                Field = ' ',
-                File = ' ',
-                Folder = ' ',
-                Function = '󰊕 ',
-                Interface = ' ',
-                Keyword = ' ',
-                Method = 'ƒ ',
-                Module = '󰏗 ',
-                Property = ' ',
-                Snippet = ' ',
-                Struct = ' ',
-                Text = ' ',
-                Unit = ' ',
-                Value = ' ',
-                Variable = ' ',
-            }
-
-            local completion_kinds = vim.lsp.protocol.CompletionItemKind
-            for i, kind in ipairs(completion_kinds) do
-                completion_kinds[i] = icons[kind] and icons[kind] .. kind or kind
-            end
-
-            vim.lsp.completion.enable(true, client.id, args.buf)
-
-            vim.keymap.set('i', '<c-space>', function() vim.lsp.completion.get() end)
-        end
     end,
 })
 
