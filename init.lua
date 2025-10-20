@@ -350,9 +350,9 @@ require('auto-commands/html')
 require('clipboard')
 require('readline')
 require('statusline')
-require('config.lazy') -- last so if a plugin errors, my config will still mostly work
+require('config/lazy') -- last so if a plugin errors, my config will still mostly work
 require('onedark').load()
 
--- TODO: move above so we can set vars for plugins?
+-- Custom setup
 vim.opt.runtimepath:append(vim.fn.stdpath('config') .. '/lua/local')
-pcall(require, 'local') -- custom setup
+pcall(require, 'local')

@@ -23,10 +23,7 @@ return {
 
     -- TODO: 'bfredl/nvim-miniyank', {}
     { 'pearofducks/ansible-vim', lazy = true }, -- let g:ansible_attribute_highlight = "ab"
-    { 'rodjek/vim-puppet', lazy = true },
-    { 'terceiro/vim-foswiki', lazy = true },
     { 'vim-scripts/iptables', lazy = true },
     { 'vim-scripts/nginx.vim', lazy = true },
-    { 'StanAngeloff/php.vim', lazy = true },
     { 'tmux-plugins/vim-tmux', lazy = true },
 }
