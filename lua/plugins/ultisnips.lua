@@ -5,7 +5,7 @@ return {
         'SirVer/ultisnips',
         dependencies = 'honza/vim-snippets',
         init = function()
-            vim.g.UltiSnipsSnippetDirectories = { 'UltiSnips', ulti_snips }
+            vim.g.UltiSnipsSnippetDirectories = { ulti_snips, 'UltiSnips' }
             vim.g.UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit = ulti_snips
             vim.g.UltiSnipsEnableSnipMate = false
             vim.g.UltiSnipsListSnippets = '<c-r><tab>'
