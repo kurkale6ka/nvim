@@ -35,8 +35,8 @@ vim.keymap.set('n', '<leader>G', ':g/<c-r><c-a>/', { desc = ':g/WORD/' })
 vim.keymap.set('n', '<leader>S', ':%s/<c-r><c-a>//g<left><left>', { desc = ':%s/WORD/|/g' })
 
 -- tilda is hard to type, :eh<space> -> :e~/
-vim.cmd([[cabbrev <expr> eh getcmdtype() == ':' ? 'e~/'.abbreviations#eat_char('\s') : 'eh']])
-vim.cmd([[cabbrev <expr> es getcmdtype() == ':' ? 'e%:p:s/'.abbreviations#eat_char('\s') : 'es']])
+vim.keymap.set('ca', 'eh', "getcmdtype() == ':' ? 'e~/'.abbreviations#eat_char('\\s') : 'eh'", { expr = true })
+vim.keymap.set('ca', 'es', "getcmdtype() == ':' ? 'e%:p:s/'.abbreviations#eat_char('\\s') : 'es'", { expr = true })
 
 -- Encoding and file formats
 vim.opt.fileencodings:append('cp1251')
