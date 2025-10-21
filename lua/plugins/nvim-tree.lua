@@ -1,3 +1,5 @@
+-- TODO: Fix disappearing highlights after save to a file
+
 -- Highlights, FIXME
 vim.api.nvim_set_hl(0, 'NvimTreeSymlink', { fg = 'cyan' })
 vim.api.nvim_set_hl(0, 'NvimTreeGitDirty', { fg = '#e55561' }) --  unstaged

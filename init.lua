@@ -35,8 +35,8 @@ vim.keymap.set('n', '<leader>G', ':g/<c-r><c-a>/', { desc = ':g/WORD/' })
 vim.keymap.set('n', '<leader>S', ':%s/<c-r><c-a>//g<left><left>', { desc = ':%s/WORD/|/g' })
 
 -- tilda is hard to type, :eh<space> -> :e~/
-vim.cmd([[cabbrev <expr> eh getcmdtype() == ':' ? 'e~/'.abbreviations#eat_char('\s') : 'eh']])
-vim.cmd([[cabbrev <expr> es getcmdtype() == ':' ? 'e%:p:s/'.abbreviations#eat_char('\s') : 'es']])
+vim.keymap.set('ca', 'eh', "getcmdtype() == ':' ? 'e~/'.abbreviations#eat_char('\\s') : 'eh'", { expr = true })
+vim.keymap.set('ca', 'es', "getcmdtype() == ':' ? 'e%:p:s/'.abbreviations#eat_char('\\s') : 'es'", { expr = true })
 
 -- Encoding and file formats
 vim.opt.fileencodings:append('cp1251')
@@ -350,9 +350,9 @@ require('auto-commands/html')
 require('clipboard')
 require('readline')
 require('statusline')
-require('config.lazy') -- last so if a plugin errors, my config will still mostly work
+require('config/lazy') -- last so if a plugin errors, my config will still mostly work
 require('onedark').load()
 
--- TODO: move above so we can set vars for plugins?
+-- Custom setup
 vim.opt.runtimepath:append(vim.fn.stdpath('config') .. '/lua/local')
-pcall(require, 'local') -- custom setup
+pcall(require, 'local')
