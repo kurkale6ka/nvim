@@ -85,7 +85,14 @@ return {
     settings = {
         Lua = {
             diagnostics = { globals = { 'vim' } },
-            workspace = { checkThirdParty = false },
+            workspace = {
+                checkThirdParty = false,
+                -- fixes @type diagnostics errors
+                library = {
+                    '$VIMRUNTIME',
+                    '$XDG_DATA_HOME/nvim/lazy',
+                },
+            },
             telemetry = { enable = false },
         },
     },

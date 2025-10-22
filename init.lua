@@ -255,7 +255,7 @@ vim.api.nvim_create_user_command(
 
 vim.api.nvim_create_user_command('Quotes', function()
     local line = vim.fn.getline('.')
-    local str_bgn = ''
+    local str_bgn, str_end = '', ''
     local idx = line:find('[=:]') or 0
     if line:sub(idx, idx) == '=' then
         str_bgn = line:sub(1, idx) -- from start to =
@@ -281,9 +281,7 @@ vim.diagnostic.config {
             [vim.diagnostic.severity.INFO] = '',
         },
     },
-    virtual_text = {
-        current_line = true, -- TODO: echo below! (in :...)
-    },
+    virtual_text = { current_line = true }, -- TODO: echo below! (in :...)
 }
 
 vim.api.nvim_create_autocmd('LspAttach', {
