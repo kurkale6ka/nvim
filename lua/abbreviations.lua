@@ -1,8 +1,8 @@
-vim.keymap.set('ia', '_dn', "Dimitar Dimitrov<c-r>=abbreviations#eat_char('\\s')<cr>")
-vim.keymap.set('ia', '_de', "kurkale6ka@gmail.com<c-r>=abbreviations#eat_char('\\s')<cr>")
-vim.keymap.set('ia', '_dd', "Dimitar Dimitrov<cr>kurkale6ka@gmail.com<c-r>=abbreviations#eat_char('\\s')<cr>")
+vim.keymap.set('ia', '_dn', [[Dimitar Dimitrov<c-r>=abbreviations#eat_char('\s')<cr>]])
+vim.keymap.set('ia', '_de', [[kurkale6ka@gmail.com<c-r>=abbreviations#eat_char('\s')<cr>]])
+vim.keymap.set('ia', '_dd', [[Dimitar Dimitrov<cr>kurkale6ka@gmail.com<c-r>=abbreviations#eat_char('\s')<cr>]])
 
-vim.keymap.set('ia', '_date', "<c-r>=strftime('%a, %d %b %Y')<cr><c-r>=abbreviations#eat_char('\\s')<cr>")
+vim.keymap.set('ia', '_date', [[<c-r>=strftime('%a, %d %b %Y')<cr><c-r>=abbreviations#eat_char('\s')<cr>]])
 vim.keymap.set('ia', 'todo', 'TODO')
 vim.keymap.set('ia', 'fixme', 'FIXME')
 
