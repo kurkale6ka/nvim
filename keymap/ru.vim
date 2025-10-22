@@ -1,6 +1,6 @@
 lmapclear <buffer>
 
-source $HOME/.vim/keymap/bg.vim
+source $XDG_CONFIG_HOME/nvim/keymap/bg.vim
 
 setlocal spelllang=ru
 let b:keymap_name = "ру"
