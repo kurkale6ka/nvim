@@ -1,5 +1,5 @@
 vim.g.mapleader = ' '
-vim.g.maplocalleader = '\\'
+vim.g.maplocalleader = [[\]]
 vim.o.termguicolors = true
 
 -- Backups
@@ -35,8 +35,8 @@ vim.keymap.set('n', '<leader>G', ':g/<c-r><c-a>/', { desc = ':g/WORD/' })
 vim.keymap.set('n', '<leader>S', ':%s/<c-r><c-a>//g<left><left>', { desc = ':%s/WORD/|/g' })
 
 -- tilda is hard to type, :eh<space> -> :e~/
-vim.keymap.set('ca', 'eh', "getcmdtype() == ':' ? 'e~/'.abbreviations#eat_char('\\s') : 'eh'", { expr = true })
-vim.keymap.set('ca', 'es', "getcmdtype() == ':' ? 'e%:p:s/'.abbreviations#eat_char('\\s') : 'es'", { expr = true })
+vim.keymap.set('ca', 'eh', [[getcmdtype() == ':' ? 'e~/'.abbreviations#eat_char('\s') : 'eh']], { expr = true })
+vim.keymap.set('ca', 'es', [[getcmdtype() == ':' ? 'e%:p:s/'.abbreviations#eat_char('\s') : 'es']], { expr = true })
 
 -- Encoding and file formats
 vim.opt.fileencodings:append('cp1251')
@@ -79,11 +79,16 @@ vim.api.nvim_create_user_command('Ascii', 'call ascii#codes(<f-args>)', {
 
 -- folding
 vim.wo.foldnestmax = 1 -- maximum nesting for indent and syntax
-vim.cmd(
-    [[cabbrev <expr> fold getcmdtype() == ':' ? "se fdm=expr fde=getline(v\\:lnum)=~'^\\\\s*##'?'>'.(len(matchstr(getline(v\\:lnum),'###*'))-1)\\:'='".abbreviations#eat_char('\s') : 'fold']]
+vim.keymap.set(
+    'ca',
+    'fold',
+    [[getcmdtype() == ':' ? "se fdm=expr fde=getline(v\\:lnum)=~'^\\\\s*##'?'>'.(len(matchstr(getline(v\\:lnum),'###*'))-1)\\:'='".abbreviations#eat_char('\s') : 'fold']],
+    { expr = true }
 )
-vim.cmd(
-    [[cabbrev foldx se fdm=expr fde=getline(v\:lnum)=~'<'?'>1'\:'='<left><left><left><left><left><left><left><left><left><left><left><c-r>=abbreviations#eat_char('\s')<cr>]]
+vim.keymap.set(
+    'ca',
+    'foldx',
+    [[se fdm=expr fde=getline(v\:lnum)=~'<'?'>1'\:'='<left><left><left><left><left><left><left><left><left><left><left><c-r>=abbreviations#eat_char('\s')<cr>]]
 )
 
 vim.keymap.set('n', '<c-g>', '2<c-g>', { desc = 'print working directory' })
