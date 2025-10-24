@@ -337,7 +337,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 vim.lsp.enable {
-    'bashls',
+    'bashls', -- itegrates with (if installed): shellcheck, shfmt
     'lua_ls',
     'pyright',
     'ruff',
