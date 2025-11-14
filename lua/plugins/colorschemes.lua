@@ -1,6 +1,24 @@
 return {
     {
+        'olimorris/onedarkpro.nvim',
+        priority = 1000,
+        opts = {
+            plugins = {
+                all = false,
+                blink_cmp = true,
+                gitsigns = true,
+                hop = true,
+                indentline = true,
+                mason = true,
+                nvim_tree = true,
+                treesitter = true,
+                trouble = true,
+            },
+        },
+    },
+    {
         'catppuccin/nvim',
+        lazy = true,
         name = 'catppuccin',
         priority = 1000,
         opts = {
@@ -11,6 +29,7 @@ return {
     {
         'navarasu/onedark.nvim',
         lazy = true,
+        priority = 1000,
         opts = {
             style = 'darker',
             ending_tildes = true,

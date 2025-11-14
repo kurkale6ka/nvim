@@ -354,7 +354,7 @@ require('clipboard')
 require('readline')
 require('statusline')
 require('config/lazy') -- last so if a plugin errors, my config will still mostly work
-require('catppuccin').load()
+require('onedarkpro').load()
 
 -- Custom setup
 vim.opt.runtimepath:append(vim.fn.stdpath('config') .. '/lua/local')
