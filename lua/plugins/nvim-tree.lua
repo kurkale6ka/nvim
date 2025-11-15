@@ -2,7 +2,7 @@
 
 -- Highlights, FIXME
 vim.api.nvim_set_hl(0, 'NvimTreeSymlink', { fg = 'cyan' })
-vim.api.nvim_set_hl(0, 'NvimTreeGitDirty', { fg = '#e55561' }) --  unstaged
+vim.api.nvim_set_hl(0, 'NvimTreeGitDirty', { fg = '#e55561' }) -- unstaged
 -- vim.api.nvim_set_hl(0, 'NvimTreeGitDirty', { link = 'GitSignsDelete' }) -- FIXME: not working?
 vim.api.nvim_set_hl(0, 'NvimTreeGitNew', { fg = '#e55561' }) -- ? untracked
 vim.api.nvim_set_hl(0, 'NvimTreeNormal', { fg = '#1f2329' }) -- onedark/palette/darker/bg0
