@@ -354,7 +354,7 @@ require('clipboard')
 require('readline')
 require('statusline')
 require('config/lazy') -- last so if a plugin errors, my config will still mostly work
-vim.cmd.colorscheme('catppuccin-mocha')
+vim.cmd.colorscheme('onedark')
 
 -- Custom setup
 vim.opt.runtimepath:append(vim.fn.stdpath('config') .. '/lua/local')
