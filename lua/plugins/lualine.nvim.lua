@@ -44,7 +44,7 @@ return {
                             readonly = '[RO]',
                         },
                     },
-                    { 'branch', icon = '', color = { fg = '#18a558' } },
+                    { 'branch', icon = '', color = { fg = '#18a558' } },
                 },
                 lualine_c = {
                     'diagnostics',

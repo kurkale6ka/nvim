@@ -1,7 +1,3 @@
--- FIXME: links to GitSignsAdd
-vim.api.nvim_set_hl(0, 'GitSignsChangedelete', { link = 'GitSignsDelete' })
-vim.api.nvim_set_hl(0, 'GitSignsUntracked', { link = 'GitSignsDelete' })
-
 return {
     {
         'lewis6991/gitsigns.nvim',
@@ -46,6 +42,10 @@ return {
 
                 -- Text object
                 vim.keymap.set({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { buffer = bufnr })
+
+                -- highlights
+                vim.api.nvim_set_hl(0, 'GitSignsChangedelete', { link = 'GitSignsDelete' })
+                vim.api.nvim_set_hl(0, 'GitSignsUntracked', { link = 'GitSignsDelete' })
             end,
         },
     },

@@ -1,14 +1,3 @@
--- TODO: Fix disappearing highlights after save to a file
-
--- Highlights, FIXME
-vim.api.nvim_set_hl(0, 'NvimTreeSymlink', { fg = 'cyan' })
-vim.api.nvim_set_hl(0, 'NvimTreeGitDirty', { fg = '#e55561' }) --  unstaged
--- vim.api.nvim_set_hl(0, 'NvimTreeGitDirty', { link = 'GitSignsDelete' }) -- FIXME: not working?
-vim.api.nvim_set_hl(0, 'NvimTreeGitNew', { fg = '#e55561' }) -- ? untracked
-vim.api.nvim_set_hl(0, 'NvimTreeNormal', { fg = '#1f2329' }) -- onedark/palette/darker/bg0
-vim.api.nvim_set_hl(0, 'NvimTreeEndOfBuffer', { fg = '#1f2329', bg = '#1f2329' }) -- change eob bg + hide final tildes by using the same color
--- vim.api.nvim_set_hl(0, 'NvimTreeEndOfBuffer', { link = 'NvimTreeNormal' }) -- FIXME: not working?
-
 local function my_attach(bufnr)
     local api = require('nvim-tree.api')
 
@@ -22,6 +11,8 @@ local function my_attach(bufnr)
     -- Custom mappings
     vim.keymap.del('n', '-', { buffer = bufnr })
     vim.keymap.set('n', 'u', api.tree.change_root_to_parent, opts('Up')) -- - by default
+
+    vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { fg = '#61afef' })
 end
 
 -- View NvimTree, :Vexplore
