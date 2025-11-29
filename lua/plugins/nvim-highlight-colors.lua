@@ -1,7 +1,7 @@
 return {
     {
         'brenoprata10/nvim-highlight-colors',
-        ft = 'css',
+        ft = { 'css', 'lua' },
         opts = { enable_hex = true },
     },
 }
