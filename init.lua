@@ -4,6 +4,7 @@ vim.o.termguicolors = true
 
 -- Backups
 vim.o.backup = true
+vim.o.backupdir = vim.env.XDG_STATE_HOME .. '/nvim/backup//'
 vim.o.writebackup = true
 vim.o.backupext = '~'
 vim.o.backupskip = nil
