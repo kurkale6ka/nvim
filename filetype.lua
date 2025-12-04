@@ -8,6 +8,5 @@ vim.filetype.add {
     pattern = {
         ['authorized_keys.*'] = 'authorized_keys',
         ['.*/zsh/autoload/.+'] = 'zsh',
-        ['.*/zsh/after/.+'] = 'zsh',
     },
 }
