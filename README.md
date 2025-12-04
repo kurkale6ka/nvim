@@ -8,6 +8,7 @@
 # Neovim plugins
 - [nvim-lspconfig: Quickstart configs for Nvim LSP](https://github.com/neovim/nvim-lspconfig)
 - [conform.nvim: Lightweight yet powerful formatter plugin for Neovim](https://github.com/stevearc/conform.nvim)
+- [GitHub Copilot for Vim and Neovim](https://github.com/github/copilot.vim)
 - [trouble.nvim: 󱠪A pretty diagnostics, references, telescope results, quickfix and location list to help you solve all the trouble your code is causing](https://github.com/folke/trouble.nvim)
 - [nvim-tree.lua: A file explorer tree for neovim written in lua](https://github.com/nvim-tree/nvim-tree.lua)
 - [The undo history visualizer for VIM](https://github.com/mbbill/undotree)
