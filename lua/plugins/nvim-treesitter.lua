@@ -24,6 +24,8 @@ return {
                 'css',
                 'git_rebase',
                 'javascript',
+                'typescript',
+                'tsx',
                 'json',
                 'jsonc',
                 'hcl',
