@@ -26,8 +26,13 @@ return {
                 lua = { 'stylua' },
                 python = { 'isort', lsp_format = 'first' },
                 sh = { 'shfmt' },
+                html = { 'prettier' },
+                markdown = { 'prettier' },
+                json = { 'prettier' },
                 javascript = { 'prettier' },
                 javascriptreact = { 'prettier' },
+                typescript = { 'prettier' },
+                typescriptreact = { 'prettier' },
             },
             formatters = {
                 shfmt = {
