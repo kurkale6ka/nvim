@@ -15,7 +15,7 @@ return {
                         print('Mouse on')
                     end
                 end,
-                { desc = 'Toggle mouse option' },
+                desc = 'Toggle mouse option',
             },
             { -- allows me to enter digraphs with c-k
                 'yok',

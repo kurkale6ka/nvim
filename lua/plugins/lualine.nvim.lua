@@ -70,14 +70,14 @@ return {
                     },
                     { -- encoding
                         function()
-                            local enc, _ = (vim.bo.fenc or vim.go.enc):gsub('^utf%-8$', '')
+                            local enc = (vim.bo.fenc or vim.go.enc):gsub('^utf%-8$', '')
                             return enc
                         end,
                         color = { fg = red },
                     },
                     { -- fileformat
                         function()
-                            local ff, _ = vim.bo.fileformat:gsub('^unix$', '')
+                            local ff = vim.bo.fileformat:gsub('^unix$', '')
                             return ff
                         end,
                         color = { fg = red },

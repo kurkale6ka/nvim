@@ -106,7 +106,7 @@ vim.o.mousemodel = 'extend'
 vim.keymap.set('n', '<S-ScrollWheelDown>', '5zl', { desc = 'Scroll right' })
 vim.keymap.set('n', '<S-ScrollWheelUp>', '5zh', { desc = 'Scroll left' })
 
--- Text formating
+-- Text formatting
 vim.opt.formatoptions:append('ron')
 vim.o.comments = vim.o.comments:gsub('fb:%-', 'b:-') -- lists with dashes. Note: - is a magic character in lua patterns => it needs to be escaped with %
 vim.o.commentstring = '#%s'
@@ -177,7 +177,7 @@ vim.o.modelines = 3
 vim.opt.nrformats:remove('octal')
 vim.o.whichwrap = 'b,s,<,>,[,]'
 vim.o.virtualedit = 'block'
-vim.o.paragraphs = nil -- no wrongly defined paragraphs for non nroff,groff filetypes
+vim.o.paragraphs = '' -- no wrongly defined paragraphs for non nroff,groff filetypes
 
 vim.o.startofline = false
 vim.keymap.set(
@@ -316,7 +316,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             vim.o.updatetime = 250
 
             local cursor =
-                vim.api.nvim_create_augroup('Auto highlight occurences of word under cursor', { clear = true })
+                vim.api.nvim_create_augroup('Auto highlight occurrences of word under cursor', { clear = true })
 
             vim.api.nvim_set_hl(0, 'LspReferenceRead', { link = 'Visual' })
             vim.api.nvim_set_hl(0, 'LspReferenceText', { link = 'Visual' })
@@ -339,7 +339,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- Enable LSP Servers, then install with MasonInstall <...>
 vim.lsp.enable {
-    'bashls', -- itegrates with (if installed): shellcheck, shfmt
+    'bashls', -- integrates with (if installed): shellcheck, shfmt
     'lua_ls',
     'pyright',
     'ruff',
