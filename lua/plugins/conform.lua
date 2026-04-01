@@ -28,6 +28,7 @@ return {
                 sh = { 'shfmt' },
                 html = { 'prettier' },
                 md = { 'prettier' },
+                json = { 'prettier' },
                 javascript = { 'prettier' },
                 javascriptreact = { 'prettier' },
                 typescript = { 'prettier' },

@@ -337,11 +337,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
+-- Enable LSP Servers, then install with MasonInstall <...>
 vim.lsp.enable {
     'bashls', -- itegrates with (if installed): shellcheck, shfmt
     'lua_ls',
     'pyright',
     'ruff',
+    'tailwindcss',
     'ts_ls',
 }
 
@@ -357,6 +359,5 @@ require('statusline')
 require('config/lazy') -- last so if a plugin errors, my config will still mostly work
 vim.cmd.colorscheme('onedark')
 
--- Custom setup
-vim.opt.runtimepath:append(vim.fn.stdpath('config') .. '/lua/local')
+-- Custom setup, lua/local.lua
 pcall(require, 'local')
