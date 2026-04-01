@@ -27,7 +27,7 @@ return {
                 python = { 'isort', lsp_format = 'first' },
                 sh = { 'shfmt' },
                 html = { 'prettier' },
-                md = { 'prettier' },
+                markdown = { 'prettier' },
                 json = { 'prettier' },
                 javascript = { 'prettier' },
                 javascriptreact = { 'prettier' },
