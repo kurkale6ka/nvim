@@ -1,1 +1,1 @@
-vim.g.vim_indent_cont = vim.bo.shiftwidth
+vim.b.vim_indent_cont = vim.bo.shiftwidth

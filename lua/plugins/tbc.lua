@@ -5,7 +5,7 @@ return {
         build = ':call firenvim#install(0)',
         init = function()
             -- force manual triggering
-            if vim.fn.exists('g:started_by_firenvim') then
+            if vim.g.started_by_firenvim then
                 vim.g.firenvim_config = [[
             {
                 'localSettings': {

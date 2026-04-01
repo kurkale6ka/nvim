@@ -21,7 +21,7 @@ function! scratch#buffer (command, ...)
     if a:command == 'scriptnames'
         silent %substitute#^[[:space:]]*[[:digit:]]\+:[[:space:]]*##e
     endif
-    silent %substitute/\%^\_s*\n\|\_s*\%$
+    silent %substitute/\%^\_s*\n\|\_s*\%$//e
     let height = line('$') + 3
     execute 'normal! z'.height."\<cr>"
     0
