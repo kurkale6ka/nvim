@@ -67,7 +67,6 @@ VimScript utilities exposed as commands: `:Ascii`, `:RemoveEOLSpaces`, `:Underli
 | `gd` / `gD` | LSP definition / declaration |
 | `K` | LSP hover |
 
-
 <!-- BEGIN BEADS INTEGRATION v:1 profile:minimal hash:ca08a54f -->
 ## Beads Issue Tracker
 
